@@ -1,0 +1,6 @@
+media/
+social/media/
+social/gifs/
+__pycache__/
+*.pyc
+_zines/

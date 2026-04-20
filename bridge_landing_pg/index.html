@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotica – Find Your Match</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S8NPHZS7LL"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-S8NPHZS7LL');
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden;}
+:root{
+  --navy:#1a1220;--card:#251c30;--card2:#2e2340;--border:#3d3055;
+  --pink:#f080a0;--pink2:#e0506e;--glow:rgba(240,128,160,.32);
+  --muted:#b0a0c0;--dim:#706080;
+}
+
+/* ── BG ── */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.15;}
+.b1{width:550px;height:550px;background:var(--pink);top:-200px;left:-150px;animation:drift 11s ease-in-out infinite alternate;}
+.b2{width:420px;height:420px;background:#8855cc;bottom:-130px;right:-100px;animation:drift 14s ease-in-out infinite alternate-reverse;}
+.b3{width:300px;height:300px;background:var(--pink2);top:45%;left:48%;animation:drift 16s ease-in-out infinite alternate;}
+@keyframes drift{from{transform:translate(0,0)scale(1);}to{transform:translate(24px,18px)scale(1.1);}}
+
+/* ── SCREENS ── */
+.screen{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;overflow:hidden;
+  transition:opacity .4s ease,transform .4s ease;}
+.screen.off{opacity:0;pointer-events:none;transform:translateY(22px);}
+
+/* ── TOPBAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.06);
+  background:rgba(26,18,32,.9);backdrop-filter:blur(18px);flex-shrink:0;}
+.logo{font-size:1.55rem;font-weight:900;letter-spacing:-1px;line-height:1;display:flex;align-items:center;}
+.logo .o{color:var(--pink);font-size:1.3em;line-height:.8;margin:0 -1px;}
+.pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);padding:5px 11px;border-radius:20px;}
+.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.pill span{font-size:.73rem;color:var(--muted);}
+
+/* ── PROGRESS ── */
+.prog{height:4px;background:rgba(255,255,255,.07);flex-shrink:0;}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--pink),var(--pink2));transition:width .6s ease;}
+
+/* ── BUTTONS ── */
+.btn-main{border:none;cursor:pointer;font-weight:800;
+  background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;
+  padding:15px 32px;border-radius:50px;font-size:1rem;letter-spacing:.3px;
+  box-shadow:0 10px 28px var(--glow);transition:transform .2s,box-shadow .2s;}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 36px var(--glow);}
+.btn-main:active{transform:scale(.96)!important;}
+.btn-ghost{border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-weight:700;
+  padding:13px 32px;border-radius:50px;font-size:.9rem;transition:all .2s;}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink);}
+.btn-ghost:active{transform:scale(.96)!important;}
+.btn-continue{width:100%;padding:15px;border-radius:50px;border:none;flex-shrink:0;
+  background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;
+  font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 10px 28px var(--glow);
+  transition:transform .2s,opacity .2s,box-shadow .2s;margin-top:20px;}
+.btn-continue:hover{transform:translateY(-2px);box-shadow:0 16px 36px var(--glow);}
+.btn-continue:active{transform:scale(.96)!important;}
+.btn-continue:disabled{opacity:.3;pointer-events:none;}
+
+/* ── P1 AGE GATE ── */
+#p1 .body{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:24px;overflow-y:auto;}
+.reels{display:flex;gap:9px;justify-content:center;margin-bottom:28px;}
+.reel{width:84px;height:136px;border-radius:15px;position:relative;overflow:hidden;flex-shrink:0;}
+.reel:nth-child(2),.reel:nth-child(4){transform:translateY(-13px);}
+.reel-ph{width:100%;height:100%;}
+.reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block;}
+.reel-veil{position:absolute;inset:0;backdrop-filter:blur(8px);
+  background:rgba(26,18,32,.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.badge{display:inline-block;background:rgba(240,128,160,.1);border:1px solid rgba(240,128,160,.28);
+  color:var(--pink);font-size:.66rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 13px;border-radius:20px;margin-bottom:15px;}
+.gate-h{font-size:clamp(1.8rem,5.5vw,2.7rem);font-weight:900;line-height:1.1;margin-bottom:10px;}
+.gate-h em{font-style:normal;color:var(--pink);}
+.gate-sub{font-size:.87rem;color:var(--muted);line-height:1.7;max-width:320px;margin-bottom:26px;}
+.gate-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:310px;margin:0 auto 16px;}
+.legal{font-size:.66rem;color:var(--dim);max-width:320px;line-height:1.7;}
+.legal a{color:var(--muted);}
+
+/* ── QUIZ COMMON ── */
+.quiz-body{flex:1;display:flex;flex-direction:column;padding:22px 18px 24px;overflow-y:auto;}
+.step-tag{font-size:.62rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:8px;text-align:center;}
+.quiz-q{font-size:clamp(1.3rem,4.5vw,1.95rem);font-weight:900;line-height:1.2;
+  margin-bottom:6px;text-align:center;}
+.quiz-q em{font-style:normal;color:var(--pink);}
+.quiz-sub{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:20px;
+  text-align:center;max-width:320px;align-self:center;}
+
+/* ── AGE RANGE ── */
+.age-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.age-opt{background:var(--card);border:2px solid var(--border);border-radius:14px;
+  padding:18px 12px;text-align:center;cursor:pointer;transition:all .2s;}
+.age-opt:hover{border-color:rgba(240,128,160,.5);}
+.age-opt.sel{border-color:var(--pink);background:rgba(240,128,160,.1);color:var(--pink);}
+.age-opt:active{transform:scale(.97);}
+.age-val{font-size:1.1rem;font-weight:900;margin-bottom:2px;}
+.age-lbl{font-size:.68rem;color:var(--dim);}
+.age-opt.sel .age-lbl{color:rgba(240,128,160,.7);}
+
+/* ── WHO TO MEET ── */
+.meet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.meet-card{background:var(--card);border:2px solid var(--border);border-radius:16px;
+  padding:24px 8px;text-align:center;cursor:pointer;transition:all .2s;}
+.meet-card:hover{border-color:rgba(240,128,160,.5);transform:translateY(-2px);}
+.meet-card.sel{border-color:var(--pink);background:rgba(240,128,160,.1);}
+.meet-card:active{transform:scale(.97)!important;}
+.meet-ico{font-size:2.4rem;margin-bottom:8px;}
+.meet-lbl{font-size:.88rem;font-weight:800;}
+
+/* ── TYPE PREFERENCE ── */
+.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+.type-opt{background:var(--card);border:2px solid var(--border);border-radius:14px;
+  padding:18px 6px;text-align:center;cursor:pointer;transition:all .2s;}
+.type-opt:hover{border-color:rgba(240,128,160,.5);}
+.type-opt.sel{border-color:var(--pink);background:rgba(240,128,160,.1);}
+.type-opt:active{transform:scale(.97);}
+.type-ico{font-size:1.9rem;margin-bottom:6px;}
+.type-lbl{font-size:.73rem;font-weight:800;}
+
+/* ── SKIN / APPEARANCE ── */
+.skin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+.skin-opt{background:var(--card);border:2px solid var(--border);border-radius:14px;
+  padding:16px 8px;text-align:center;cursor:pointer;transition:all .2s;}
+.skin-opt:hover{border-color:rgba(240,128,160,.5);}
+.skin-opt.sel{border-color:var(--pink);background:rgba(240,128,160,.1);}
+.skin-opt:active{transform:scale(.97);}
+.skin-swatch{width:28px;height:28px;border-radius:50%;margin:0 auto 7px;
+  border:2px solid rgba(255,255,255,.18);}
+.skin-lbl{font-size:.72rem;font-weight:800;}
+
+/* ── LOADING ── */
+#p7 .body{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:30px;text-align:center;}
+.load-ring{width:76px;height:76px;border:4px solid var(--border);
+  border-top-color:var(--pink);border-radius:50%;
+  animation:spin 1s linear infinite;margin-bottom:24px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.load-status{font-size:.86rem;color:var(--muted);min-height:1.3em;margin-bottom:18px;}
+.load-num{font-size:3.5rem;font-weight:900;color:var(--pink);line-height:1;margin-bottom:4px;}
+.load-unit{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;}
+.load-track{width:100%;max-width:280px;height:5px;background:var(--border);
+  border-radius:5px;margin-top:24px;overflow:hidden;}
+.load-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--pink2));
+  border-radius:5px;transition:width .3s ease;}
+
+/* ── EMAIL CAPTURE ── */
+#p8 .body{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:28px 22px;}
+.match-badge{background:rgba(240,128,160,.12);border:1px solid rgba(240,128,160,.3);
+  color:var(--pink);font-size:.66rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;margin-bottom:16px;}
+.match-h{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:900;line-height:1.2;margin-bottom:8px;}
+.match-h em{font-style:normal;color:var(--pink);}
+.match-sub{font-size:.86rem;color:var(--muted);line-height:1.7;max-width:310px;margin-bottom:26px;}
+.email-inp{width:100%;max-width:340px;background:var(--card);border:2px solid var(--border);
+  border-radius:50px;color:#fff;font-size:1rem;padding:14px 22px;outline:none;
+  text-align:center;margin-bottom:12px;transition:border-color .2s;}
+.email-inp:focus{border-color:var(--pink);}
+.email-inp::placeholder{color:var(--dim);}
+.email-note{font-size:.62rem;color:var(--dim);max-width:280px;line-height:1.65;margin-top:10px;}
+.email-note a{color:var(--muted);}
+
+/* ── VERIFICATION ── */
+#p9 .body{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:30px;}
+.vsteps{display:flex;flex-direction:column;gap:14px;width:100%;max-width:300px;margin:24px 0;}
+.vstep{display:flex;align-items:center;gap:14px;text-align:left;}
+.vstep-dot{width:30px;height:30px;border-radius:50%;background:var(--card);
+  border:2px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:800;flex-shrink:0;transition:all .4s;}
+.vstep.done .vstep-dot{background:rgba(74,222,128,.15);border-color:#4ade80;color:#4ade80;}
+.vstep.active .vstep-dot{border-color:var(--pink);animation:vpulse 1.2s infinite;}
+@keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(240,128,160,.4);}50%{box-shadow:0 0 0 6px rgba(240,128,160,0);}}
+.vstep-txt{font-size:.86rem;color:var(--dim);font-weight:600;transition:color .4s;}
+.vstep.done .vstep-txt{color:#fff;}
+.vstep.active .vstep-txt{color:var(--muted);}
+.vring{width:14px;height:14px;border:2px solid rgba(240,128,160,.3);
+  border-top-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite;}
+
+/* ── EXIT ── */
+.exit-wrap{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:40px;}
+
+/* ── GALLERY ── */
+#pgal .gal-body{flex:1;overflow-y:auto;padding:14px 14px 0;}
+.gal-header{text-align:center;padding:6px 0 14px;}
+.gal-header h2{font-size:clamp(1.2rem,4vw,1.7rem);font-weight:900;line-height:1.2;margin-bottom:5px;}
+.gal-header h2 em{font-style:normal;color:var(--pink);}
+.gal-header p{font-size:.78rem;color:var(--muted);}
+.model-row{margin-bottom:18px;}
+.model-row-head{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
+.model-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);flex-shrink:0;}
+.model-name{font-size:.9rem;font-weight:800;}
+.model-status{display:flex;align-items:center;gap:4px;font-size:.67rem;color:#4ade80;}
+.model-status::before{content:'';width:5px;height:5px;border-radius:50%;background:#4ade80;display:inline-block;box-shadow:0 0 5px #4ade80;}
+.photos-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+.photo-thumb{aspect-ratio:3/4;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s;}
+.photo-thumb:hover img{transform:scale(1.06);}
+.photo-thumb.locked img{filter:blur(10px) brightness(.5);}
+.lock-icon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;font-size:1.4rem;pointer-events:none;}
+.lock-icon span{font-size:.6rem;color:rgba(255,255,255,.7);margin-top:3px;font-weight:700;}
+.gal-lock-banner{background:rgba(240,128,160,.08);border:1px solid rgba(240,128,160,.22);
+  border-radius:18px;padding:18px 16px;text-align:center;margin:10px 0 22px;}
+.gal-lock-banner h3{font-size:1.1rem;font-weight:900;margin-bottom:5px;}
+.gal-lock-banner p{font-size:.77rem;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+.gal-cta-row{display:flex;gap:9px;padding:12px 14px 20px;flex-shrink:0;}
+.gal-cta-row .btn-main{flex:1;padding:15px;font-size:.95rem;}
+.gal-cta-row .btn-ghost{flex:0 0 auto;padding:15px 20px;}
+
+/* ── CLIPS STRIP ── */
+.clips-section{margin-bottom:20px;}
+.clips-label{font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--pink);margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.clips-label::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:#ff4060;box-shadow:0 0 6px #ff4060;animation:blink 1.5s infinite;}
+.clips-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;
+  scrollbar-width:none;}
+.clips-scroll::-webkit-scrollbar{display:none;}
+.clip-card{flex:0 0 90px;height:146px;border-radius:13px;overflow:hidden;position:relative;
+  cursor:pointer;scroll-snap-align:start;border:1.5px solid rgba(255,255,255,.08);}
+.clip-card video{width:100%;height:100%;object-fit:cover;display:block;}
+.clip-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.28);transition:opacity .2s;}
+.clip-play{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.2);
+  border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;backdrop-filter:blur(4px);}
+.clip-card:hover .clip-overlay{opacity:0;}
+.clip-card.locked .clip-overlay{background:rgba(0,0,0,.55);}
+.clip-card.locked .clip-play{font-size:1.1rem;}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<!-- ══ P1 · AGE GATE ══ -->
+<div class="screen" id="p1">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online now</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:0%"></div></div>
+  <div class="body">
+    <div class="reels">
+      <div class="reel">
+        <video class="reel-ph" autoplay muted loop playsinline><source src="videos/cali_01.mp4" type="video/mp4"></video>
+        <div class="reel-veil">🔥</div>
+      </div>
+      <div class="reel">
+        <video class="reel-ph" autoplay muted loop playsinline><source src="videos/alisha_01.mp4" type="video/mp4"></video>
+        <div class="reel-veil">😏</div>
+      </div>
+      <div class="reel">
+        <video class="reel-ph" autoplay muted loop playsinline><source src="videos/mia_01.mp4" type="video/mp4"></video>
+        <div class="reel-veil">💋</div>
+      </div>
+      <div class="reel">
+        <video class="reel-ph" autoplay muted loop playsinline><source src="videos/amber_01.mp4" type="video/mp4"></video>
+        <div class="reel-veil">🌶️</div>
+      </div>
+    </div>
+    <div class="badge">18+ · Adults Only</div>
+    <h1 class="gate-h">She's already online.<br>Are you <em>ready?</em></h1>
+    <p class="gate-sub">Thousands of real creators live every night. Your match is waiting — but this is strictly for adults.</p>
+    <div class="gate-btns">
+      <button class="btn-main" onclick="go('pgal');track('age_confirmed')">Yes, I'm 18+ — Let me in 🔥</button>
+      <button class="btn-ghost" onclick="go('p-no')">No, take me back</button>
+    </div>
+    <p class="legal">By entering you confirm you are 18 or older and agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+  </div>
+</div>
+
+<!-- ══ P2 · YOUR AGE ══ -->
+<div class="screen off" id="p2">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:14%"></div></div>
+  <div class="quiz-body">
+    <div class="step-tag">Step 1 of 6</div>
+    <h2 class="quiz-q">How <em>old</em> are you?</h2>
+    <p class="quiz-sub">We match you with people your age group actually connects with.</p>
+    <div class="age-grid" id="yourAgeGrid"></div>
+    <button class="btn-continue" id="btnYourAge" disabled
+      onclick="go('p3');track('your_age',{v:userAge})">Continue →</button>
+  </div>
+</div>
+
+<!-- ══ P3 · WHO TO MEET ══ -->
+<div class="screen off" id="p3">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:28%"></div></div>
+  <div class="quiz-body">
+    <div class="step-tag">Step 2 of 6</div>
+    <h2 class="quiz-q">Who do you want to <em>meet?</em></h2>
+    <p class="quiz-sub">No judgment — just tell us so we show you the right people.</p>
+    <div class="meet-grid" id="meetGrid"></div>
+    <button class="btn-continue" id="btnMeet" disabled
+      onclick="go('p4');track('meet_who',{v:meetWho})">Continue →</button>
+  </div>
+</div>
+
+<!-- ══ P4 · THEIR AGE ══ -->
+<div class="screen off" id="p4">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:42%"></div></div>
+  <div class="quiz-body">
+    <div class="step-tag">Step 3 of 6</div>
+    <h2 class="quiz-q">What <em>age range</em> are you looking for?</h2>
+    <p class="quiz-sub">Pick the age group you are most interested in.</p>
+    <div class="age-grid" id="theirAgeGrid"></div>
+    <button class="btn-continue" id="btnTheirAge" disabled
+      onclick="go('p5');track('their_age',{v:theirAge})">Continue →</button>
+  </div>
+</div>
+
+<!-- ══ P5 · TYPE ══ -->
+<div class="screen off" id="p5">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:56%"></div></div>
+  <div class="quiz-body">
+    <div class="step-tag">Step 4 of 6</div>
+    <h2 class="quiz-q">What's your <em>type?</em></h2>
+    <p class="quiz-sub">Be honest — it helps us filter the right matches for you.</p>
+    <div class="type-grid" id="typeGrid"></div>
+    <button class="btn-continue" id="btnType" disabled
+      onclick="go('p6');track('type_pref',{v:prefType})">Continue →</button>
+  </div>
+</div>
+
+<!-- ══ P6 · APPEARANCE ══ -->
+<div class="screen off" id="p6">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:70%"></div></div>
+  <div class="quiz-body">
+    <div class="step-tag">Step 5 of 6</div>
+    <h2 class="quiz-q">Any <em>appearance</em> preference?</h2>
+    <p class="quiz-sub">We will prioritise matches that fit your taste.</p>
+    <div class="skin-grid" id="skinGrid"></div>
+    <button class="btn-continue" id="btnSkin" disabled
+      onclick="startLoading();track('skin_pref',{v:prefSkin})">Continue →</button>
+  </div>
+</div>
+
+<!-- ══ P7 · LOADING ══ -->
+<div class="screen off" id="p7">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>Searching…</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:85%"></div></div>
+  <div class="body">
+    <div class="load-ring"></div>
+    <div class="load-status" id="loadStatus">Scanning profiles in your area…</div>
+    <div class="load-num" id="loadNum">0</div>
+    <div class="load-unit">matches found</div>
+    <div class="load-track"><div class="load-fill" id="loadFill"></div></div>
+  </div>
+</div>
+
+<!-- ══ P8 · EMAIL ══ -->
+<div class="screen off" id="p8">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:92%"></div></div>
+  <div class="body">
+    <div class="match-badge">🎯 Matches Ready</div>
+    <h2 class="match-h"><em id="matchDisp">247</em> women are<br>waiting for you</h2>
+    <p class="match-sub">Enter your email to unlock your personalised matches and get notified when they go live tonight.</p>
+    <input class="email-inp" id="emailInp" type="email" placeholder="Enter your email address"
+      onkeydown="if(event.key==='Enter')submitEmail()" autocomplete="email">
+    <button class="btn-main" style="width:100%;max-width:340px" onclick="submitEmail()">See My Matches 🔥</button>
+    <p class="email-note">🔒 Your email is safe. We never share it with third parties.<br>
+      <a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a></p>
+  </div>
+</div>
+
+<!-- ══ P9 · VERIFY ══ -->
+<div class="screen off" id="p9">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:100%"></div></div>
+  <div class="body">
+    <div style="font-size:3rem;margin-bottom:16px">✉️</div>
+    <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:8px">Verifying your account…</h2>
+    <p style="font-size:.85rem;color:var(--muted);max-width:280px;line-height:1.65;margin-bottom:4px">
+      Checking your details and loading your personalised matches.</p>
+    <div class="vsteps" id="vsteps">
+      <div class="vstep active" id="vs1">
+        <div class="vstep-dot" id="vd1"><div class="vring"></div></div>
+        <div class="vstep-txt" id="vt1">Verifying email address…</div>
+      </div>
+      <div class="vstep" id="vs2">
+        <div class="vstep-dot" id="vd2">2</div>
+        <div class="vstep-txt" id="vt2">Matching your preferences…</div>
+      </div>
+      <div class="vstep" id="vs3">
+        <div class="vstep-dot" id="vd3">3</div>
+        <div class="vstep-txt" id="vt3">Loading your matches…</div>
+      </div>
+    </div>
+    <button class="btn-main" id="btnGo" style="width:100%;max-width:320px;display:none"
+      onclick="aff('verified')">View My Matches Now 🔥</button>
+  </div>
+</div>
+
+<!-- ══ PGAL · GALLERY TEASER ══ -->
+<div class="screen off" id="pgal">
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="pill"><div class="dot"></div><span>3,204 online now</span></div>
+  </div>
+  <div class="prog"><div class="prog-bar" style="width:8%"></div></div>
+  <div class="gal-body" id="galBody">
+    <div class="gal-header">
+      <h2>Your <em>matches</em> are here</h2>
+      <p>Preview a few before we personalise your feed</p>
+    </div>
+    <!-- Models populated by JS -->
+  </div>
+  <div class="gal-cta-row">
+    <button class="btn-main" onclick="aff('gallery_unlock')">Unlock All Models 🔥</button>
+    <button class="btn-ghost" onclick="go('p2');track('gallery_skip')">Quiz →</button>
+  </div>
+</div>
+
+<!-- ══ EXIT ══ -->
+<div class="screen off" id="p-no">
+  <div class="exit-wrap">
+    <div style="font-size:3rem;margin-bottom:14px">🚫</div>
+    <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:10px">Access Denied</h2>
+    <p style="color:var(--muted);font-size:.86rem;max-width:270px">You must be 18 or older. Please close this page.</p>
+  </div>
+</div>
+
+<script>
+const LINK='https://www.rkj3s1ks.com/4784JN/2CTPL/';
+let userAge=null,meetWho=null,theirAge=null,prefType=null,prefSkin=null,matchTotal=0;
+
+function track(n,p){if(typeof gtag!=='undefined')gtag('event',n,p||{});}
+function aff(l){track('affiliate_click',{label:l});window.open(LINK,'_blank','noopener');}
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.add('off'));
+  document.getElementById(id).classList.remove('off');
+  const map={p1:'gate',p2:'your_age',p3:'who_meet',p4:'their_age',p5:'type',p6:'appearance',p7:'loading',p8:'email',p9:'verify'};
+  if(map[id]) track('page_view',{page_title:map[id]});
+}
+
+/* ── AGE OPTIONS ── */
+const ageOpts=[
+  {val:'18–24',lbl:'Young Adult'},
+  {val:'25–34',lbl:'Mid Twenties'},
+  {val:'35–44',lbl:'Thirties'},
+  {val:'45–54',lbl:'Forties'},
+  {val:'55+',  lbl:'Fifty Plus'},
+  {val:'Any',  lbl:'No Preference'},
+];
+
+function buildAgeGrid(gridId,btnId,varName){
+  document.getElementById(gridId).innerHTML=ageOpts.map(o=>`
+    <div class="age-opt"
+      onclick="pickAge(this,'${gridId}','${btnId}','${varName}','${o.val}')">
+      <div class="age-val">${o.val}</div>
+      <div class="age-lbl">${o.lbl}</div>
+    </div>`).join('');
+}
+function pickAge(el,gridId,btnId,varName,val){
+  document.querySelectorAll(`#${gridId} .age-opt`).forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+  if(varName==='userAge') userAge=val;
+  else if(varName==='theirAge') theirAge=val;
+  document.getElementById(btnId).disabled=false;
+}
+
+/* ── WHO TO MEET ── */
+const meetOpts=[
+  {key:'women',ico:'👩',lbl:'Women'},
+  {key:'men',  ico:'👨',lbl:'Men'},
+  {key:'both', ico:'💑',lbl:'Both'},
+];
+function buildMeetGrid(){
+  document.getElementById('meetGrid').innerHTML=meetOpts.map(o=>`
+    <div class="meet-card" onclick="pickMeet(this,'${o.key}')">
+      <div class="meet-ico">${o.ico}</div>
+      <div class="meet-lbl">${o.lbl}</div>
+    </div>`).join('');
+}
+function pickMeet(el,val){
+  document.querySelectorAll('.meet-card').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); meetWho=val;
+  document.getElementById('btnMeet').disabled=false;
+}
+
+/* ── TYPE PREFERENCE ── */
+const typeOpts=[
+  {key:'petite',   ico:'🌸',lbl:'Petite'},
+  {key:'curvy',    ico:'💃',lbl:'Curvy'},
+  {key:'athletic', ico:'⚡',lbl:'Athletic'},
+  {key:'exotic',   ico:'✨',lbl:'Exotic'},
+  {key:'milf',     ico:'🔥',lbl:'MILF'},
+  {key:'any',      ico:'💖',lbl:'Any Type'},
+];
+function buildTypeGrid(){
+  document.getElementById('typeGrid').innerHTML=typeOpts.map(o=>`
+    <div class="type-opt" onclick="pickType(this,'${o.key}')">
+      <div class="type-ico">${o.ico}</div>
+      <div class="type-lbl">${o.lbl}</div>
+    </div>`).join('');
+}
+function pickType(el,val){
+  document.querySelectorAll('.type-opt').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); prefType=val;
+  document.getElementById('btnType').disabled=false;
+}
+
+/* ── APPEARANCE ── */
+const skinOpts=[
+  {key:'any',    lbl:'Any',       color:'linear-gradient(135deg,#f080a0,#8855cc)'},
+  {key:'white',  lbl:'Caucasian', color:'#f2ddd0'},
+  {key:'latina', lbl:'Latina',    color:'#c87848'},
+  {key:'black',  lbl:'Black',     color:'#4a2810'},
+  {key:'asian',  lbl:'Asian',     color:'#e8b888'},
+  {key:'mixed',  lbl:'Mixed',     color:'#a06838'},
+];
+function buildSkinGrid(){
+  document.getElementById('skinGrid').innerHTML=skinOpts.map(o=>`
+    <div class="skin-opt" onclick="pickSkin(this,'${o.key}')">
+      <div class="skin-swatch" style="background:${o.color}"></div>
+      <div class="skin-lbl">${o.lbl}</div>
+    </div>`).join('');
+}
+function pickSkin(el,val){
+  document.querySelectorAll('.skin-opt').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); prefSkin=val;
+  document.getElementById('btnSkin').disabled=false;
+}
+
+/* ── LOADING ── */
+function startLoading(){
+  go('p7');
+  matchTotal=180+Math.floor(Math.random()*140);
+  const msgs=['Scanning profiles in your area…','Filtering by your preferences…','Checking who\'s online right now…','Almost ready…'];
+  let mi=0,count=0,prog=0;
+  const fillEl=document.getElementById('loadFill');
+  const numEl=document.getElementById('loadNum');
+  const statusEl=document.getElementById('loadStatus');
+  const msgInt=setInterval(()=>{mi=(mi+1)%msgs.length;statusEl.textContent=msgs[mi];},900);
+  const countInt=setInterval(()=>{
+    count=Math.min(count+Math.ceil(matchTotal/36),matchTotal);
+    prog=Math.min(prog+100/36,100);
+    numEl.textContent=count.toLocaleString();
+    fillEl.style.width=prog+'%';
+    if(count>=matchTotal){
+      clearInterval(countInt);clearInterval(msgInt);
+      statusEl.textContent='Found your matches! 🎉';
+      document.getElementById('matchDisp').textContent=matchTotal.toLocaleString();
+      setTimeout(()=>go('p8'),1100);
+    }
+  },65);
+}
+
+/* ── EMAIL ── */
+function submitEmail(){
+  const inp=document.getElementById('emailInp');
+  const val=inp.value.trim();
+  const valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  if(!valid){
+    inp.style.borderColor='var(--pink2)';
+    inp.focus();
+    return;
+  }
+  inp.style.borderColor='';
+  track('email_submitted',{domain:val.split('@')[1]});
+  // ── Connect your email backend here ──
+  // fetch('https://YOUR_ENDPOINT',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:val})});
+  go('p9');
+  runVerify();
+}
+
+/* ── VERIFICATION ── */
+function runVerify(){
+  const steps=[
+    {dotId:'vd1',txtId:'vt1',stepId:'vs1',done:'Email verified ✓'},
+    {dotId:'vd2',txtId:'vt2',stepId:'vs2',done:'Preferences matched ✓'},
+    {dotId:'vd3',txtId:'vt3',stepId:'vs3',done:'Matches loaded ✓'},
+  ];
+  let si=0;
+  function advance(){
+    if(si>=steps.length){
+      document.getElementById('btnGo').style.display='block';
+      return;
+    }
+    const s=steps[si];
+    document.getElementById(s.stepId).classList.remove('active');
+    document.getElementById(s.stepId).classList.add('done');
+    document.getElementById(s.dotId).innerHTML='✓';
+    document.getElementById(s.txtId).textContent=s.done;
+    si++;
+    if(si<steps.length){
+      const ns=steps[si];
+      document.getElementById(ns.stepId).classList.add('active');
+      document.getElementById(ns.dotId).innerHTML='<div class="vring"></div>';
+    }
+    setTimeout(advance,1300);
+  }
+  setTimeout(advance,1500);
+}
+
+/* ── GALLERY ── */
+const MODELS=[
+  {name:'Alexis Ocean', status:'Online now', photos:['images/alexis1.png','images/alexis2.png','images/alexis3.png','images/alexis4.png']},
+  {name:'Alisha Bell',  status:'Online now', photos:['images/alisha1.jpg','images/alisha2.jpg','images/alisha3.jpg','images/alisha4.jpg']},
+  {name:'Amber Xoo',    status:'Live now 🔴', photos:['images/amber1.jpg','images/amber2.jpg','images/amber3.jpg','images/amber4.jpg']},
+  {name:'Cali Moon',    status:'Online now', photos:['images/cali1.png','images/cali2.png','images/cali3.png','images/cali4.png']},
+  {name:'Anastasia',    status:'Online now', photos:['images/anastasia1.png','images/anastasia2.png','images/anastasia3.png','images/anastasia4.png']},
+  {name:'April Wong',   status:'Live now 🔴', photos:['images/april1.png','images/april2.png','images/april3.png','images/april4.png']},
+  {name:'Eva Williams', status:'Online now', photos:['images/eva1.jpg','images/eva2.png','images/eva3.png','images/eva4.png']},
+  {name:'Maya Levi',    status:'Live now 🔴', photos:['images/maya1.png','images/maya2.png','images/maya3.png','images/maya4.png']},
+];
+const FREE_VIEWS=4;
+let galViewed=0;
+let galLocked=false;
+
+const CLIPS=[
+  {src:'videos/cali_01.mp4',    free:true},
+  {src:'videos/alisha_01.mp4',  free:true},
+  {src:'videos/amber_01.mp4',   free:true},
+  {src:'videos/mia_01.mp4',     free:true},
+  {src:'videos/gia_01.mp4',     free:false},
+  {src:'videos/olivia_01.mp4',  free:false},
+  {src:'videos/eva_01.mp4',     free:false},
+  {src:'videos/anastasia_01.mp4',free:false},
+  {src:'videos/carla_01.mp4',   free:false},
+  {src:'videos/sarah_01.mp4',   free:false},
+];
+
+function buildGallery(){
+  const body=document.getElementById('galBody');
+  let clipsHtml=`<div class="clips-section">
+    <div class="clips-label">Live Clips</div>
+    <div class="clips-scroll">`;
+  CLIPS.forEach((c,i)=>{
+    if(c.free){
+      clipsHtml+=`<div class="clip-card" onclick="playClip(this)">
+        <video muted loop playsinline preload="metadata"><source src="${c.src}" type="video/mp4"></video>
+        <div class="clip-overlay"><div class="clip-play">▶</div></div>
+      </div>`;
+    } else {
+      clipsHtml+=`<div class="clip-card locked" onclick="aff('clip_lock')">
+        <video muted loop playsinline preload="metadata"><source src="${c.src}" type="video/mp4"></video>
+        <div class="clip-overlay"><div class="clip-play">🔒</div></div>
+      </div>`;
+    }
+  });
+  clipsHtml+=`</div></div>`;
+
+  let html=`<div class="gal-header"><h2>Your <em>matches</em> are here</h2><p>Preview a few before we personalise your feed</p></div>${clipsHtml}`;
+  MODELS.forEach((m,mi)=>{
+    const locked=mi>=FREE_VIEWS;
+    const avatarSrc=m.photos[0];
+    html+=`<div class="model-row" id="mrow${mi}">
+      <div class="model-row-head">
+        <img class="model-avatar" src="${avatarSrc}" alt="">
+        <div>
+          <div class="model-name">${m.name}</div>
+          <div class="model-status">${m.status}</div>
+        </div>
+      </div>
+      <div class="photos-strip">`;
+    m.photos.forEach((p,pi)=>{
+      const isLocked=locked;
+      html+=`<div class="photo-thumb${isLocked?' locked':''}" onclick="onThumbClick(${mi},${pi})">
+        <img src="${p}" alt="" loading="lazy">
+        ${isLocked?'<div class="lock-icon">🔒<span>Unlock</span></div>':''}
+      </div>`;
+    });
+    html+=`</div></div>`;
+  });
+  html+=`<div class="gal-lock-banner" id="galBanner" style="display:none">
+    <h3>🔒 ${MODELS.length - FREE_VIEWS} more models locked</h3>
+    <p>You've seen your free preview. Unlock all models and their full galleries now.</p>
+    <button class="btn-main" style="width:100%" onclick="aff('banner_unlock')">View All Models 🔥</button>
+  </div>`;
+  body.innerHTML=html;
+  checkShowBanner();
+}
+
+function playClip(card){
+  const vid=card.querySelector('video');
+  const overlay=card.querySelector('.clip-overlay');
+  if(vid.paused){
+    document.querySelectorAll('.clip-card video').forEach(v=>{ if(v!==vid){v.pause(); v.closest('.clip-card').querySelector('.clip-overlay').style.opacity='1';} });
+    vid.play();
+    overlay.style.opacity='0';
+  } else {
+    vid.pause();
+    overlay.style.opacity='1';
+  }
+}
+
+function onThumbClick(mi,pi){
+  if(mi>=FREE_VIEWS){
+    track('gallery_lock_click',{model:MODELS[mi].name});
+    aff('photo_lock');
+    return;
+  }
+  galViewed++;
+  track('gallery_photo_view',{model:MODELS[mi].name,photo:pi,total:galViewed});
+}
+
+function checkShowBanner(){
+  document.getElementById('galBanner').style.display='block';
+}
+
+/* ── INIT ── */
+buildAgeGrid('yourAgeGrid','btnYourAge','userAge');
+buildAgeGrid('theirAgeGrid','btnTheirAge','theirAge');
+buildMeetGrid();
+buildTypeGrid();
+buildSkinGrid();
+buildGallery();
+</script>
+</body>
+</html>
