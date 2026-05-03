@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hoticaland",
+  "compatibility_date": "2026-05-03",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "bridge_landing_pg"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
