@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOTICA – Funnel Architecture</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0a0a0f;
+    color: #e8e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 40px 20px 60px;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+  }
+  .header h1 span { color: #c084fc; }
+  .header p {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Layer labels ── */
+  .layer-label {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 0 auto 20px;
+  }
+  .layer-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  /* ── Cards ── */
+  .card {
+    border-radius: 14px;
+    padding: 20px 24px;
+    position: relative;
+  }
+  .card h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .card .role {
+    font-size: 0.78rem;
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+  .card .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-top: 10px;
+  }
+
+  /* ── X cluster ── */
+  .x-cluster-wrap {
+    background: #111118;
+    border: 1px solid #1e1e2e;
+    border-radius: 18px;
+    padding: 24px;
+    width: 100%;
+    max-width: 860px;
+  }
+  .x-cluster-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .x-cluster-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #1d9bf0;
+  }
+  .x-accounts {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .x-card {
+    flex: 1;
+    min-width: 200px;
+    background: #16161f;
+    border: 1px solid #252535;
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+  }
+  .x-card .x-icon {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #1d9bf0;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .x-card h3 { font-size: 0.95rem; font-weight: 700; color: #f0f0ff; }
+  .x-card .sub { font-size: 0.75rem; color: #6b7280; margin-top: 4px; line-height: 1.5; }
+  .x-card .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-top: 10px;
+  }
+  .badge-brand  { background: #1e3a5f; color: #60a5fa; }
+  .badge-amp    { background: #2d1b4e; color: #c084fc; }
+  .badge-boost  { background: #1a2e1a; color: #4ade80; }
+
+  /* Algorithm strategy callout */
+  .algo-callout {
+    margin-top: 18px;
+    background: #0f0f1a;
+    border: 1px dashed #2d2d4e;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.78rem;
+    color: #818cf8;
+    line-height: 1.6;
+  }
+  .algo-callout strong { color: #a5b4fc; }
+
+  /* ── Connector arrows ── */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    gap: 0;
+  }
+  .arrow-line {
+    width: 2px;
+    background: linear-gradient(to bottom, #374151, #6d28d9);
+    height: 40px;
+  }
+  .arrow-head {
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid #6d28d9;
+  }
+  .arrow-label {
+    font-size: 0.68rem;
+    color: #6b7280;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 4px 0;
+  }
+
+  /* ── Magazine layer ── */
+  .mag-card {
+    width: 100%;
+    max-width: 860px;
+    background: #0f0f1a;
+    border: 1px solid #312e81;
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .mag-main { flex: 1; min-width: 200px; }
+  .mag-main h2 { font-size: 1.1rem; font-weight: 800; color: #a78bfa; }
+  .mag-main .url { font-size: 0.72rem; color: #4b5563; margin-top: 4px; font-family: monospace; }
+  .mag-main .desc { font-size: 0.8rem; color: #9ca3af; margin-top: 10px; line-height: 1.6; }
+  .mag-audiences {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .aud-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #374151;
+    color: #d1d5db;
+  }
+  .mag-supports {
+    min-width: 160px;
+  }
+  .mag-supports h4 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #4b5563;
+    margin-bottom: 10px;
+  }
+  .support-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin-bottom: 8px;
+  }
+  .support-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── IG layer ── */
+  .ig-cluster-wrap {
+    width: 100%;
+    max-width: 860px;
+    background: #0f0f1a;
+    border: 1px solid #831843;
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .ig-main { flex: 1; min-width: 200px; }
+  .ig-main h2 { font-size: 1.1rem; font-weight: 800; color: #f472b6; }
+  .ig-main .sub { font-size: 0.78rem; color: #9ca3af; margin-top: 6px; line-height: 1.6; }
+  .ig-stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: #1a0a14;
+    border: 1px solid #500724;
+    border-radius: 10px;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .stat-box .num { font-size: 1.2rem; font-weight: 800; color: #f9a8d4; }
+  .stat-box .lbl { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+  .ig-source {
+    min-width: 160px;
+    background: #0a0a0f;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .ig-source h4 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #4b5563; margin-bottom: 8px; }
+  .ig-source p { font-size: 0.78rem; color: #9ca3af; line-height: 1.6; }
+  .ig-source .via { font-size: 0.72rem; color: #f472b6; font-weight: 600; margin-top: 6px; }
+
+  /* ── Dual arrows from X+IG to Mag ── */
+  .dual-connector {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    position: relative;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+  }
+  .dual-connector svg {
+    width: 100%;
+    height: 60px;
+    overflow: visible;
+  }
+
+  /* ── Landing page ── */
+  .lp-card {
+    width: 100%;
+    max-width: 860px;
+    background: #071a10;
+    border: 1px solid #14532d;
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .lp-main { flex: 1; min-width: 200px; }
+  .lp-main h2 { font-size: 1.1rem; font-weight: 800; color: #4ade80; }
+  .lp-main .url { font-size: 0.72rem; color: #4b5563; font-family: monospace; margin-top: 4px; }
+  .lp-main .desc { font-size: 0.8rem; color: #9ca3af; margin-top: 10px; line-height: 1.6; }
+  .lp-steps {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .step-box {
+    background: #0a2010;
+    border: 1px solid #166534;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #86efac;
+  }
+  .step-arrow { color: #374151; font-size: 1.2rem; }
+  .lp-status {
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-live    { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+  .dot-pending { background: #fbbf24; box-shadow: 0 0 6px #fbbf24; }
+
+  /* ── Conversion target ── */
+  .conversion-target {
+    width: 100%;
+    max-width: 860px;
+    background: #111;
+    border: 2px solid #d97706;
+    border-radius: 16px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .ct-left h2 { font-size: 1rem; font-weight: 800; color: #fbbf24; }
+  .ct-left p  { font-size: 0.78rem; color: #9ca3af; margin-top: 4px; }
+  .ct-kpi {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .kpi-box {
+    text-align: center;
+  }
+  .kpi-box .kpi-val { font-size: 1.4rem; font-weight: 800; }
+  .kpi-box .kpi-lbl { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em; }
+  .kpi-red   { color: #f87171; }
+  .kpi-amber { color: #fbbf24; }
+  .kpi-green { color: #4ade80; }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #1f2937;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── Phase banner ── */
+  .phase-banner {
+    width: 100%;
+    max-width: 860px;
+    background: #0f0f1a;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .phase-banner .phase-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #374151;
+    min-width: 64px;
+    padding-top: 2px;
+  }
+  .phase-banner .phase-items {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .phase-pill {
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .ph-done    { background: #052e16; color: #4ade80; border: 1px solid #166534; }
+  .ph-active  { background: #1c1917; color: #fbbf24; border: 1px solid #78350f; }
+  .ph-next    { background: #0f172a; color: #818cf8; border: 1px solid #312e81; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="header">
+  <h1>HOT<span>ICA</span> — Funnel Architecture</h1>
+  <p>Social-to-Conversion Ecosystem Map &nbsp;·&nbsp; 30-Day Report</p>
+</div>
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+
+  <!-- ══════════════════ PHASE STATUS ══════════════════ -->
+  <div class="phase-banner" style="margin-bottom:32px;">
+    <div class="phase-num">Phase Status</div>
+    <div class="phase-items">
+      <span class="phase-pill ph-done">Infrastructure Built</span>
+      <span class="phase-pill ph-done">Landing Page Live</span>
+      <span class="phase-pill ph-done">HotVibes Magazine Live</span>
+      <span class="phase-pill ph-done">IG Asset Acquired</span>
+      <span class="phase-pill ph-active">~4 clicks/day (active)</span>
+      <span class="phase-pill ph-active">IG Activation In Progress</span>
+      <span class="phase-pill ph-next">Backend Wiring (next)</span>
+      <span class="phase-pill ph-next">Scale Traffic (next)</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════ LAYER 1A: X CLUSTER ══════════════════ -->
+  <div class="layer-wrap">
+    <span class="layer-label" style="background:#0a1628;color:#60a5fa;border:1px solid #1e3a5f;">
+      Layer 1A &nbsp;·&nbsp; X / Twitter — Algorithm Play
+    </span>
+
+    <div class="x-cluster-wrap">
+      <div class="x-cluster-title">3-Account Coordinated Strategy — Beat the Algorithm</div>
+      <div class="x-accounts">
+
+        <div class="x-card">
+          <span class="x-icon">✕</span>
+          <h3>Official HOTICA</h3>
+          <div class="sub">Brand voice, product posts, direct conversion content. Primary verified presence.</div>
+          <span class="badge badge-brand">Brand Anchor</span>
+        </div>
+
+        <div class="x-card">
+          <span class="x-icon">✕</span>
+          <h3>HotVibes Magazine</h3>
+          <div class="sub">Editorial amplifier. Cross-posts HOTICA content framed as magazine editorial — sports, tech &amp; music audiences.</div>
+          <span class="badge badge-amp">Content Amplifier</span>
+        </div>
+
+        <div class="x-card">
+          <span class="x-icon">✕</span>
+          <h3>Model Account</h3>
+          <div class="sub">Normal organic account. Engages with HOTICA content to signal genuine social activity and boost reach signals.</div>
+          <span class="badge badge-boost">Reach Booster</span>
+        </div>
+
+      </div>
+
+      <div class="algo-callout">
+        <strong>Algorithm Strategy:</strong> The 3 accounts act as a coordinated cluster — official posts get engagement from the model account and editorial coverage from HotVibes, causing X's algorithm to surface HOTICA content higher in feeds and search results. Each account plays a distinct role: brand authority, editorial credibility, and organic engagement signals.
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow down from X to Magazine -->
+  <div class="connector" style="margin:12px 0 0;">
+    <div class="arrow-line" style="background:linear-gradient(to bottom,#1e3a5f,#312e81);height:36px;"></div>
+    <span class="arrow-label">Cross-posts &amp; Editorial</span>
+    <div class="arrow-head" style="border-top-color:#312e81;"></div>
+  </div>
+
+  <!-- ══════════════════ LAYER 2: HOTVIBES MAGAZINE ══════════════════ -->
+  <div class="layer-wrap" style="margin-top:8px;">
+    <span class="layer-label" style="background:#1a0a3e;color:#c084fc;border:1px solid #4c1d95;">
+      Layer 2 &nbsp;·&nbsp; HotVibes Magazine — Central Amplifier
+    </span>
+
+    <div class="mag-card">
+      <div class="mag-main">
+        <h2>HotVibes Magazine</h2>
+        <div class="url">hotvibes-zines.cape-trip-cloudflare-account.workers.dev</div>
+        <div class="desc">
+          Digital magazine funnel acting as a credibility layer and traffic bridge between social platforms and the HOTICA landing page. Provides editorial context for HOTICA content across multiple audience verticals.
+        </div>
+        <div class="mag-audiences">
+          <span class="aud-pill" style="border-color:#1e3a5f;color:#93c5fd;">Sport</span>
+          <span class="aud-pill" style="border-color:#1e3a5f;color:#93c5fd;">Tech</span>
+          <span class="aud-pill" style="border-color:#1e3a5f;color:#93c5fd;">Music</span>
+          <span class="aud-pill" style="border-color:#1e3a5f;color:#93c5fd;">Fashion / Lifestyle</span>
+        </div>
+      </div>
+      <div class="mag-supports">
+        <h4>Supports</h4>
+        <div class="support-item">
+          <div class="support-dot" style="background:#1d9bf0;"></div>
+          X Cluster (editorial posts)
+        </div>
+        <div class="support-item">
+          <div class="support-dot" style="background:#f472b6;"></div>
+          Instagram Account (content feed)
+        </div>
+        <div class="support-item">
+          <div class="support-dot" style="background:#4ade80;"></div>
+          Landing Page (traffic referral)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow from Magazine down -->
+  <div class="connector" style="margin:12px 0 0;">
+    <div class="arrow-line" style="background:linear-gradient(to bottom,#312e81,#831843);height:36px;"></div>
+    <span class="arrow-label">Directs Audience</span>
+    <div class="arrow-head" style="border-top-color:#831843;"></div>
+  </div>
+
+  <!-- ══════════════════ LAYER 1B: INSTAGRAM ══════════════════ -->
+  <div class="layer-wrap" style="margin-top:8px;">
+    <span class="layer-label" style="background:#1a0414;color:#f9a8d4;border:1px solid #831843;">
+      Layer 1B &nbsp;·&nbsp; Instagram — Conversion Traffic Driver
+    </span>
+
+    <div class="ig-cluster-wrap">
+      <div class="ig-main">
+        <h2>Instagram Niche Fashion Account</h2>
+        <div class="sub">
+          Acquired niche fashion account with an established audience. Being activated as a primary traffic driver into the HOTICA conversion funnel. Content strategy backed by HotVibes Magazine editorial output.
+        </div>
+        <div class="ig-stats">
+          <div class="stat-box">
+            <div class="num">3K</div>
+            <div class="lbl">Followers</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" style="color:#fbbf24;">Active</div>
+            <div class="lbl">Activation Status</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" style="color:#c084fc;">Niche</div>
+            <div class="lbl">Fashion / Lifestyle</div>
+          </div>
+        </div>
+      </div>
+      <div class="ig-source">
+        <h4>Acquisition Source</h4>
+        <p>Purchased via Social Tradia — established account with real existing audience, bypassing cold-start growth phase.</p>
+        <div class="via">via Social Tradia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow from IG to Landing Page -->
+  <div class="connector" style="margin:12px 0 0;">
+    <div class="arrow-line" style="background:linear-gradient(to bottom,#831843,#14532d);height:36px;"></div>
+    <span class="arrow-label">Bio Link / Story Links</span>
+    <div class="arrow-head" style="border-top-color:#14532d;"></div>
+  </div>
+
+  <!-- ══════════════════ LAYER 3: LANDING PAGE ══════════════════ -->
+  <div class="layer-wrap" style="margin-top:8px;">
+    <span class="layer-label" style="background:#052e16;color:#4ade80;border:1px solid #14532d;">
+      Layer 3 &nbsp;·&nbsp; Landing Page — Conversion Gate
+    </span>
+
+    <div class="lp-card">
+      <div class="lp-main">
+        <h2>HOTICA Landing Page</h2>
+        <div class="url">hotica.pages.dev</div>
+        <div class="desc">
+          Central conversion destination. All traffic from X, Instagram, and HotVibes Magazine routes here. Reusable and campaign-ready.
+        </div>
+        <div class="lp-steps">
+          <div class="step-box">Visitor Arrives</div>
+          <div class="step-arrow">›</div>
+          <div class="step-box">Email Signup</div>
+          <div class="step-arrow">›</div>
+          <div class="step-box">Paylolly Payment</div>
+          <div class="step-arrow">›</div>
+          <div class="step-box">Conversion ✓</div>
+        </div>
+      </div>
+      <div class="lp-status">
+        <h4 style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#4b5563;margin-bottom:6px;">Component Status</h4>
+        <div class="status-item">
+          <div class="status-dot dot-live"></div>
+          <span style="color:#9ca3af;">Landing page live</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot dot-live"></div>
+          <span style="color:#9ca3af;">Page traffic active (~4/day)</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot dot-pending"></div>
+          <span style="color:#9ca3af;">Email signup endpoint</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot dot-pending"></div>
+          <span style="color:#9ca3af;">Paylolly payment wiring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow to KPI -->
+  <div class="connector" style="margin:12px 0 0;">
+    <div class="arrow-line" style="background:linear-gradient(to bottom,#14532d,#78350f);height:30px;"></div>
+    <div class="arrow-head" style="border-top-color:#78350f;"></div>
+  </div>
+
+  <!-- ══════════════════ KPI / CONVERSION TARGET ══════════════════ -->
+  <div style="margin-top:8px;width:100%;max-width:860px;">
+    <div class="conversion-target">
+      <div class="ct-left">
+        <h2>Conversion Target</h2>
+        <p>Month 1 KPI &nbsp;·&nbsp; $4,000 revenue goal</p>
+      </div>
+      <div class="ct-kpi">
+        <div class="kpi-box">
+          <div class="kpi-val kpi-red">0</div>
+          <div class="kpi-lbl">Conversions<br>Month 1</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val kpi-amber">~4</div>
+          <div class="kpi-lbl">Clicks/day<br>Current</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val kpi-amber">Setup</div>
+          <div class="kpi-lbl">Phase<br>Complete</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val kpi-green">Scale</div>
+          <div class="kpi-lbl">Phase 2<br>Focus</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ LEGEND ══════════════════ -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1d9bf0;"></div>X / Twitter accounts</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c084fc;"></div>HotVibes Magazine</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f472b6;"></div>Instagram</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4ade80;"></div>Landing Page</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fbbf24;"></div>Pending / In Progress</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f87171;"></div>Not yet achieved</div>
+  </div>
+
+</div>
+</body>
+</html>

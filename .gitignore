@@ -4,3 +4,12 @@ social/gifs/
 __pycache__/
 *.pyc
 _zines/
+
+# Landing page — upload artefacts (not needed in repo)
+bridge_landing_pg/hotica-landing-upload/
+bridge_landing_pg/hotica-landing-upload.zip
+
+# Landing page videos — host on Cloudflare R2 instead of git
+# Once R2 URLs are set in index.html, uncomment the line below:
+# bridge_landing_pg/videos/
+
