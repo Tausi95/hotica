@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOTICA — Marketing Performance Report · Apr–May 2026</title>
+<style>
+/* ── Reset ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+/* ── Brand tokens ── */
+:root{
+  --bg:        #080612;
+  --bg-2:      #100d1c;
+  --card:      #141022;
+  --card-h:    #1c1830;
+  --p-deep:    #221d32;
+  --border:    rgba(255,255,255,.07);
+  --pink:      #fe9fb7;
+  --pink-d:    #e8789a;
+  --blue:      #5b65bc;
+  --green:     #10b981;
+  --amber:     #f5a623;
+  --red:       #ef4444;
+  --violet:    #9b7cf7;
+  --white:     #faf9f6;
+  --muted:     #8b8099;
+  --dim:       #4a4460;
+}
+
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Layout ── */
+.page{max-width:960px;margin:0 auto;padding:0 24px 80px;}
+
+/* ── Cover ── */
+.cover{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:60px 24px;
+  position:relative;
+  overflow:hidden;
+}
+.cover::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(254,159,183,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(91,101,188,.10) 0%, transparent 60%);
+  pointer-events:none;
+}
+.cover-eyebrow{
+  font-size:.72rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  padding:6px 18px;border-radius:20px;margin-bottom:36px;
+}
+.logo{
+  font-size:4.5rem;font-weight:900;letter-spacing:-.04em;
+  line-height:1;margin-bottom:12px;
+}
+.logo .o{color:var(--pink);font-size:1.15em;line-height:.8;margin:0 -2px;}
+.cover-sub{
+  font-size:1rem;color:var(--muted);letter-spacing:.04em;
+  text-transform:uppercase;margin-bottom:48px;
+}
+.cover-date{
+  font-size:.8rem;color:var(--dim);letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.divider-line{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--pink),transparent);
+  margin:32px auto;
+}
+
+/* ── Section headers ── */
+.section{
+  padding:72px 0 0;
+}
+.section-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--pink);
+  margin-bottom:10px;
+}
+.section-title{
+  font-size:2rem;font-weight:800;letter-spacing:-.02em;
+  line-height:1.15;margin-bottom:8px;
+}
+.section-title span{color:var(--pink);}
+.section-sub{
+  font-size:.9rem;color:var(--muted);max-width:560px;
+  line-height:1.7;margin-bottom:40px;
+}
+
+/* ── Horizontal rule ── */
+hr.rule{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:72px 0 0;
+}
+
+/* ── Stat cards ── */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+  margin-bottom:40px;
+}
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px 22px;
+  position:relative;overflow:hidden;
+}
+.stat-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--accent-top,var(--pink));
+  opacity:.5;
+}
+.stat-card.green::before{--accent-top:var(--green);}
+.stat-card.blue::before{--accent-top:var(--blue);}
+.stat-card.amber::before{--accent-top:var(--amber);}
+.stat-card.red::before{--accent-top:var(--red);}
+.stat-card.violet::before{--accent-top:var(--violet);}
+.stat-label{
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:10px;
+}
+.stat-num{
+  font-size:2.4rem;font-weight:900;letter-spacing:-.03em;
+  line-height:1;color:var(--white);
+}
+.stat-num.pink{color:var(--pink);}
+.stat-num.green{color:var(--green);}
+.stat-num.amber{color:var(--amber);}
+.stat-num.red{color:var(--red);}
+.stat-sub{
+  font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.5;
+}
+
+/* ── Channel blocks ── */
+.channel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.channel::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--ch-color,var(--pink));
+}
+.channel.x{--ch-color:#1d9bf0;}
+.channel.ig{--ch-color:var(--pink);}
+.channel.mag{--ch-color:var(--amber);}
+.channel.lp{--ch-color:var(--violet);}
+.channel-header{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:24px;
+}
+.channel-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  flex-shrink:0;
+}
+.channel.x .channel-icon{color:#1d9bf0;}
+.channel.ig .channel-icon{color:var(--pink);}
+.channel.mag .channel-icon{color:var(--amber);}
+.channel.lp .channel-icon{color:var(--violet);}
+.channel-name{
+  font-size:1.05rem;font-weight:800;letter-spacing:-.01em;
+}
+.channel-handle{
+  font-size:.75rem;color:var(--muted);margin-top:2px;
+}
+.channel-metrics{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;
+}
+.metric{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+}
+.metric-val{
+  font-size:1.5rem;font-weight:900;letter-spacing:-.02em;
+  line-height:1;
+}
+.metric-val.green{color:var(--green);}
+.metric-val.amber{color:var(--amber);}
+.metric-val.red{color:var(--red);}
+.metric-val.blue{color:#1d9bf0;}
+.metric-val.pink{color:var(--pink);}
+.metric-val.muted{color:var(--muted);}
+.metric-label{
+  font-size:.66rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dim);
+  margin-top:5px;
+}
+.channel-note{
+  margin-top:20px;
+  font-size:.8rem;color:var(--muted);
+  line-height:1.7;
+  padding:14px 16px;
+  background:rgba(255,255,255,.02);
+  border-radius:10px;
+  border-left:2px solid rgba(255,255,255,.08);
+}
+
+/* ── Assets produced ── */
+.assets-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-bottom:0;
+}
+.asset-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+}
+.asset-tag{
+  display:inline-block;
+  font-size:.62rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+  margin-bottom:14px;
+  background:rgba(254,159,183,.1);
+  color:var(--pink);border:1px solid rgba(254,159,183,.2);
+}
+.asset-tag.blue{
+  background:rgba(91,101,188,.1);color:var(--blue);
+  border-color:rgba(91,101,188,.2);
+}
+.asset-tag.amber{
+  background:rgba(245,166,35,.1);color:var(--amber);
+  border-color:rgba(245,166,35,.2);
+}
+.asset-tag.violet{
+  background:rgba(155,124,247,.1);color:var(--violet);
+  border-color:rgba(155,124,247,.2);
+}
+.asset-tag.green{
+  background:rgba(16,185,129,.1);color:var(--green);
+  border-color:rgba(16,185,129,.2);
+}
+.asset-title{
+  font-size:1rem;font-weight:800;margin-bottom:6px;
+  letter-spacing:-.01em;
+}
+.asset-desc{
+  font-size:.78rem;color:var(--muted);line-height:1.65;
+}
+
+/* ── Funnel table ── */
+.funnel-table{
+  width:100%;border-collapse:collapse;
+  font-size:.85rem;
+  margin-top:8px;
+}
+.funnel-table th{
+  text-align:left;padding:10px 16px;
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--border);
+}
+.funnel-table td{
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  vertical-align:middle;
+}
+.funnel-table tr:last-child td{border-bottom:none;}
+.tag{
+  display:inline-block;
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:20px;
+}
+.tag.green{background:rgba(16,185,129,.12);color:var(--green);}
+.tag.red{background:rgba(239,68,68,.12);color:var(--red);}
+.tag.amber{background:rgba(245,166,35,.12);color:var(--amber);}
+
+/* ── Summary box ── */
+.summary-box{
+  background:linear-gradient(135deg,rgba(254,159,183,.07) 0%,rgba(91,101,188,.07) 100%);
+  border:1px solid rgba(254,159,183,.18);
+  border-radius:20px;
+  padding:36px 40px;
+  margin-top:40px;
+}
+.summary-box h3{
+  font-size:1.2rem;font-weight:800;margin-bottom:8px;
+}
+.summary-box p{
+  font-size:.88rem;color:var(--muted);line-height:1.8;max-width:640px;
+}
+
+/* ── Needs / future section ── */
+.needs-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+@media(max-width:600px){.needs-grid{grid-template-columns:1fr;}}
+.need-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+}
+.need-num{
+  font-size:2rem;font-weight:900;
+  color:var(--pink);opacity:.3;
+  line-height:1;margin-bottom:10px;
+}
+.need-title{
+  font-size:.95rem;font-weight:800;margin-bottom:8px;
+}
+.need-body{
+  font-size:.8rem;color:var(--muted);line-height:1.7;
+}
+
+/* ── Discussion table ── */
+.discussion-table{
+  width:100%;border-collapse:collapse;font-size:.85rem;
+}
+.discussion-table th{
+  text-align:left;padding:10px 16px;
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--border);
+}
+.discussion-table td{
+  padding:16px 16px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  vertical-align:top;
+  line-height:1.65;
+}
+.discussion-table tr:last-child td{border-bottom:none;}
+.discussion-table td:first-child{
+  font-weight:700;color:var(--white);
+  font-size:.85rem;white-space:nowrap;
+  padding-right:24px;
+}
+.discussion-table td:last-child{
+  color:var(--muted);font-size:.82rem;
+}
+
+/* ── Footer ── */
+.footer{
+  text-align:center;padding:60px 0 40px;
+  font-size:.72rem;color:var(--dim);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.footer .logo-sm{
+  font-size:1.4rem;font-weight:900;letter-spacing:-.03em;
+  color:var(--white);margin-bottom:8px;
+}
+.footer .logo-sm span{color:var(--pink);}
+
+/* ── Print ── */
+@media print{
+  .cover{min-height:auto;padding:40px 0;}
+  .section{page-break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     COVER
+══════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Marketing Performance Report</div>
+  <div class="logo">H<span class="o">O</span>TICA</div>
+  <div class="cover-sub">April – May 2026</div>
+  <div class="divider-line"></div>
+  <div class="cover-date">Confidential · Internal Review</div>
+</div>
+
+<div class="page">
+
+<!-- ══════════════════════════════════
+     1. EXECUTIVE SUMMARY
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">01 — Overview</div>
+  <div class="section-title">Two months of<br><span>build and launch.</span></div>
+  <div class="section-sub">
+    April and May were focused on constructing the full marketing stack — brand films, organic social funnels, landing infrastructure, and editorial media. The work is in place. Conversion is not yet happening.
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Gross Clicks · All Time</div>
+      <div class="stat-num pink">22</div>
+      <div class="stat-sub">Across all channels and assets to date</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-label">Conversions</div>
+      <div class="stat-num red">0</div>
+      <div class="stat-sub">No paid sign-ups or subscriptions recorded</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">IG Followers Acquired</div>
+      <div class="stat-num green">1.3K</div>
+      <div class="stat-sub">Within first 30 days of posting</div>
+    </div>
+    <div class="stat-card amber">
+      <div class="stat-label">Peak IG Engagement</div>
+      <div class="stat-num amber">40%</div>
+      <div class="stat-sub">Single post engagement rate</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="stat-label">Peak X Views</div>
+      <div class="stat-num" style="color:#1d9bf0">5K</div>
+      <div class="stat-sub">Highest single-post reach on X</div>
+    </div>
+    <div class="stat-card violet">
+      <div class="stat-label">Assets Produced</div>
+      <div class="stat-num" style="color:var(--violet)">14+</div>
+      <div class="stat-sub">Films, ads, pages, magazine, calendar</div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ══════════════════════════════════
+     2. CHANNEL PERFORMANCE
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">02 — Channels</div>
+  <div class="section-title">Platform-by-platform<br><span>performance.</span></div>
+  <div class="section-sub">
+    Organic social drove awareness. No channel has delivered a conversion yet.
+  </div>
+
+  <!-- X -->
+  <div class="channel x">
+    <div class="channel-header">
+      <div class="channel-icon">𝕏</div>
+      <div>
+        <div class="channel-name">X (Twitter) — Organic Funnel</div>
+        <div class="channel-handle">@hotvibes26</div>
+      </div>
+    </div>
+    <div class="channel-metrics">
+      <div class="metric">
+        <div class="metric-val blue">5K</div>
+        <div class="metric-label">Peak post views</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val amber">~10</div>
+        <div class="metric-label">Engagement low-point</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val muted">8</div>
+        <div class="metric-label">Thread sequences built</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val red">0</div>
+        <div class="metric-label">Conversions</div>
+      </div>
+    </div>
+    <div class="channel-note">
+      A 30-day funnel was fully scripted across 8 creator sequences — Scroll Stop → Curiosity → Desire → Subscribe. Reach varied significantly by post format: hot-take text posts drove the broadest distribution, creator threads drove the most profile clicks. Engagement floor of ~10 interactions indicates a small but real audience. Creator profile links in the final reply of each thread were never filled in — meaning the conversion endpoint was missing throughout the campaign period.
+    </div>
+  </div>
+
+  <!-- Instagram -->
+  <div class="channel ig">
+    <div class="channel-header">
+      <div class="channel-icon">IG</div>
+      <div>
+        <div class="channel-name">Instagram</div>
+        <div class="channel-handle">Hotica / HotVibes</div>
+      </div>
+    </div>
+    <div class="channel-metrics">
+      <div class="metric">
+        <div class="metric-val pink">1.3K</div>
+        <div class="metric-label">Followers in 30 days</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val amber">40%</div>
+        <div class="metric-label">Peak engagement rate</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val muted">30</div>
+        <div class="metric-label">Days of scheduled content</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val red">0</div>
+        <div class="metric-label">Conversions to Hotica</div>
+      </div>
+    </div>
+    <div class="channel-note">
+      1.3K followers in 30 days is a strong organic start for a new account. A 40% engagement rate on a single post signals the right content resonates with the audience that found it. The disconnect: Instagram does not allow direct links in captions, and the bio link was not consistently updated to route to a specific creator profile. Traffic that reached hotica.com hit the homepage with no clear path to a purchase.
+    </div>
+  </div>
+
+  <!-- Magazine -->
+  <div class="channel mag">
+    <div class="channel-header">
+      <div class="channel-icon">📰</div>
+      <div>
+        <div class="channel-name">HotVibes Magazine</div>
+        <div class="channel-handle">hotvibes26.com — Cloudflare Pages</div>
+      </div>
+    </div>
+    <div class="channel-metrics">
+      <div class="metric">
+        <div class="metric-val" style="color:var(--amber)">3</div>
+        <div class="metric-label">Issues designed</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val green">1</div>
+        <div class="metric-label">Issues live</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val muted">5</div>
+        <div class="metric-label">Industry verticals</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val red">—</div>
+        <div class="metric-label">Traffic data pending</div>
+      </div>
+    </div>
+    <div class="channel-note">
+      Issue 000 — <em>Culture Meets Capital</em> — is live. Issues 001 (The Heat Index) and 002 (New Money) are fully built and staged for publication. Live NewsAPI feed proxied via Cloudflare edge with 30-minute cache. CTAs route to hotica.com and AdultWork. No traffic data available for the reporting period — analytics need to be confirmed as active.
+    </div>
+  </div>
+
+  <!-- Bridge Landing Pages -->
+  <div class="channel lp">
+    <div class="channel-header">
+      <div class="channel-icon">🔗</div>
+      <div>
+        <div class="channel-name">Bridge Landing Pages</div>
+        <div class="channel-handle">hotvibes26.com/{creator-slug}/</div>
+      </div>
+    </div>
+    <div class="channel-metrics">
+      <div class="metric">
+        <div class="metric-val" style="color:var(--violet)">28</div>
+        <div class="metric-label">Pages built</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val muted">29</div>
+        <div class="metric-label">Models contacted</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val amber">22</div>
+        <div class="metric-label">Gross clicks (all time)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val red">0</div>
+        <div class="metric-label">Conversions</div>
+      </div>
+    </div>
+    <div class="channel-note">
+      28 personalised creator landing pages generated from a single template — each with age gate, hero video, photo carousel, earnings social proof, and a sticky CTA. All tracked via GA4. Facebook Pixel ID is still a placeholder across all pages. Backend endpoints for email capture and payment (Paylolly) are stubbed but not connected — CTAs currently route to a static affiliate link with no user data captured.
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ══════════════════════════════════
+     3. ASSETS PRODUCED
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">03 — Production</div>
+  <div class="section-title">What was<br><span>built.</span></div>
+  <div class="section-sub">
+    The full creative and technical stack was produced from scratch in the two-month window.
+  </div>
+
+  <div class="assets-grid">
+
+    <div class="asset-card">
+      <div class="asset-tag">Social Films</div>
+      <div class="asset-title">5 Cinematic Brand Films</div>
+      <div class="asset-desc">
+        Built Different, 3AM, The List, Letters, Flip Editorial — plus a sizzle reel and IG teaser. All V2-revised. Produced on the Hotica rendering engine with brand palette, Funnel fonts, beat-sync, and grain.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-tag blue">Paid Ads</div>
+      <div class="asset-title">5 Conversion Video Ads</div>
+      <div class="asset-desc">
+        A1 (Behind the Dark), A2 (Unlock), B1 (Make It Yours), B2 (Your Page Your Rules), C1 (Before/After). Both 9×16 and 1×1 formats with music variants. C2 scripted, render pending.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-tag violet">Infrastructure</div>
+      <div class="asset-title">28 Bridge Landing Pages</div>
+      <div class="asset-desc">
+        Creator-personalised pages on Cloudflare Pages. Age gate, hero video, carousel, social proof, sticky CTA, GA4, Facebook Pixel (ID pending). Outreach emails sent to 29 models.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-tag amber">Editorial</div>
+      <div class="asset-title">HotVibes Magazine</div>
+      <div class="asset-desc">
+        Full digital magazine design system — Issue 000 live, Issues 001 &amp; 002 staged. Live NewsAPI feed, 5-vertical editorial structure, full Cloudflare deployment pipeline.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-tag green">Content</div>
+      <div class="asset-title">30-Day Social Calendar</div>
+      <div class="asset-desc">
+        X + Instagram + TikTok + Reddit. 8 scripted X thread sequences. 4 weekly themes: Curiosity → Desire → Status → Conversion. Loomly-formatted export ready to load.
+      </div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-tag">Creator Clips</div>
+      <div class="asset-title">30+ Graded Clips</div>
+      <div class="asset-desc">
+        Per-creator clips produced across 10 models — Alisha Bell, Amber Xoo, Anastasia Deep, Cali Moon, Carla Reys, Eva Williams, Gia Bell, Mia Muse, Olivia Rimes, Sarah Lust.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ══════════════════════════════════
+     4. FUNNEL BREAKDOWN
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">04 — Funnel Analysis</div>
+  <div class="section-title">Where the<br><span>drop-off happens.</span></div>
+  <div class="section-sub">
+    Awareness is generating. Every subsequent stage is broken.
+  </div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+    <table class="funnel-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Channel</th>
+          <th>Result</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Awareness</strong></td>
+          <td>X (organic) · Instagram</td>
+          <td>Up to 5K views · 1.3K IG followers · 40% peak engagement</td>
+          <td><span class="tag green">Working</span></td>
+        </tr>
+        <tr>
+          <td><strong>Click-through</strong></td>
+          <td>X threads · IG bio link</td>
+          <td>22 gross clicks total across all time</td>
+          <td><span class="tag amber">Very Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>Landing</strong></td>
+          <td>Bridge pages · hotica.com</td>
+          <td>Pages exist. No email capture active. Pixel not firing.</td>
+          <td><span class="tag red">Broken</span></td>
+        </tr>
+        <tr>
+          <td><strong>Conversion</strong></td>
+          <td>Paylolly / Hotica sign-up</td>
+          <td>0 recorded conversions</td>
+          <td><span class="tag red">Not Connected</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box">
+    <h3>The core diagnosis</h3>
+    <p>
+      The content is working at the top of the funnel — reach and engagement are real. The Hotica partner API for signup is in place. The problem is structural and behavioural: creator profile links were never filled into the X threads, the Facebook Pixel ID was never set, and the platform currently lacks the community that would make sign-up feel worthwhile to an arriving user. People who respond to the content have a path to the signup flow — but they are not completing it, and we have no pixel data to understand why.
+    </p>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ══════════════════════════════════
+     5. FUTURE PLANS — DISCUSSION
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">05 — Next Steps</div>
+  <div class="section-title">What needs to<br><span>be decided.</span></div>
+  <div class="section-sub">
+    The following items require a decision or resource before work can proceed.
+  </div>
+
+  <div class="needs-grid">
+
+    <div class="need-card">
+      <div class="need-num">01</div>
+      <div class="need-title">Creator Profile URLs</div>
+      <div class="need-body">
+        Every X thread sequence ends with a placeholder link. The 30-day calendar cannot run without the live Hotica profile URLs for each creator. <strong>Decision needed:</strong> who pulls these and when do we get them into the scripts?
+      </div>
+    </div>
+
+    <div class="need-card">
+      <div class="need-num">02</div>
+      <div class="need-title">Signup Conversion</div>
+      <div class="need-body">
+        The Hotica partner API for signup has been provided. The integration path exists. Conversion is still not happening — no sign-ups have been recorded through the flow. <strong>Investigation needed:</strong> identify where users are dropping off and why they are not completing sign-up.
+      </div>
+    </div>
+
+    <div class="need-card">
+      <div class="need-num">03</div>
+      <div class="need-title">Facebook Pixel &amp; Tracking</div>
+      <div class="need-body">
+        Pixel ID is a placeholder on all 28 landing pages. Without it, paid retargeting is impossible. <strong>Decision needed:</strong> provide the Pixel ID, regenerate pages, push.
+      </div>
+    </div>
+
+    <div class="need-card">
+      <div class="need-num">05</div>
+      <div class="need-title">Magazine Publishing Cadence</div>
+      <div class="need-body">
+        Issues 001 and 002 are built and staged. <strong>Decision needed:</strong> confirm publish dates and assign responsibility for writing future issues. The editorial pipeline stalls without this.
+      </div>
+    </div>
+
+    <div class="need-card">
+      <div class="need-num">06</div>
+      <div class="need-title">Platform Strategy Review</div>
+      <div class="need-body">
+        22 clicks and 0 conversions in two months signals a strategy review is due. <strong>Discussion needed:</strong> Hotica currently lacks an established community — users arriving at a signup flow have no social proof or existing user base to join. Is the platform itself ready to convert, or does community need to be built first?
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:40px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+    <table class="discussion-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Current State</th>
+          <th>What's needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>X thread links</td>
+          <td>All 8 sequences scripted, all links placeholder</td>
+          <td>Live Hotica creator profile URLs</td>
+        </tr>
+        <tr>
+          <td>Facebook Pixel</td>
+          <td>Code present, ID = "YOUR_PIXEL_ID" on 28 pages</td>
+          <td>Pixel ID from Meta Business Manager</td>
+        </tr>
+        <tr>
+          <td>Email capture</td>
+          <td>Stub exists in index.html (line ~609), not active</td>
+          <td>Backend endpoint or Hotica API credentials</td>
+        </tr>
+        <tr>
+          <td>Signup conversion</td>
+          <td>Hotica partner API provided; conversion not completing</td>
+          <td>Diagnose drop-off in the signup flow — API is in place</td>
+        </tr>
+        <tr>
+          <td>Ad C2</td>
+          <td>Script written, clips and grades defined</td>
+          <td>One production run</td>
+        </tr>
+        <tr>
+          <td>Issues 001 &amp; 002</td>
+          <td>HTML built and staged, not visible on homepage</td>
+          <td>Approval to publish + git push</td>
+        </tr>
+        <tr>
+          <td>Paid media</td>
+          <td>7 ads produced and deployed</td>
+          <td>Monitor performance; no further production needed at this stage</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<div class="footer">
+  <div class="logo-sm">H<span>O</span>TICA</div>
+  <div>Internal report · April – May 2026 · Confidential</div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
