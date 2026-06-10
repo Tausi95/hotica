@@ -580,7 +580,7 @@ hr.rule{
       </div>
     </div>
     <div class="channel-note">
-      28 personalised creator landing pages generated from a single template — each with age gate, hero video, photo carousel, earnings social proof, and a sticky CTA. All tracked via GA4. Facebook Pixel ID is still a placeholder across all pages. Backend endpoints for email capture and payment (Paylolly) are stubbed but not connected — CTAs currently route to a static affiliate link with no user data captured.
+      28 personalised creator landing pages generated from a single template — each with age gate, hero video, photo carousel, earnings social proof, and a sticky CTA. All tracked via GA4. Facebook Pixel ID is still a placeholder across all pages. Backend endpoints for email capture are stubbed but not connected — sign-up goes through the Hotica partner API. CTAs currently route to a static affiliate link with no user data captured.
     </div>
   </div>
 </div>
@@ -692,8 +692,14 @@ hr.rule{
           <td><span class="tag red">Broken</span></td>
         </tr>
         <tr>
+          <td><strong>Trust / Community</strong></td>
+          <td>Hotica platform</td>
+          <td>No visible subscriber base, creator activity, or social proof on platform</td>
+          <td><span class="tag red">Structural Gap</span></td>
+        </tr>
+        <tr>
           <td><strong>Conversion</strong></td>
-          <td>Paylolly / Hotica sign-up</td>
+          <td>Hotica sign-up (API connected)</td>
           <td>0 recorded conversions</td>
           <td><span class="tag red">Not Connected</span></td>
         </tr>
@@ -704,7 +710,7 @@ hr.rule{
   <div class="summary-box">
     <h3>The core diagnosis</h3>
     <p>
-      The content is working at the top of the funnel — reach and engagement are real. The Hotica partner API for signup is in place. The problem is structural and behavioural: creator profile links were never filled into the X threads, the Facebook Pixel ID was never set, and the platform currently lacks the community that would make sign-up feel worthwhile to an arriving user. People who respond to the content have a path to the signup flow — but they are not completing it, and we have no pixel data to understand why.
+      The content is working at the top of the funnel — reach and engagement are real. The Hotica partner API for signup is in place. The problem is structural on two levels: <strong>operational</strong> (creator profile links were never filled into the X threads, the Facebook Pixel ID was never set) and <strong>foundational</strong> (the platform currently lacks the community that makes sign-up feel worthwhile to an arriving user). People who respond to the content technically have a path to the signup flow — but an empty platform kills intent before they reach it. See Section 05 for a full breakdown of the community gap.
     </p>
   </div>
 </div>
@@ -712,10 +718,75 @@ hr.rule{
 <hr class="rule">
 
 <!-- ══════════════════════════════════
-     5. FUTURE PLANS — DISCUSSION
+     5. COMMUNITY GAP
 ══════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">05 — Next Steps</div>
+  <div class="section-label">05 — Critical Challenge</div>
+  <div class="section-title">Zero conversions is a<br><span>platform problem.</span></div>
+  <div class="section-sub">
+    Marketing can drive traffic to Hotica. It cannot make an empty platform feel worth joining. That is a community problem — and it is structural.
+  </div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:24px;">
+    <table class="funnel-table">
+      <thead>
+        <tr>
+          <th>Community Signal</th>
+          <th>What it does for conversion</th>
+          <th>Current state</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Visible subscriber counts</strong></td>
+          <td>Social proof — someone already paid</td>
+          <td>Not surfaced to arriving users</td>
+          <td><span class="tag red">Missing</span></td>
+        </tr>
+        <tr>
+          <td><strong>Active creator posting</strong></td>
+          <td>Reason to subscribe today</td>
+          <td>No committed schedule in place</td>
+          <td><span class="tag red">Missing</span></td>
+        </tr>
+        <tr>
+          <td><strong>Waitlist / early access</strong></td>
+          <td>Converts curiosity into email; builds FOMO</td>
+          <td>Not deployed — hard CTA only</td>
+          <td><span class="tag amber">Not deployed</span></td>
+        </tr>
+        <tr>
+          <td><strong>Community feed activity</strong></td>
+          <td>Platform feels live and occupied</td>
+          <td>Empty or not visible at landing</td>
+          <td><span class="tag red">Missing</span></td>
+        </tr>
+        <tr>
+          <td><strong>Creator earnings proof</strong></td>
+          <td>Credibility for prospective creators</td>
+          <td>Landing pages use static placeholder numbers</td>
+          <td><span class="tag amber">Placeholder</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box" style="border-color:rgba(239,68,68,.3);background:linear-gradient(135deg,rgba(239,68,68,.06) 0%,rgba(245,166,35,.06) 100%);">
+    <h3>The recommendation</h3>
+    <p>
+      Pause conversion-focused paid spend until the platform has a visible, active community. Redirect landing page CTAs from hard subscribe to a waitlist (email capture) so traffic is not lost — it is held. Seed Hotica with 5–10 committed creators on a structured posting schedule before scaling acquisition. Use the existing 1.3K Instagram audience and X engagement as a first subscriber cohort — personal invites outperform cold funnels at this stage. Once the platform visibly has people in it, the current ad stack and funnel infrastructure will work. Before that point, additional spend will continue to produce zero conversions.
+    </p>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ══════════════════════════════════
+     6. FUTURE PLANS — DISCUSSION
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">06 — Next Steps</div>
   <div class="section-title">What needs to<br><span>be decided.</span></div>
   <div class="section-sub">
     The following items require a decision or resource before work can proceed.
@@ -748,7 +819,7 @@ hr.rule{
     </div>
 
     <div class="need-card">
-      <div class="need-num">05</div>
+      <div class="need-num">04</div>
       <div class="need-title">Magazine Publishing Cadence</div>
       <div class="need-body">
         Issues 001 and 002 are built and staged. <strong>Decision needed:</strong> confirm publish dates and assign responsibility for writing future issues. The editorial pipeline stalls without this.
@@ -756,10 +827,10 @@ hr.rule{
     </div>
 
     <div class="need-card">
-      <div class="need-num">06</div>
-      <div class="need-title">Platform Strategy Review</div>
+      <div class="need-num">05</div>
+      <div class="need-title">Community Seeding Plan</div>
       <div class="need-body">
-        22 clicks and 0 conversions in two months signals a strategy review is due. <strong>Discussion needed:</strong> Hotica currently lacks an established community — users arriving at a signup flow have no social proof or existing user base to join. Is the platform itself ready to convert, or does community need to be built first?
+        The community gap (Section 05) blocks conversion regardless of funnel quality. <strong>Action needed:</strong> identify 5–10 creators willing to commit to a posting schedule, redirect bridge page CTAs to a waitlist, and run a personal invite campaign to the existing Instagram and X audience before resuming paid acquisition.
       </div>
     </div>
 

@@ -7,13 +7,13 @@
 
 <meta property="og:title" content="HOTICA – Your matches are waiting tonight">
 <meta property="og:description" content="3,200+ real creators online right now. Your personalised match is here.">
-<meta property="og:image" content="https://hotica.pages.dev/images/og-preview.jpg">
-<meta property="og:url" content="https://hotica.pages.dev/">
+<meta property="og:image" content="https://hotvibes26.com/images/og-preview.jpg">
+<meta property="og:url" content="https://hotvibes26.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HOTICA – Your matches are waiting tonight">
 <meta name="twitter:description" content="3,200+ real creators online right now. Your personalised match is here.">
-<meta name="twitter:image" content="https://hotica.pages.dev/images/og-preview.jpg">
+<meta name="twitter:image" content="https://hotvibes26.com/images/og-preview.jpg">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8NPHZS7LL"></script>
 <script>
@@ -22,6 +22,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());
 gtag('config','G-S8NPHZS7LL');
 </script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <!-- Meta Pixel — replace YOUR_PIXEL_ID before deploying -->
 <script>
@@ -547,6 +548,12 @@ html,body{height:100%;background:#1a1220;color:#fff;font-family:'Segoe UI',syste
     <p class="match-sub">Enter your email to unlock your personalised matches and get notified when they go live tonight.</p>
     <input class="email-inp" id="emailInp" type="email" placeholder="Enter your email address"
       onkeydown="if(event.key==='Enter')submitEmail()" autocomplete="email">
+    <div id="cf-turnstile" class="cf-turnstile"
+      data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+      data-theme="dark"
+      data-callback="onTurnstileSuccess"
+      data-refresh-expired="auto"
+      style="margin:10px auto 6px;"></div>
     <button class="btn-main" style="width:100%;max-width:340px" onclick="submitEmail()">See My Matches 🔥</button>
     <p class="email-note">🔒 Your email is safe. We never share it with third parties.<br>
       <a onclick="openLegal('privacy')">Privacy Policy</a> · <a onclick="openLegal('terms')">Terms of Use</a></p>
@@ -801,6 +808,21 @@ function startLoading(){
   },65);
 }
 
+/* ── HELPERS ── */
+function generateUsername(email){
+  const base=email.split('@')[0].replace(/[^a-zA-Z0-9]/g,'').toLowerCase().slice(0,12);
+  return base+Math.floor(1000+Math.random()*9000);
+}
+function generatePassword(){
+  const u='ABCDEFGHJKMNPQRSTUVWXYZ',l='abcdefghjkmnpqrstuvwxyz',n='23456789',s='!@#$';
+  const all=u+l+n;
+  let pw=u[Math.floor(Math.random()*u.length)]+l[Math.floor(Math.random()*l.length)]
+        +n[Math.floor(Math.random()*n.length)]+s[Math.floor(Math.random()*s.length)];
+  for(let i=0;i<8;i++) pw+=all[Math.floor(Math.random()*all.length)];
+  return pw.split('').sort(()=>Math.random()-0.5).join('');
+}
+function onTurnstileSuccess(token){window._tsToken=token;}
+
 /* ── EMAIL SUBMIT ── */
 async function submitEmail(){
   const inp=document.getElementById('emailInp');
@@ -810,24 +832,28 @@ async function submitEmail(){
     inp.focus();
     return;
   }
+  if(!window._tsToken){
+    document.getElementById('cf-turnstile').style.outline='2px solid var(--pink2)';
+    return;
+  }
   inp.style.borderColor='';
+  document.getElementById('cf-turnstile').style.outline='';
   track('email_submitted',{domain:val.split('@')[1],source:getUTM().utm_source||'direct'});
-
-  /* ── Wire your email endpoint here ──
-     Replace YOUR_WORKER_ENDPOINT with your Cloudflare Worker URL */
-  try {
-    await fetch('https://YOUR_WORKER_ENDPOINT/email',{
+  try{
+    await fetch('https://hv-api.chancy-tsonga.workers.dev/register',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         email:val,
+        username:generateUsername(val),
+        password:generatePassword(),
+        turnstileToken:window._tsToken,
         prefs:{age:userAge,meets:meetWho,type:prefType,skin:prefSkin},
         source:getUTM(),
         ts:Date.now()
       })
     });
-  } catch(e){ /* fail silently — still proceed */ }
-
+  }catch(e){/* fail silently — UX continues regardless */}
   go('p9');
   runVerify();
 }

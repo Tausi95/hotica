@@ -3,7 +3,6 @@ social/media/
 social/gifs/
 __pycache__/
 *.pyc
-_zines/
 
 # Landing page — upload artefacts (not needed in repo)
 bridge_landing_pg/hotica-landing-upload/
