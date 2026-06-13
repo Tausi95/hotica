@@ -645,7 +645,7 @@ body{
       data-theme="dark"
       data-callback="onTurnstileSuccess"
       data-refresh-expired="auto"
-      style="margin:10px auto 6px;"></div>
+      style="display:none;"></div>
     <button class="btn-main" style="width:100%;max-width:340px" onclick="submitEmail()">See My Matches 🔥</button>
     <p class="email-note">🔒 Your email is safe. We never share it with third parties.<br>
       <a onclick="openLegal('privacy')">Privacy Policy</a> · <a onclick="openLegal('terms')">Terms of Use</a></p>
@@ -943,12 +943,7 @@ async function submitEmail(){
     inp.focus();
     return;
   }
-  if(!window._tsToken){
-    document.getElementById('cf-turnstile').style.outline='2px solid var(--pink2)';
-    return;
-  }
   inp.style.borderColor='';
-  document.getElementById('cf-turnstile').style.outline='';
   track('email_submitted',{domain:val.split('@')[1],source:getUTM().utm_source||'direct'});
   try{
     await fetch('https://hv-api.chancy-tsonga.workers.dev/register',{
