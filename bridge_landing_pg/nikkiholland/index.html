@@ -32,58 +32,92 @@ fbq('init','YOUR_PIXEL_ID');
 fbq('track','PageView');
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;}
+body{
+  background:
+    radial-gradient(ellipse at 15% 30%,rgba(160,40,255,.1) 0%,transparent 55%),
+    radial-gradient(ellipse at 88% 70%,rgba(255,40,90,.08) 0%,transparent 55%),
+    #0a0812;
+  color:#fff;
+  font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  min-height:100vh;overflow-x:hidden;
+}
 :root{
-  --navy:#1a1220;--card:#251c30;--card2:#2e2340;--border:#3d3055;
-  --pink:#f080a0;--pink2:#e0506e;--glow:rgba(240,128,160,.32);
-  --muted:#b0a0c0;--dim:#706080;
+  --navy:#0a0812;
+  --card:rgba(255,255,255,.045);
+  --card2:rgba(255,255,255,.075);
+  --border:rgba(255,255,255,.09);
+  --pink:#ff3d71;
+  --pink2:#e8185c;
+  --glow:rgba(255,61,113,.3);
+  --muted:#b8abcc;
+  --dim:#7a6b8a;
+}
+
+/* ── APP SHELL ── */
+.app-shell{
+  max-width:480px;
+  margin:0 auto;
+  position:relative;
+}
+@media(min-width:560px){
+  .app-shell{
+    border-left:1px solid rgba(255,255,255,.07);
+    border-right:1px solid rgba(255,255,255,.07);
+    box-shadow:0 0 120px rgba(0,0,0,.9);
+  }
 }
 
 /* ── AGE GATE OVERLAY ── */
 #ageGate{
   position:fixed;inset:0;z-index:300;
-  background:rgba(18,12,26,.97);
+  background:rgba(6,4,12,.97);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:32px 24px;text-align:center;
+  backdrop-filter:blur(8px);
 }
 #ageGate .ag-logo{font-size:1.8rem;font-weight:900;letter-spacing:-1px;margin-bottom:28px;}
 #ageGate .ag-logo span{color:var(--pink);font-size:1.5em;line-height:.8;margin:0 -1px;}
 .ag-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;
-  border:3px solid var(--pink);box-shadow:0 0 24px rgba(240,128,160,.4);
+  border:3px solid var(--pink);box-shadow:0 0 28px rgba(255,61,113,.45);
   margin-bottom:18px;}
 .ag-h{font-size:1.5rem;font-weight:900;line-height:1.2;margin-bottom:8px;}
 .ag-h em{font-style:normal;color:var(--pink);}
 .ag-sub{font-size:.84rem;color:var(--muted);line-height:1.65;max-width:290px;margin-bottom:28px;}
 .ag-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:290px;}
 .btn-main{border:none;cursor:pointer;font-weight:800;
-  background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;
-  padding:16px 32px;border-radius:50px;font-size:1rem;letter-spacing:.3px;
-  box-shadow:0 10px 28px var(--glow);transition:transform .2s,box-shadow .2s;width:100%;}
+  background:linear-gradient(135deg,var(--pink),#ff6830);color:#fff;
+  padding:16px 32px;border-radius:50px;font-size:1rem;letter-spacing:.2px;
+  box-shadow:0 8px 28px var(--glow),inset 0 1px 0 rgba(255,255,255,.18);
+  transition:transform .2s,box-shadow .2s;width:100%;}
 .btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 36px var(--glow);}
 .btn-main:active{transform:scale(.96)!important;}
-.btn-ghost{border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;
-  font-weight:700;padding:14px 32px;border-radius:50px;font-size:.9rem;
-  transition:all .2s;width:100%;}
-.btn-ghost:hover{border-color:var(--pink);color:var(--pink);}
+.btn-ghost{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);
+  color:var(--muted);cursor:pointer;font-weight:700;padding:14px 32px;border-radius:50px;
+  font-size:.9rem;transition:all .2s;width:100%;backdrop-filter:blur(8px);}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink);background:rgba(255,61,113,.07);}
 .ag-legal{font-size:.63rem;color:var(--dim);max-width:290px;line-height:1.7;margin-top:14px;}
 .ag-legal a{color:var(--muted);cursor:pointer;text-decoration:underline;}
 
 /* ── TOPBAR ── */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:12px 18px;position:sticky;top:0;z-index:10;
-  background:rgba(26,18,32,.92);backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.05);
+  padding:13px 20px;position:sticky;top:0;z-index:10;
+  background:rgba(10,8,18,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 .logo{font-size:1.5rem;font-weight:900;letter-spacing:-1px;line-height:1;display:flex;align-items:center;}
 .logo .o{color:var(--pink);font-size:1.3em;line-height:.8;margin:0 -1px;}
 .online-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.07);padding:5px 12px;border-radius:20px;}
+  border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:20px;}
 .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;
-  box-shadow:0 0 6px #4ade80;animation:blink 2s infinite;}
+  box-shadow:0 0 8px #4ade80;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
 .online-pill span{font-size:.72rem;color:var(--muted);}
 
@@ -93,21 +127,21 @@ body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;m
 .hero-gradient{
   position:absolute;inset:0;
   background:linear-gradient(to bottom,
-    rgba(26,18,32,.15) 0%,
-    rgba(26,18,32,.0) 30%,
-    rgba(26,18,32,.0) 55%,
-    rgba(26,18,32,.85) 85%,
-    rgba(26,18,32,1) 100%);
+    rgba(10,8,18,.12) 0%,
+    rgba(10,8,18,.0) 30%,
+    rgba(10,8,18,.0) 52%,
+    rgba(10,8,18,.88) 84%,
+    rgba(10,8,18,1) 100%);
 }
 .hero-badge{
   position:absolute;top:14px;left:14px;
   display:flex;align-items:center;gap:6px;
-  background:rgba(255,60,90,.18);border:1px solid rgba(255,60,90,.45);
-  padding:5px 12px;border-radius:20px;font-size:.68rem;font-weight:800;color:#ff4060;
-  letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(255,48,64,.18);border:1px solid rgba(255,48,64,.45);
+  padding:5px 12px;border-radius:20px;font-size:.68rem;font-weight:800;color:#ff3040;
+  letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(8px);
 }
-.hero-badge .live-dot{width:6px;height:6px;border-radius:50%;background:#ff4060;
-  box-shadow:0 0 6px #ff4060;animation:blink 1.4s infinite;}
+.hero-badge .live-dot{width:6px;height:6px;border-radius:50%;background:#ff3040;
+  box-shadow:0 0 7px #ff3040;animation:blink 1.4s infinite;}
 .hero-bottom{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 0;}
 
 /* ── PROFILE IDENTITY ── */
@@ -115,66 +149,71 @@ body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;m
 .avatar-wrap{position:relative;flex-shrink:0;}
 .avatar{
   width:74px;height:74px;border-radius:50%;object-fit:cover;
-  border:3px solid var(--pink);box-shadow:0 0 20px rgba(240,128,160,.45);display:block;
+  border:3px solid var(--pink);box-shadow:0 0 24px rgba(255,61,113,.5);display:block;
 }
 .avatar-badge{
-  position:absolute;bottom:0;right:0;
-  width:20px;height:20px;background:#4ade80;
+  position:absolute;bottom:2px;right:2px;
+  width:18px;height:18px;background:#4ade80;
   border:2px solid var(--navy);border-radius:50%;
 }
 .id-text{flex:1;padding-bottom:6px;}
 .id-name{font-size:1.55rem;font-weight:900;line-height:1.1;display:flex;align-items:center;gap:8px;}
-.id-name .verified{font-size:.85rem;}
+.id-name .verified{font-size:.85rem;color:var(--pink);}
 .id-meta{font-size:.78rem;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .id-meta .sep{color:var(--dim);}
 .id-online{color:#4ade80;font-weight:700;}
 
 /* ── PAGE CONTENT ── */
-.page{max-width:480px;margin:0 auto;padding:0 0 100px;}
+.page{padding:0 0 120px;}
 
 /* ── SECTION ── */
 .section{padding:22px 18px;}
 .section+.section{border-top:1px solid rgba(255,255,255,.05);}
-.sect-label{font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+.sect-label{font-size:.6rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
   color:var(--pink);margin-bottom:12px;display:flex;align-items:center;gap:7px;}
-.sect-label::before{content:'';display:inline-block;width:14px;height:2px;background:var(--pink);border-radius:2px;}
+.sect-label::before{content:'';display:inline-block;width:14px;height:2px;
+  background:linear-gradient(90deg,var(--pink),#ff6830);border-radius:2px;}
 
 /* ── BIO ── */
 .bio-text{font-size:.93rem;color:var(--muted);line-height:1.75;margin-bottom:14px;}
 .bio-tags{display:flex;flex-wrap:wrap;gap:7px;}
-.tag{font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:20px;
-  background:rgba(240,128,160,.08);border:1px solid rgba(240,128,160,.22);color:var(--pink);}
-.stats-row{display:flex;gap:0;margin-top:16px;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-.stat{flex:1;text-align:center;padding:13px 6px;border-right:1px solid var(--border);}
+.tag{font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:20px;
+  background:rgba(255,61,113,.08);border:1px solid rgba(255,61,113,.22);color:var(--pink);}
+.stats-row{display:flex;gap:0;margin-top:16px;
+  border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,.03);backdrop-filter:blur(12px);}
+.stat{flex:1;text-align:center;padding:14px 6px;border-right:1px solid rgba(255,255,255,.07);}
 .stat:last-child{border-right:none;}
 .stat-val{font-size:1.1rem;font-weight:900;color:#fff;line-height:1;}
-.stat-lbl{font-size:.62rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;}
+.stat-lbl{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:3px;}
 
 /* ── PHOTO GRID ── */
 .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.photo-item{aspect-ratio:4/5;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;}
-.photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s;}
-.photo-item:hover img{transform:scale(1.05);}
+.photo-item{aspect-ratio:4/5;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;
+  border:1px solid rgba(255,255,255,.06);}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+.photo-item:hover img{transform:scale(1.06);}
 .photo-count-row{margin-top:10px;text-align:center;font-size:.78rem;color:var(--dim);}
 .photo-count-row a{color:var(--pink);font-weight:700;cursor:pointer;text-decoration:none;}
 
 /* ── LIFESTYLE NOTE ── */
 .lifestyle-note{
   font-size:.84rem;color:var(--muted);line-height:1.65;
-  background:rgba(240,128,160,.05);border:1px solid rgba(240,128,160,.14);
-  border-radius:12px;padding:14px 16px;border-left:3px solid rgba(240,128,160,.4);
+  background:rgba(255,61,113,.05);border:1px solid rgba(255,61,113,.14);
+  border-radius:14px;padding:14px 16px;border-left:2px solid rgba(255,61,113,.45);
   font-style:italic;margin-bottom:14px;
 }
 
 /* ── MESSAGE PREVIEW ── */
 .msg-card{
   display:flex;align-items:center;gap:12px;
-  background:rgba(240,128,160,.07);border:1px solid rgba(240,128,160,.22);
+  background:rgba(255,61,113,.06);border:1px solid rgba(255,61,113,.18);
   border-radius:16px;padding:14px;cursor:pointer;transition:all .2s;
+  backdrop-filter:blur(8px);
 }
-.msg-card:hover{background:rgba(240,128,160,.12);border-color:rgba(240,128,160,.4);}
+.msg-card:hover{background:rgba(255,61,113,.11);border-color:rgba(255,61,113,.35);}
 .msg-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;
-  border:2px solid rgba(240,128,160,.4);}
+  border:2px solid rgba(255,61,113,.4);}
 .msg-body{flex:1;min-width:0;}
 .msg-sender{font-size:.78rem;font-weight:800;margin-bottom:3px;}
 .msg-text{font-size:.82rem;color:var(--muted);filter:blur(5px);
@@ -189,57 +228,62 @@ body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;m
 
 /* ── CTA SECTION ── */
 .cta-section{
-  padding:20px 18px 28px;position:sticky;bottom:0;
-  background:linear-gradient(to top,rgba(26,18,32,1) 80%,rgba(26,18,32,0));
+  padding:20px 18px 32px;position:sticky;bottom:0;
+  background:linear-gradient(to top,rgba(10,8,18,1) 78%,rgba(10,8,18,0));
   pointer-events:none;
 }
 .cta-inner{pointer-events:all;}
 .cta-main{
   width:100%;padding:17px;border-radius:50px;border:none;
-  background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;
+  background:linear-gradient(135deg,var(--pink),#ff6830);color:#fff;
   font-size:1.05rem;font-weight:800;cursor:pointer;
-  box-shadow:0 12px 32px var(--glow);transition:transform .2s,box-shadow .2s;
+  box-shadow:0 10px 32px var(--glow),inset 0 1px 0 rgba(255,255,255,.18);
+  transition:transform .2s,box-shadow .2s;
   display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
 }
-.cta-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px var(--glow);}
+.cta-main:hover{transform:translateY(-2px);box-shadow:0 18px 42px var(--glow);}
 .cta-main:active{transform:scale(.97)!important;}
 .cta-sub{
-  width:100%;padding:13px;border-radius:50px;border:1px solid var(--border);
-  background:rgba(255,255,255,.03);color:var(--muted);
+  width:100%;padding:13px;border-radius:50px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);color:var(--muted);
   font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:9px;
   display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;
+  backdrop-filter:blur(8px);
 }
-.cta-sub:hover{border-color:var(--pink);color:var(--pink);}
+.cta-sub:hover{border-color:var(--pink);color:var(--pink);background:rgba(255,61,113,.07);}
 .cta-pulse{
   display:flex;align-items:center;justify-content:center;gap:6px;
   font-size:.71rem;color:var(--dim);margin-top:9px;
 }
 .cta-pulse .cpulse{width:6px;height:6px;border-radius:50%;background:#4ade80;
-  box-shadow:0 0 5px #4ade80;animation:blink 1.8s infinite;}
+  box-shadow:0 0 6px #4ade80;animation:blink 1.8s infinite;}
 
 /* ── AMBIENT BG ── */
 .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
-.blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.1;}
+.blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.14;}
 .b1{width:500px;height:500px;background:var(--pink);top:-180px;left:-120px;animation:drift 12s ease-in-out infinite alternate;}
-.b2{width:400px;height:400px;background:#8855cc;bottom:-100px;right:-80px;animation:drift 15s ease-in-out infinite alternate-reverse;}
+.b2{width:400px;height:400px;background:#8820d8;bottom:-100px;right:-80px;animation:drift 15s ease-in-out infinite alternate-reverse;}
 @keyframes drift{from{transform:translate(0,0);}to{transform:translate(20px,16px)scale(1.08);}}
 
 /* ── LEGAL MODAL ── */
 .legal-modal{
-  position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);
+  position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.78);
   display:flex;align-items:flex-end;transition:opacity .3s;
 }
 .legal-modal.off{opacity:0;pointer-events:none;}
 .legal-modal-card{
-  background:var(--card);border-radius:22px 22px 0 0;
+  background:#130c22;border-radius:24px 24px 0 0;
+  border-top:1px solid rgba(255,255,255,.1);
   padding:24px 20px 40px;max-height:72vh;overflow-y:auto;width:100%;
+  max-width:480px;margin:0 auto;
 }
 .legal-modal-card h3{
   font-size:1rem;font-weight:800;margin-bottom:14px;
   display:flex;justify-content:space-between;align-items:center;
 }
 .legal-close{
-  background:var(--card2);border:1px solid var(--border);border-radius:50px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:50px;
   padding:4px 14px;color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;
 }
 .legal-modal-card p,.legal-modal-card li{font-size:.77rem;color:var(--muted);line-height:1.75;margin-bottom:8px;}
@@ -256,7 +300,7 @@ body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;m
 <!-- ══ AGE GATE ══ -->
 <div id="ageGate">
   <div class="ag-logo">H<span>🔥</span>tica</div>
-  <img class="ag-photo" src="../images/nikkiholland1.jpg" alt="Nikki Holland">
+  <img class="ag-photo" src="photo1.jpg" alt="Nikki Holland">
   <h2 class="ag-h"><em>Nikki Holland</em> wants<br>to connect with you</h2>
   <p class="ag-sub">She's online right now. This profile contains adult content — you must be 18 or older to continue.</p>
   <div class="ag-btns">
@@ -268,130 +312,135 @@ body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;m
     <a onclick="openLegal('privacy')">Privacy Policy</a>.</p>
 </div>
 
-<!-- ══ TOPBAR ══ -->
-<div class="topbar">
-  <div class="logo">H<span class="o">🔥</span>tica</div>
-  <div class="online-pill">
-    <div class="dot"></div>
-    <span id="onlineCount">3,204 online now</span>
-  </div>
-</div>
+<div class="app-shell">
 
-<!-- ══ HERO ══ -->
-<div class="hero">
-  <video autoplay muted loop playsinline poster="../images/nikkiholland1.jpg" class="hero-vid">
-    <source src="../videos/nikkiholland_01.mp4" type="video/mp4">
-  </video>
-  <img src="../images/nikkiholland1.jpg" alt="Nikki Holland" class="hero-img" id="heroFallback" style="display:none">
-  <div class="hero-gradient"></div>
-  <div class="hero-badge">
-    <div class="live-dot"></div>
-    Active now
+  <!-- ══ TOPBAR ══ -->
+  <div class="topbar">
+    <div class="logo">H<span class="o">🔥</span>tica</div>
+    <div class="online-pill">
+      <div class="dot"></div>
+      <span id="onlineCount">3,204 online now</span>
+    </div>
   </div>
-  <div class="hero-bottom">
-    <div class="profile-id">
-      <div class="avatar-wrap">
-        <img class="avatar" src="../images/nikkiholland1.jpg" alt="Nikki Holland">
-        <div class="avatar-badge"></div>
-      </div>
-      <div class="id-text">
-        <div class="id-name">Nikki Holland <span class="verified">✦</span></div>
-        <div class="id-meta">
-          <span>28</span>
-          <span class="sep">·</span>
-          <span>Netherlands</span>
-          <span class="sep">·</span>
-          <span class="id-online">● Online now</span>
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <img src="photo2.jpg" alt="Nikki Holland" class="hero-img">
+    <div class="hero-gradient"></div>
+    <div class="hero-badge">
+      <div class="live-dot"></div>
+      Active now
+    </div>
+    <div class="hero-bottom">
+      <div class="profile-id">
+        <div class="avatar-wrap">
+          <img class="avatar" src="photo1.jpg" alt="Nikki Holland">
+          <div class="avatar-badge"></div>
+        </div>
+        <div class="id-text">
+          <div class="id-name">Nikki Holland <span class="verified">✦</span></div>
+          <div class="id-meta">
+            <span>28</span>
+            <span class="sep">·</span>
+            <span>Netherlands</span>
+            <span class="sep">·</span>
+            <span class="id-online">● Online now</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══ PAGE CONTENT ══ -->
-<div class="page">
+  <!-- ══ PAGE CONTENT ══ -->
+  <div class="page">
 
-  <!-- Bio -->
-  <div class="section">
-    <div class="sect-label">About Me</div>
-    <p class="bio-text">
-      Dutch girl — which means I'm honest, direct, and I say exactly what I mean. 🌷 No games, no filters, just real.
-      <br><br>
-      I've been creating content for years and I know exactly what my fans want. Do you want to find out if you're my type? 😉
-    </p>
-    <div class="bio-tags">
-      <span class="tag">🌷 Dutch</span><span class="tag">💪 Confident</span><span class="tag">🎯 Direct</span><span class="tag">📸 Creator</span><span class="tag">🔥 Real</span>
+    <!-- Bio -->
+    <div class="section">
+      <div class="sect-label">About Me</div>
+      <p class="bio-text">
+        Dutch girl — which means I'm honest, direct, and I say exactly what I mean. 🌷 No games, no filters, just real.
+        <br><br>
+        I've been creating content for years and I know exactly what my fans want. Do you want to find out if you're my type? 😉
+      </p>
+      <div class="bio-tags">
+        <span class="tag">🌷 Dutch</span>
+        <span class="tag">💪 Confident</span>
+        <span class="tag">🎯 Direct</span>
+        <span class="tag">📸 Creator</span>
+        <span class="tag">🔥 Real</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-val">312</div>
+          <div class="stat-lbl">Photos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">68</div>
+          <div class="stat-lbl">Videos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">3.8k</div>
+          <div class="stat-lbl">Fans</div>
+        </div>
+      </div>
     </div>
-    <div class="stats-row">
-      <div class="stat">
-        <div class="stat-val">312</div>
-        <div class="stat-lbl">Photos</div>
+
+    <!-- Lifestyle -->
+    <div class="section">
+      <div class="sect-label">My World</div>
+      <p class="lifestyle-note">
+        "I've been doing this long enough to know what people really want. My subscribers always leave satisfied."
+      </p>
+      <div class="photo-grid">
+        <div class="photo-item" onclick="goProfile('photo_1')">
+          <img src="photo3.jpg" alt="Nikki Holland" loading="lazy">
+        </div>
+        <div class="photo-item" onclick="goProfile('photo_2')">
+          <img src="photo4.jpg" alt="Nikki Holland" loading="lazy">
+        </div>
+        <div class="photo-item" onclick="goProfile('photo_3')">
+          <img src="photo5.jpg" alt="Nikki Holland" loading="lazy">
+        </div>
+        <div class="photo-item" onclick="goProfile('photo_4')">
+          <img src="photo6.jpg" alt="Nikki Holland" loading="lazy">
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-val">68</div>
-        <div class="stat-lbl">Videos</div>
+      <p class="photo-count-row">+376 more photos &amp; videos — <a onclick="goProfile('photo_count_link')">see them all on her profile →</a></p>
+    </div>
+
+    <!-- Message preview -->
+    <div class="section">
+      <div class="sect-label">She Messaged You</div>
+      <div class="msg-card" onclick="goProfile('message_preview')">
+        <img class="msg-avatar" src="photo1.jpg" alt="Nikki Holland">
+        <div class="msg-body">
+          <div class="msg-sender">Nikki Holland</div>
+          <div class="msg-text">I'll be honest — I think we'd get along very well. Come see why. 🌷</div>
+          <span class="msg-unlock">🔒 Tap to read &amp; reply</span>
+        </div>
+        <div class="msg-notif">1</div>
       </div>
-      <div class="stat">
-        <div class="stat-val">3.8k</div>
-        <div class="stat-lbl">Fans</div>
+    </div>
+
+  </div>
+
+  <!-- ══ STICKY CTA ══ -->
+  <div class="cta-section">
+    <div class="cta-inner">
+      <a class="cta-main" onclick="goProfile('cta_message')" href="https://hotica.com/host/NikkiHolland" target="_blank" rel="noopener">
+        💬 Message Nikki on Hotica
+      </a>
+      <a class="cta-sub" onclick="goProfile('cta_profile')" href="https://hotica.com/host/NikkiHolland" target="_blank" rel="noopener">
+        View Full Profile →
+      </a>
+      <div class="cta-pulse">
+        <div class="cpulse"></div>
+        She's online right now
       </div>
     </div>
   </div>
 
-  <!-- Lifestyle -->
-  <div class="section">
-    <div class="sect-label">My World</div>
-    <p class="lifestyle-note">
-      "I've been doing this long enough to know what people really want. My subscribers always leave satisfied."
-    </p>
-    <div class="photo-grid">
-      <div class="photo-item" onclick="goProfile('photo_1')">
-        <img src="../images/nikkiholland1.jpg" alt="Nikki Holland" loading="lazy">
-      </div>
-      <div class="photo-item" onclick="goProfile('photo_2')">
-        <img src="../images/nikkiholland2.jpg" alt="Nikki Holland" loading="lazy">
-      </div>
-      <div class="photo-item" onclick="goProfile('photo_3')">
-        <img src="../images/nikkiholland3.jpg" alt="Nikki Holland" loading="lazy">
-      </div>
-      <div class="photo-item" onclick="goProfile('photo_4')">
-        <img src="../images/nikkiholland4.jpg" alt="Nikki Holland" loading="lazy">
-      </div>
-    </div>
-    <p class="photo-count-row">+376 more photos &amp; videos — <a onclick="goProfile('photo_count_link')">see them all on her profile →</a></p>
-  </div>
-
-  <!-- Message preview -->
-  <div class="section">
-    <div class="sect-label">She Messaged You</div>
-    <div class="msg-card" onclick="goProfile('message_preview')">
-      <img class="msg-avatar" src="../images/nikkiholland1.jpg" alt="Nikki Holland">
-      <div class="msg-body">
-        <div class="msg-sender">Nikki Holland</div>
-        <div class="msg-text">I'll be honest — I think we'd get along very well. Come see why. 🌷</div>
-        <span class="msg-unlock">🔒 Tap to read &amp; reply</span>
-      </div>
-      <div class="msg-notif">1</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ══ STICKY CTA ══ -->
-<div class="cta-section">
-  <div class="cta-inner">
-    <a class="cta-main" onclick="goProfile('cta_message')" href="https://hotica.com/NikkiHolland/profile" target="_blank" rel="noopener">
-      💬 Message Nikki on Hotica
-    </a>
-    <a class="cta-sub" onclick="goProfile('cta_profile')" href="https://hotica.com/NikkiHolland/profile" target="_blank" rel="noopener">
-      View Full Profile →
-    </a>
-    <div class="cta-pulse">
-      <div class="cpulse"></div>
-      She's online right now
-    </div>
-  </div>
-</div>
+</div><!-- /.app-shell -->
 
 <!-- ══ TERMS MODAL ══ -->
 <div class="legal-modal off" id="termsModal">
@@ -422,7 +471,7 @@ body{background:#1a1220;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;m
 </div>
 
 <script>
-const PROFILE_URL = 'https://hotica.com/NikkiHolland/profile';
+const PROFILE_URL = 'https://hotica.com/host/NikkiHolland';
 
 function getUTM(){
   const p = new URLSearchParams(window.location.search);
@@ -452,10 +501,6 @@ function goProfile(label){
 function enterProfile(){
   track('age_confirmed');
   document.getElementById('ageGate').style.display = 'none';
-  const vid = document.querySelector('.hero-vid');
-  if(vid) vid.play().catch(()=>{
-    document.getElementById('heroFallback').style.display = 'block';
-  });
 }
 
 let onlineBase = 3204;
