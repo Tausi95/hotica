@@ -3,28 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="adultwork-site-verification" content="vgU4oqku8Mr1t4woCiEs1KlLDwRAh8KODnDEOkgoeUU" />
+<meta name="adultwork-site-verification" content="vgU4oqku8Mr1t4woCiEs1KlLDwRAh8KODnDEOkgoeUU">
 <title>HOTICA – Your Matches Are Waiting Tonight</title>
 
-<meta property="og:title" content="HOTICA – Your matches are waiting tonight">
+<meta property="og:title"       content="HOTICA – Your matches are waiting tonight">
 <meta property="og:description" content="3,200+ real creators online right now. Your personalised match is here.">
-<meta property="og:image" content="https://hotvibes26.com/images/og-preview.jpg">
-<meta property="og:url" content="https://hotvibes26.com/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HOTICA – Your matches are waiting tonight">
+<meta property="og:image"       content="https://hotvibes26.com/images/og-preview.jpg">
+<meta property="og:url"         content="https://hotvibes26.com/">
+<meta property="og:type"        content="website">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="HOTICA – Your matches are waiting tonight">
 <meta name="twitter:description" content="3,200+ real creators online right now. Your personalised match is here.">
-<meta name="twitter:image" content="https://hotvibes26.com/images/og-preview.jpg">
+<meta name="twitter:image"       content="https://hotvibes26.com/images/og-preview.jpg">
 
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8NPHZS7LL"></script>
 <script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-gtag('config','G-S8NPHZS7LL');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-S8NPHZS7LL');
 </script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
+<!-- Facebook Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -35,1257 +36,341 @@ fbq('init','YOUR_PIXEL_ID');
 fbq('track','PageView');
 </script>
 
+<!-- Cloudflare Turnstile (activate by swapping sitekey + removing display:none on widget) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{height:100%;background:#0a0812;}
-body{
-  height:100%;
-  background:
-    radial-gradient(ellipse at 15% 35%,rgba(160,40,255,.12) 0%,transparent 55%),
-    radial-gradient(ellipse at 88% 65%,rgba(255,40,90,.1) 0%,transparent 55%),
-    #0a0812;
-  color:#fff;
-  font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
-  overflow:hidden;
-}
-:root{
-  --navy:#0a0812;
-  --card:rgba(255,255,255,.045);
-  --card2:rgba(255,255,255,.075);
-  --border:rgba(255,255,255,.09);
-  --pink:#ff3d71;
-  --pink2:#e8185c;
-  --glow:rgba(255,61,113,.3);
-  --muted:#b8abcc;
-  --dim:#7a6b8a;
-}
-
-/* ── APP SHELL: centers like a phone on desktop ── */
-.app-shell{
-  position:relative;
-  width:100%;max-width:440px;
-  height:100vh;height:100dvh;
-  margin:0 auto;
-  overflow:hidden;
-}
-@media(min-width:600px){
-  .app-shell{
-    border-left:1px solid rgba(255,255,255,.07);
-    border-right:1px solid rgba(255,255,255,.07);
-    box-shadow:0 0 140px rgba(0,0,0,.95);
-  }
-}
-
-/* BG */
-.bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
-.blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.18;}
-.b1{width:550px;height:550px;background:var(--pink);top:-200px;left:-150px;animation:drift 11s ease-in-out infinite alternate;}
-.b2{width:420px;height:420px;background:#8820d8;bottom:-130px;right:-100px;animation:drift 14s ease-in-out infinite alternate-reverse;}
-.b3{width:300px;height:300px;background:var(--pink2);top:45%;left:48%;animation:drift 16s ease-in-out infinite alternate;}
-@keyframes drift{from{transform:translate(0,0)scale(1);}to{transform:translate(24px,18px)scale(1.1);}}
-
-/* SCREENS */
-.screen{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;overflow:hidden;
-  transition:opacity .4s ease,transform .4s ease;}
-.screen.off{opacity:0;pointer-events:none;transform:translateY(22px);}
-
-/* TOPBAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06);
-  background:rgba(10,8,18,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);flex-shrink:0;}
-.logo{font-size:1.55rem;font-weight:900;letter-spacing:-1px;line-height:1;display:flex;align-items:center;}
-.logo .o{color:var(--pink);font-size:1.3em;line-height:.8;margin:0 -1px;}
-.pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);padding:5px 11px;border-radius:20px;}
-.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.pill span{font-size:.73rem;color:var(--muted);}
-
-/* PROGRESS */
-.prog{height:3px;background:rgba(255,255,255,.06);flex-shrink:0;}
-.prog-bar{height:100%;background:linear-gradient(90deg,var(--pink),#ff7040);transition:width .6s ease;}
-
-/* BUTTONS */
-.btn-main{border:none;cursor:pointer;font-weight:800;
-  background:linear-gradient(135deg,var(--pink),#ff6830);color:#fff;
-  padding:15px 32px;border-radius:50px;font-size:1rem;letter-spacing:.2px;
-  box-shadow:0 8px 28px var(--glow),inset 0 1px 0 rgba(255,255,255,.18);
-  transition:transform .2s,box-shadow .2s;}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px var(--glow);}
-.btn-main:active{transform:scale(.96)!important;}
-.btn-ghost{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--muted);
-  cursor:pointer;font-weight:700;padding:13px 32px;border-radius:50px;font-size:.9rem;
-  transition:all .2s;backdrop-filter:blur(8px);}
-.btn-ghost:hover{border-color:var(--pink);color:var(--pink);background:rgba(255,61,113,.07);}
-.btn-ghost:active{transform:scale(.96)!important;}
-.btn-continue{width:100%;padding:15px;border-radius:50px;border:none;flex-shrink:0;
-  background:linear-gradient(135deg,var(--pink),#ff6830);color:#fff;
-  font-size:1rem;font-weight:800;cursor:pointer;
-  box-shadow:0 8px 28px var(--glow),inset 0 1px 0 rgba(255,255,255,.18);
-  transition:transform .2s,opacity .2s,box-shadow .2s;margin-top:20px;}
-.btn-continue:hover{transform:translateY(-2px);box-shadow:0 16px 36px var(--glow);}
-.btn-continue:active{transform:scale(.96)!important;}
-.btn-continue:disabled{opacity:.25;pointer-events:none;}
-
-/* MODEL STRIP */
-.model-strip{display:flex;gap:7px;justify-content:center;margin-bottom:16px;}
-.model-strip img{
-  width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;
-  border:2px solid rgba(255,61,113,.4);
-  box-shadow:0 4px 14px rgba(0,0,0,.5);
-}
-.model-strip img:nth-child(even){transform:translateY(-6px);}
-
-/* P1 AGE GATE */
-#p1 .body{flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:24px;overflow-y:auto;}
-.reels{display:flex;gap:9px;justify-content:center;margin-bottom:28px;}
-.reel{width:84px;height:136px;border-radius:18px;position:relative;overflow:hidden;flex-shrink:0;
-  box-shadow:0 8px 28px rgba(0,0,0,.6);}
-.reel:nth-child(2),.reel:nth-child(4){transform:translateY(-13px);}
-.reel-ph{width:100%;height:100%;}
-.reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block;}
-.reel-veil{position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,8,18,.82) 0%,transparent 55%);
-  display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-size:1.15rem;}
-.badge{display:inline-block;background:rgba(255,61,113,.1);border:1px solid rgba(255,61,113,.28);
-  color:var(--pink);font-size:.64rem;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;
-  padding:5px 14px;border-radius:20px;margin-bottom:15px;}
-.gate-h{font-size:clamp(1.8rem,5.5vw,2.7rem);font-weight:900;line-height:1.1;margin-bottom:10px;}
-.gate-h em{font-style:normal;color:var(--pink);}
-.gate-sub{font-size:.87rem;color:var(--muted);line-height:1.7;max-width:320px;margin-bottom:26px;}
-.gate-btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:310px;margin:0 auto 16px;}
-.legal{font-size:.66rem;color:var(--dim);max-width:320px;line-height:1.7;}
-.legal a{color:var(--muted);cursor:pointer;text-decoration:underline;}
-
-/* QUIZ COMMON */
-.quiz-body{flex:1;display:flex;flex-direction:column;padding:20px 18px 24px;overflow-y:auto;}
-.step-tag{font-size:.6rem;color:var(--dim);letter-spacing:2.5px;text-transform:uppercase;
-  margin-bottom:8px;text-align:center;}
-.quiz-q{font-size:clamp(1.3rem,4.5vw,1.95rem);font-weight:900;line-height:1.2;
-  margin-bottom:6px;text-align:center;}
-.quiz-q em{font-style:normal;color:var(--pink);}
-.quiz-sub{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:16px;
-  text-align:center;max-width:320px;align-self:center;}
-
-/* AGE RANGE */
-.age-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.age-opt{background:var(--card);border:1.5px solid var(--border);border-radius:16px;
-  padding:18px 12px;text-align:center;cursor:pointer;transition:all .2s;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
-.age-opt:hover{border-color:rgba(255,61,113,.4);background:rgba(255,61,113,.07);}
-.age-opt.sel{border-color:var(--pink);background:rgba(255,61,113,.13);color:var(--pink);}
-.age-opt:active{transform:scale(.97);}
-.age-val{font-size:1.1rem;font-weight:900;margin-bottom:2px;}
-.age-lbl{font-size:.68rem;color:var(--dim);}
-.age-opt.sel .age-lbl{color:rgba(255,61,113,.7);}
-
-/* WHO TO MEET */
-.meet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.meet-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;
-  padding:0;text-align:center;cursor:pointer;transition:border-color .2s,box-shadow .2s;
-  overflow:hidden;position:relative;}
-.meet-card:hover{border-color:rgba(255,61,113,.5);}
-.meet-card:hover .meet-photo{transform:scale(1.07);}
-.meet-card.sel{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink) inset;}
-.meet-card.sel .meet-photo-overlay{background:linear-gradient(to top,rgba(255,61,113,.55) 0%,rgba(10,8,18,.15) 100%);}
-.meet-card:active{transform:scale(.97)!important;}
-.meet-photo-wrap{position:relative;width:100%;height:100px;overflow:hidden;}
-.meet-photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
-.meet-photo-overlay{position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,8,18,.65) 0%,rgba(10,8,18,.05) 55%);
-  transition:background .25s;}
-.meet-ph-gradient{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
-.meet-ph-men{background:linear-gradient(135deg,#1a1830 0%,#2d2050 100%);}
-.meet-ph-both{background:linear-gradient(135deg,#2a1030 0%,#1a1428 50%,#2d2050 100%);}
-.meet-ph-icon{font-size:2rem;color:rgba(255,255,255,.22);line-height:1;}
-.meet-lbl{font-size:.88rem;font-weight:800;padding:8px 4px;display:block;}
-
-/* TYPE PREFERENCE */
-.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
-.type-opt{background:var(--card);border:1.5px solid var(--border);border-radius:16px;
-  padding:0;text-align:center;cursor:pointer;transition:border-color .2s,box-shadow .2s;
-  overflow:hidden;position:relative;}
-.type-opt:hover{border-color:rgba(255,61,113,.5);}
-.type-opt:hover .type-photo{transform:scale(1.07);}
-.type-opt.sel{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink) inset;}
-.type-opt.sel .type-photo-overlay{background:linear-gradient(to top,rgba(255,61,113,.55) 0%,rgba(10,8,18,.15) 100%);}
-.type-opt:active{transform:scale(.97);}
-.type-photo-wrap{position:relative;width:100%;height:88px;overflow:hidden;}
-.type-photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
-.type-photo-overlay{position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,8,18,.65) 0%,rgba(10,8,18,.05) 55%);
-  transition:background .25s;}
-.type-lbl{font-size:.72rem;font-weight:800;padding:7px 4px;display:block;}
-
-/* SKIN / APPEARANCE */
-.skin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
-.skin-opt{background:var(--card);border:1.5px solid var(--border);border-radius:16px;
-  padding:0;text-align:center;cursor:pointer;transition:border-color .2s,box-shadow .2s;
-  overflow:hidden;position:relative;}
-.skin-opt:hover{border-color:rgba(255,61,113,.5);}
-.skin-opt:hover .skin-photo{transform:scale(1.07);}
-.skin-opt.sel{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink) inset;}
-.skin-opt.sel .skin-photo-overlay{background:linear-gradient(to top,rgba(255,61,113,.55) 0%,rgba(10,8,18,.15) 100%);}
-.skin-opt:active{transform:scale(.97);}
-.skin-photo-wrap{position:relative;width:100%;height:88px;overflow:hidden;}
-.skin-photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
-.skin-photo-overlay{position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,8,18,.65) 0%,rgba(10,8,18,.05) 55%);
-  transition:background .25s;}
-.skin-lbl{font-size:.72rem;font-weight:800;padding:7px 4px;display:block;}
-
-/* LOADING */
-#p7 .body{flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:30px;text-align:center;}
-.load-ring{width:76px;height:76px;border:3px solid rgba(255,255,255,.07);
-  border-top-color:var(--pink);border-radius:50%;
-  animation:spin 1s linear infinite;margin-bottom:24px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.load-status{font-size:.86rem;color:var(--muted);min-height:1.3em;margin-bottom:18px;}
-.load-num{font-size:3.5rem;font-weight:900;color:var(--pink);line-height:1;margin-bottom:4px;}
-.load-unit{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;}
-.load-track{width:100%;max-width:280px;height:4px;background:rgba(255,255,255,.07);
-  border-radius:5px;margin-top:24px;overflow:hidden;}
-.load-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),#ff7040);
-  border-radius:5px;transition:width .3s ease;}
-
-/* EMAIL CAPTURE */
-#p8 .body{flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:28px 22px;}
-.match-badge{background:rgba(255,61,113,.1);border:1px solid rgba(255,61,113,.28);
-  color:var(--pink);font-size:.64rem;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;
-  padding:5px 14px;border-radius:20px;margin-bottom:16px;}
-.match-h{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:900;line-height:1.2;margin-bottom:8px;}
-.match-h em{font-style:normal;color:var(--pink);}
-.match-sub{font-size:.86rem;color:var(--muted);line-height:1.7;max-width:310px;margin-bottom:26px;}
-.email-inp{width:100%;max-width:340px;background:rgba(255,255,255,.06);
-  border:1.5px solid rgba(255,255,255,.1);
-  border-radius:50px;color:#fff;font-size:1rem;padding:14px 22px;outline:none;
-  text-align:center;margin-bottom:12px;transition:border-color .2s;
-  backdrop-filter:blur(12px);}
-.email-inp:focus{border-color:var(--pink);}
-.email-inp::placeholder{color:var(--dim);}
-.email-note{font-size:.62rem;color:var(--dim);max-width:280px;line-height:1.65;margin-top:10px;}
-.email-note a{color:var(--muted);cursor:pointer;text-decoration:underline;}
-
-/* VERIFICATION */
-#p9 .body{flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:30px;}
-.vsteps{display:flex;flex-direction:column;gap:14px;width:100%;max-width:300px;margin:24px 0;}
-.vstep{display:flex;align-items:center;gap:14px;text-align:left;}
-.vstep-dot{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.04);
-  border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;
-  font-size:.78rem;font-weight:800;flex-shrink:0;transition:all .4s;}
-.vstep.done .vstep-dot{background:rgba(74,222,128,.12);border-color:#4ade80;color:#4ade80;}
-.vstep.active .vstep-dot{border-color:var(--pink);animation:vpulse 1.2s infinite;}
-@keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,113,.4);}50%{box-shadow:0 0 0 6px rgba(255,61,113,0);}}
-.vstep-txt{font-size:.86rem;color:var(--dim);font-weight:600;transition:color .4s;}
-.vstep.done .vstep-txt{color:#fff;}
-.vstep.active .vstep-txt{color:var(--muted);}
-.vring{width:14px;height:14px;border:2px solid rgba(255,61,113,.3);
-  border-top-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite;}
-
-/* EXIT */
-.exit-wrap{flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:40px;}
-
-/* ── GALLERY ── */
-#pgal .gal-body{flex:1;overflow-y:auto;padding:14px 14px 0;}
-.gal-header{text-align:center;padding:6px 0 16px;}
-.gal-header h2{font-size:clamp(1.2rem,4vw,1.7rem);font-weight:900;line-height:1.2;margin-bottom:5px;}
-.gal-header h2 em{font-style:normal;color:var(--pink);}
-.gal-header p{font-size:.78rem;color:var(--muted);}
-.gal-cta-row{display:flex;gap:9px;padding:12px 14px 20px;flex-shrink:0;}
-.gal-cta-row .btn-main{flex:1;padding:15px;font-size:.95rem;}
-
-/* ── MODEL CARD ── */
-.model-card{
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;padding:18px;margin-bottom:14px;
-  transition:border-color .2s;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-}
-.model-card.free-card{border-color:rgba(255,61,113,.18);}
-.model-card.locked-card{opacity:.88;}
-
-/* Story-ring avatar */
-.mc-avatar-wrap{position:relative;flex-shrink:0;width:58px;height:58px;}
-.mc-avatar-wrap::before{content:'';position:absolute;inset:-3px;border-radius:50%;z-index:0;}
-.mc-avatar-wrap.ring-live::before{
-  background:linear-gradient(135deg,#ff3040,#ff8800);
-  animation:ring-pulse 1.8s ease-in-out infinite;
-}
-.mc-avatar-wrap.ring-online::before{
-  background:linear-gradient(135deg,var(--pink),#8820d8);
-}
-@keyframes ring-pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
-.mc-avatar{
-  width:52px;height:52px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--navy);position:absolute;top:3px;left:3px;z-index:1;
-}
-.mc-avatar[src=""],
-.mc-avatar:not([src]){background:rgba(255,255,255,.05);}
-.mc-notif{
-  position:absolute;top:-1px;right:-1px;
-  width:17px;height:17px;background:#ef4444;
-  border:2px solid var(--navy);border-radius:50%;
-  font-size:.55rem;font-weight:900;color:#fff;
-  display:flex;align-items:center;justify-content:center;z-index:2;
-}
-
-/* Card head */
-.mc-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
-.mc-head-info{flex:1;min-width:0;}
-.mc-name{font-size:1rem;font-weight:800;line-height:1.2;}
-.mc-name .mc-age{color:var(--pink);}
-.mc-loc{font-size:.71rem;color:var(--dim);margin-top:2px;}
-.mc-live-row{display:flex;align-items:center;gap:6px;margin-top:3px;}
-.mc-live-dot{width:6px;height:6px;border-radius:50%;background:#ff3040;box-shadow:0 0 5px #ff3040;animation:blink 1.4s infinite;flex-shrink:0;}
-.mc-countdown{font-size:.67rem;color:#fbbf24;font-weight:700;}
-.mc-match-box{text-align:center;flex-shrink:0;}
-.mc-match-pct{font-size:1.25rem;font-weight:900;color:var(--pink);line-height:1;}
-.mc-match-lbl{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;}
-
-/* Bio */
-.mc-bio{
-  font-size:.81rem;color:var(--muted);line-height:1.55;font-style:italic;
-  margin-bottom:10px;padding:10px 12px;
-  background:rgba(255,255,255,.025);border-radius:12px;
-  border-left:2px solid rgba(255,61,113,.3);
-}
-
-/* Tags */
-.mc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
-.mc-tag{
-  font-size:.67rem;font-weight:600;padding:3px 10px;border-radius:20px;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--muted);
-}
-
-/* Stats */
-.mc-stats{
-  display:flex;gap:12px;font-size:.7rem;color:var(--dim);
-  margin-bottom:12px;flex-wrap:wrap;
-}
-
-/* Message preview */
-.mc-message{
-  display:flex;align-items:center;gap:10px;
-  background:rgba(255,61,113,.05);border:1px solid rgba(255,61,113,.15);
-  border-radius:14px;padding:10px 12px;margin-bottom:12px;
-  cursor:pointer;transition:all .2s;
-}
-.mc-message:hover{background:rgba(255,61,113,.1);border-color:rgba(255,61,113,.3);}
-.mc-msg-avt{width:30px;height:30px;border-radius:50%;overflow:hidden;flex-shrink:0;}
-.mc-msg-avt img{width:100%;height:100%;object-fit:cover;}
-.mc-msg-body{flex:1;min-width:0;}
-.mc-msg-text{font-size:.78rem;color:var(--muted);line-height:1.4;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.mc-msg-text.blurred{filter:blur(5px);user-select:none;pointer-events:none;}
-.mc-msg-unlock{font-size:.67rem;color:var(--pink);font-weight:700;margin-top:2px;display:block;}
-.mc-msg-icon{font-size:.95rem;flex-shrink:0;color:var(--pink);}
-
-/* 2-col photo grid */
-.photos-2col{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
-.photo-thumb{aspect-ratio:4/5;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;}
-.photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s;}
-.photo-thumb:hover img{transform:scale(1.06);}
-.photo-thumb.locked img{filter:blur(12px) brightness(.4);}
-.lock-icon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;font-size:1.4rem;pointer-events:none;}
-.lock-icon span{font-size:.6rem;color:rgba(255,255,255,.7);margin-top:3px;font-weight:700;}
-
-/* Unlock CTA inside card */
-.mc-unlock-btn{
-  width:100%;padding:13px;border-radius:50px;border:none;
-  background:linear-gradient(135deg,var(--pink),#ff6830);color:#fff;
-  font-size:.9rem;font-weight:800;cursor:pointer;
-  box-shadow:0 8px 24px var(--glow),inset 0 1px 0 rgba(255,255,255,.15);
-  transition:transform .2s,box-shadow .2s;margin-top:2px;
-}
-.mc-unlock-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px var(--glow);}
-
-/* Lock banner */
-.gal-lock-banner{
-  background:rgba(255,61,113,.06);border:1px solid rgba(255,61,113,.2);
-  border-radius:20px;padding:20px 16px;text-align:center;margin:4px 0 14px;
-  backdrop-filter:blur(12px);
-}
-.gal-lock-banner h3{font-size:1.05rem;font-weight:900;margin-bottom:6px;}
-.gal-lock-banner p{font-size:.77rem;color:var(--muted);margin-bottom:14px;line-height:1.6;}
-
-/* CLIPS STRIP */
-.clips-section{margin-bottom:20px;}
-.clips-label{font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--pink);margin-bottom:9px;display:flex;align-items:center;gap:6px;}
-.clips-label::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
-  background:#ff3040;box-shadow:0 0 6px #ff3040;animation:blink 1.5s infinite;}
-.clips-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;scrollbar-width:none;}
-.clips-scroll::-webkit-scrollbar{display:none;}
-.clip-card{flex:0 0 90px;height:146px;border-radius:14px;overflow:hidden;position:relative;
-  cursor:pointer;scroll-snap-align:start;border:1.5px solid rgba(255,255,255,.08);}
-.clip-card video{width:100%;height:100%;object-fit:cover;display:block;}
-.clip-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.25);transition:opacity .2s;}
-.clip-play{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);
-  border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;
-  font-size:.75rem;backdrop-filter:blur(4px);}
-.clip-card:hover .clip-overlay{opacity:0;}
-.clip-card.locked .clip-overlay{background:rgba(0,0,0,.55);}
-.clip-card.locked .clip-play{font-size:1.1rem;}
-
-/* ── EXIT INTENT MODAL ── */
-.exit-modal{
-  position:absolute;inset:0;z-index:200;
-  background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  display:flex;align-items:center;justify-content:center;padding:24px;
-  transition:opacity .3s;
-}
-.exit-modal.off{opacity:0;pointer-events:none;}
-.exit-modal-card{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;padding:32px 24px;text-align:center;max-width:320px;width:100%;
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-}
-.exit-modal-card .exit-emoji{font-size:2.5rem;margin-bottom:12px;}
-.exit-modal-card h3{font-size:1.25rem;font-weight:900;margin-bottom:8px;}
-.exit-modal-card p{font-size:.83rem;color:var(--muted);margin-bottom:6px;line-height:1.6;}
-.exit-timer{font-size:2.2rem;font-weight:900;color:var(--pink);margin:14px 0 20px;letter-spacing:.04em;}
-.exit-dismiss{display:block;margin-top:12px;background:none;border:none;
-  color:var(--dim);font-size:.76rem;cursor:pointer;padding:8px;width:100%;}
-.exit-dismiss:hover{color:var(--muted);}
-
-/* ── LEGAL MODAL ── */
-.legal-modal{
-  position:absolute;inset:0;z-index:200;background:rgba(0,0,0,.78);
-  display:flex;align-items:flex-end;transition:opacity .3s;
-}
-.legal-modal.off{opacity:0;pointer-events:none;}
-.legal-modal-card{
-  background:#130c22;border-radius:24px 24px 0 0;
-  border-top:1px solid rgba(255,255,255,.1);
-  padding:24px 20px 40px;max-height:72vh;overflow-y:auto;width:100%;
-}
-.legal-modal-card h3{
-  font-size:1rem;font-weight:800;margin-bottom:14px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.legal-close{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:50px;
-  padding:4px 14px;color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;
-}
-.legal-modal-card p,.legal-modal-card li{
-  font-size:.77rem;color:var(--muted);line-height:1.75;margin-bottom:8px;
-}
-.legal-modal-card h4{font-size:.82rem;font-weight:700;margin:14px 0 4px;color:#fff;}
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div class="app-shell">
 
-<div class="bg">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-</div>
+<!-- Desktop background fill (blurred model imagery, hidden on mobile) -->
+<div id="bg-sides"></div>
 
-<!-- ══ P1 · AGE GATE ══ -->
-<div class="screen" id="p1">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online now</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:0%"></div></div>
-  <div class="body">
-    <div class="reels">
-      <div class="reel">
-        <video class="reel-ph" autoplay muted loop playsinline poster="images/cali1.jpg"><source src="videos/cali_01.mp4" type="video/mp4"></video>
-        <div class="reel-veil">🔥</div>
-      </div>
-      <div class="reel">
-        <video class="reel-ph" autoplay muted loop playsinline poster="images/alisha1.jpg"><source src="videos/alisha_01.mp4" type="video/mp4"></video>
-        <div class="reel-veil">😏</div>
-      </div>
-      <div class="reel">
-        <video class="reel-ph" autoplay muted loop playsinline poster="images/amber1.jpg"><source src="videos/mia_01.mp4" type="video/mp4"></video>
-        <div class="reel-veil">💋</div>
-      </div>
-      <div class="reel">
-        <video class="reel-ph" autoplay muted loop playsinline poster="images/april1.jpg"><source src="videos/amber_01.mp4" type="video/mp4"></video>
-        <div class="reel-veil">🌶️</div>
-      </div>
+<div class="layout">
+
+  <!-- ══════════════════════════════════════
+       APP SHELL — quiz funnel (all screens)
+       ══════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <div class="bg">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
     </div>
-    <div class="badge">18+ · Adults Only</div>
-    <h1 class="gate-h">She's already online.<br>Are you <em>ready?</em></h1>
-    <p class="gate-sub">Thousands of real creators live every night. Your match is waiting — but this is strictly for adults.</p>
-    <div class="gate-btns">
-      <button class="btn-main" onclick="go('p2');track('age_confirmed')">Yes, I'm 18+ — Let me in 🔥</button>
-      <button class="btn-ghost" onclick="go('p-no')">No, take me back</button>
-    </div>
-    <p class="legal">By entering you confirm you are 18 or older and agree to our
-      <a onclick="openLegal('terms')">Terms</a> and
-      <a onclick="openLegal('privacy')">Privacy Policy</a>.</p>
-  </div>
-</div>
 
-<!-- ══ P2 · YOUR AGE ══ -->
-<div class="screen off" id="p2">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:14%"></div></div>
-  <div class="quiz-body">
-    <div class="step-tag">Step 1 of 5</div>
-    <h2 class="quiz-q">How <em>old</em> are you?</h2>
-    <p class="quiz-sub">We match you with people your age group actually connects with.</p>
-    <div class="model-strip">
-      <img src="images/alexis1.jpg" alt=""><img src="images/alisha1.jpg" alt=""><img src="images/amber1.jpg" alt=""><img src="images/cali1.jpg" alt=""><img src="images/anastasia1.jpg" alt=""><img src="images/april1.jpg" alt="">
-    </div>
-    <div class="age-grid" id="yourAgeGrid"></div>
-    <button class="btn-continue" id="btnYourAge" disabled
-      onclick="go('p3');track('your_age',{v:userAge})">Continue →</button>
-  </div>
-</div>
-
-<!-- ══ P3 · WHO TO MEET ══ -->
-<div class="screen off" id="p3">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:28%"></div></div>
-  <div class="quiz-body">
-    <div class="step-tag">Step 2 of 5</div>
-    <h2 class="quiz-q">Who do you want to <em>meet?</em></h2>
-    <p class="quiz-sub">No judgment — just tell us so we show you the right people.</p>
-    <div class="model-strip">
-      <img src="images/alexis1.jpg" alt=""><img src="images/alisha1.jpg" alt=""><img src="images/amber1.jpg" alt=""><img src="images/cali1.jpg" alt=""><img src="images/anastasia1.jpg" alt=""><img src="images/april1.jpg" alt="">
-    </div>
-    <div class="meet-grid" id="meetGrid"></div>
-    <button class="btn-continue" id="btnMeet" disabled
-      onclick="go('p4');track('meet_who',{v:meetWho})">Continue →</button>
-  </div>
-</div>
-
-<!-- ══ P4 · TYPE ══ -->
-<div class="screen off" id="p4">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:56%"></div></div>
-  <div class="quiz-body">
-    <div class="step-tag">Step 3 of 5</div>
-    <h2 class="quiz-q">What's your <em>type?</em></h2>
-    <p class="quiz-sub">Be honest — it helps us filter the right matches for you.</p>
-    <div class="model-strip">
-      <img src="images/april1.jpg" alt=""><img src="images/cali1.jpg" alt=""><img src="images/eva1.jpg" alt=""><img src="images/maya1.jpg" alt=""><img src="images/anastasia1.jpg" alt=""><img src="images/amber1.jpg" alt="">
-    </div>
-    <div class="type-grid" id="typeGrid"></div>
-    <button class="btn-continue" id="btnType" disabled
-      onclick="go('p5');track('type_pref',{v:prefType})">Continue →</button>
-  </div>
-</div>
-
-<!-- ══ P5 · APPEARANCE ══ -->
-<div class="screen off" id="p5">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:70%"></div></div>
-  <div class="quiz-body">
-    <div class="step-tag">Step 4 of 5</div>
-    <h2 class="quiz-q">Any <em>appearance</em> preference?</h2>
-    <p class="quiz-sub">We will prioritise matches that fit your taste.</p>
-    <div class="model-strip">
-      <img src="images/alisha1.jpg" alt=""><img src="images/eva1.jpg" alt=""><img src="images/april1.jpg" alt=""><img src="images/anastasia1.jpg" alt=""><img src="images/maya1.jpg" alt=""><img src="images/amber1.jpg" alt="">
-    </div>
-    <div class="skin-grid" id="skinGrid"></div>
-    <button class="btn-continue" id="btnSkin" disabled
-      onclick="startLoading();track('skin_pref',{v:prefSkin})">Continue →</button>
-  </div>
-</div>
-
-<!-- ══ P6 · LOADING ══ -->
-<div class="screen off" id="p7">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span>Searching…</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:85%"></div></div>
-  <div class="body">
-    <div class="load-ring"></div>
-    <div class="load-status" id="loadStatus">Scanning profiles in your area…</div>
-    <div class="load-num" id="loadNum">0</div>
-    <div class="load-unit">matches found</div>
-    <div class="load-track"><div class="load-fill" id="loadFill"></div></div>
-  </div>
-</div>
-
-<!-- ══ P7 · EMAIL ══ -->
-<div class="screen off" id="p8">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:92%"></div></div>
-  <div class="body">
-    <div class="match-badge">🎯 Matches Ready</div>
-    <h2 class="match-h"><em id="matchDisp">247</em> women are<br>waiting for you</h2>
-    <p class="match-sub">Enter your email to unlock your personalised matches and get notified when they go live tonight.</p>
-    <input class="email-inp" id="emailInp" type="email" placeholder="Enter your email address"
-      onkeydown="if(event.key==='Enter')submitEmail()" autocomplete="email">
-    <div id="cf-turnstile" class="cf-turnstile"
-      data-sitekey="YOUR_TURNSTILE_SITE_KEY"
-      data-theme="dark"
-      data-callback="onTurnstileSuccess"
-      data-refresh-expired="auto"
-      style="display:none;"></div>
-    <button class="btn-main" style="width:100%;max-width:340px" onclick="submitEmail()">See My Matches 🔥</button>
-    <p class="email-note">🔒 Your email is safe. We never share it with third parties.<br>
-      <a onclick="openLegal('privacy')">Privacy Policy</a> · <a onclick="openLegal('terms')">Terms of Use</a></p>
-  </div>
-</div>
-
-<!-- ══ P8 · VERIFY ══ -->
-<div class="screen off" id="p9">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:100%"></div></div>
-  <div class="body">
-    <div style="font-size:3rem;margin-bottom:16px">✉️</div>
-    <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:8px">Verifying your account…</h2>
-    <p style="font-size:.85rem;color:var(--muted);max-width:280px;line-height:1.65;margin-bottom:4px">
-      Checking your details and loading your personalised matches.</p>
-    <div class="vsteps" id="vsteps">
-      <div class="vstep active" id="vs1">
-        <div class="vstep-dot" id="vd1"><div class="vring"></div></div>
-        <div class="vstep-txt" id="vt1">Verifying email address…</div>
+    <!-- P1 · AGE GATE -->
+    <div class="screen" id="p1">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online now</span></div>
       </div>
-      <div class="vstep" id="vs2">
-        <div class="vstep-dot" id="vd2">2</div>
-        <div class="vstep-txt" id="vt2">Matching your preferences…</div>
-      </div>
-      <div class="vstep" id="vs3">
-        <div class="vstep-dot" id="vd3">3</div>
-        <div class="vstep-txt" id="vt3">Loading your matches…</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ PGAL · GALLERY ══ -->
-<div class="screen off" id="pgal">
-  <div class="topbar">
-    <div class="logo">H<span class="o">🔥</span>tica</div>
-    <div class="pill"><div class="dot"></div><span class="online-count">3,204 online now</span></div>
-  </div>
-  <div class="prog"><div class="prog-bar" style="width:100%"></div></div>
-  <div class="gal-body" id="galBody"></div>
-  <div class="gal-cta-row">
-    <button class="btn-main" onclick="aff('gallery_cta_bar')">Unlock All Profiles 🔥</button>
-  </div>
-</div>
-
-<!-- ══ EXIT ══ -->
-<div class="screen off" id="p-no">
-  <div class="exit-wrap">
-    <div style="font-size:3rem;margin-bottom:14px">🚫</div>
-    <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:10px">Access Denied</h2>
-    <p style="color:var(--muted);font-size:.86rem;max-width:270px">You must be 18 or older. Please close this page.</p>
-  </div>
-</div>
-
-<!-- ══ EXIT INTENT MODAL ══ -->
-<div class="exit-modal off" id="exitModal">
-  <div class="exit-modal-card">
-    <div class="exit-emoji">⏰</div>
-    <h3>Your matches expire soon</h3>
-    <p>Your personalised results reset in:</p>
-    <div class="exit-timer" id="exitTimerDisplay">09:59</div>
-    <button class="btn-main" style="width:100%" onclick="closeExit();aff('exit_intent')">View My Matches Now 🔥</button>
-    <button class="exit-dismiss" onclick="closeExit()">I'll pass for now</button>
-  </div>
-</div>
-
-<!-- ══ TERMS MODAL ══ -->
-<div class="legal-modal off" id="termsModal">
-  <div class="legal-modal-card">
-    <h3>Terms of Use <button class="legal-close" onclick="closeLegal('terms')">Close</button></h3>
-    <p>By accessing HOTICA you confirm you are at least 18 years of age and legally permitted to view adult content in your jurisdiction.</p>
-    <h4>Use of Service</h4>
-    <p>HOTICA is an adult entertainment and social platform. All profiles and content are created by independent creators. You agree not to reproduce, distribute, or commercially exploit any content without written permission.</p>
-    <h4>Account & Payments</h4>
-    <p>Subscriptions are billed on a recurring basis. You may cancel at any time via your account settings. Refunds are subject to our refund policy available on request.</p>
-    <h4>Prohibited Conduct</h4>
-    <p>You must not harass, threaten, or impersonate other users. Any attempt to circumvent access controls or reverse-engineer the platform is prohibited.</p>
-    <h4>Limitation of Liability</h4>
-    <p>HOTICA is provided "as is." We are not liable for any indirect or consequential damages arising from your use of the platform.</p>
-    <p style="margin-top:16px">Last updated: May 2026</p>
-  </div>
-</div>
-
-<!-- ══ PRIVACY MODAL ══ -->
-<div class="legal-modal off" id="privacyModal">
-  <div class="legal-modal-card">
-    <h3>Privacy Policy <button class="legal-close" onclick="closeLegal('privacy')">Close</button></h3>
-    <p>HOTICA respects your privacy. This policy explains what data we collect and how we use it.</p>
-    <h4>Data We Collect</h4>
-    <p>We collect your email address when you register, along with preference data (age range, interests) entered during onboarding. We also collect standard analytics data (pages visited, session duration) via Google Analytics.</p>
-    <h4>How We Use It</h4>
-    <p>Your email is used to notify you of matches, platform updates, and relevant offers. We do not sell your email to third parties. Preference data is used solely to personalise your experience.</p>
-    <h4>Cookies</h4>
-    <p>We use cookies for session management and analytics. You may disable cookies in your browser settings, though this may limit some functionality.</p>
-    <h4>Your Rights</h4>
-    <p>You may request deletion of your data at any time by contacting us. We will process your request within 30 days.</p>
-    <p style="margin-top:16px">Last updated: May 2026</p>
-  </div>
-</div>
-
-</div><!-- /.app-shell -->
-
-<script>
-/* ── AFFILIATE LINK ── */
-const BASE_LINK='https://www.rkj3s1ks.com/4784JN/2CTPL/';
-
-/* ── UTM TRACKING ── */
-function getUTM(){
-  const p=new URLSearchParams(window.location.search);
-  const out={};
-  ['utm_source','utm_medium','utm_campaign','utm_content','sub1','sub2'].forEach(k=>{
-    if(p.get(k)) out[k]=p.get(k);
-  });
-  return out;
-}
-function buildAffLink(){
-  const utm=getUTM();
-  const params=new URLSearchParams(utm).toString();
-  return BASE_LINK+(params?'?'+params:'');
-}
-
-/* ── TRACKING ── */
-function track(n,p){
-  if(typeof gtag!=='undefined') gtag('event',n,p||{});
-  if(typeof fbq!=='undefined') fbq('trackCustom',n,p||{});
-}
-function aff(label){
-  track('affiliate_click',{label,source:getUTM().utm_source||'direct'});
-  window.open(buildAffLink(),'_blank','noopener');
-}
-
-/* ── NAVIGATION ── */
-function go(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.add('off'));
-  document.getElementById(id).classList.remove('off');
-  const map={p1:'gate',p2:'your_age',p3:'who_meet',p4:'type',p5:'appearance',p7:'loading',p8:'email',p9:'verify',pgal:'gallery'};
-  if(map[id]) track('page_view',{page_title:map[id]});
-}
-
-/* ── STATE ── */
-let userAge=null,meetWho=null,prefType=null,prefSkin=null,matchTotal=0;
-
-/* ── ONLINE COUNTER FLUCTUATION ── */
-let onlineBase=3204;
-function fluctuateOnline(){
-  onlineBase+=Math.floor(Math.random()*40)-18;
-  onlineBase=Math.max(2900,Math.min(3650,onlineBase));
-  document.querySelectorAll('.online-count').forEach(el=>{
-    el.textContent=onlineBase.toLocaleString()+' online now';
-  });
-}
-setInterval(fluctuateOnline,45000);
-
-/* ── AGE OPTIONS ── */
-const ageOpts=[
-  {val:'18–24',lbl:'Young Adult'},{val:'25–34',lbl:'Mid Twenties'},
-  {val:'35–44',lbl:'Thirties'},{val:'45–54',lbl:'Forties'},
-  {val:'55+',lbl:'Fifty Plus'},{val:'Any',lbl:'No Preference'},
-];
-function buildAgeGrid(gridId,btnId,varName){
-  document.getElementById(gridId).innerHTML=ageOpts.map(o=>`
-    <div class="age-opt" onclick="pickAge(this,'${gridId}','${btnId}','${varName}','${o.val}')">
-      <div class="age-val">${o.val}</div>
-      <div class="age-lbl">${o.lbl}</div>
-    </div>`).join('');
-}
-function pickAge(el,gridId,btnId,varName,val){
-  document.querySelectorAll(`#${gridId} .age-opt`).forEach(e=>e.classList.remove('sel'));
-  el.classList.add('sel');
-  if(varName==='userAge') userAge=val;
-  document.getElementById(btnId).disabled=false;
-}
-
-/* ── WHO TO MEET ── */
-const meetOpts=[
-  {key:'women',photo:'images/april1.jpg',lbl:'Women'},
-  {key:'men',photo:null,lbl:'Men'},
-  {key:'both',photo:null,lbl:'Both'},
-];
-function buildMeetGrid(){
-  document.getElementById('meetGrid').innerHTML=meetOpts.map(o=>`
-    <div class="meet-card" onclick="pickMeet(this,'${o.key}')">
-      <div class="meet-photo-wrap">${
-        o.photo
-          ? `<img class="meet-photo" src="${o.photo}" alt="${o.lbl}" onerror="this.style.background='var(--card2)'"><div class="meet-photo-overlay"></div>`
-          : `<div class="meet-ph-gradient meet-ph-${o.key}"><div class="meet-ph-icon">${o.key==='men'?'♂':'♀♂'}</div></div><div class="meet-photo-overlay"></div>`
-      }</div>
-      <div class="meet-lbl">${o.lbl}</div>
-    </div>`).join('');
-}
-function pickMeet(el,val){
-  document.querySelectorAll('.meet-card').forEach(e=>e.classList.remove('sel'));
-  el.classList.add('sel'); meetWho=val;
-  document.getElementById('btnMeet').disabled=false;
-}
-
-/* ── TYPE PREFERENCE ── */
-const typeOpts=[
-  {key:'petite',photo:'images/alisha1.jpg',lbl:'Petite'},
-  {key:'curvy',photo:'images/amber1.jpg',lbl:'Curvy'},
-  {key:'athletic',photo:'images/alexis1.jpg',lbl:'Athletic'},
-  {key:'exotic',photo:'images/anastasia1.jpg',lbl:'Exotic'},
-  {key:'milf',photo:'images/eva1.jpg',lbl:'MILF'},
-  {key:'any',photo:'images/cali1.jpg',lbl:'Any Type'},
-];
-function buildTypeGrid(){
-  document.getElementById('typeGrid').innerHTML=typeOpts.map(o=>`
-    <div class="type-opt" onclick="pickType(this,'${o.key}')">
-      <div class="type-photo-wrap">
-        <img class="type-photo" src="${o.photo}" alt="${o.lbl}" onerror="this.style.background='var(--card2)'">
-        <div class="type-photo-overlay"></div>
-      </div>
-      <div class="type-lbl">${o.lbl}</div>
-    </div>`).join('');
-}
-function pickType(el,val){
-  document.querySelectorAll('.type-opt').forEach(e=>e.classList.remove('sel'));
-  el.classList.add('sel'); prefType=val;
-  document.getElementById('btnType').disabled=false;
-}
-
-/* ── APPEARANCE ── */
-const skinOpts=[
-  {key:'any',lbl:'Any',photo:'images/maya1.jpg'},
-  {key:'white',lbl:'Caucasian',photo:'images/cali1.jpg'},
-  {key:'latina',lbl:'Latina',photo:'images/alisha1.jpg'},
-  {key:'black',lbl:'Black',photo:'images/eva1.jpg'},
-  {key:'asian',lbl:'Asian',photo:'images/april1.jpg'},
-  {key:'mixed',lbl:'Mixed',photo:'images/amber1.jpg'},
-];
-function buildSkinGrid(){
-  document.getElementById('skinGrid').innerHTML=skinOpts.map(o=>`
-    <div class="skin-opt" onclick="pickSkin(this,'${o.key}')">
-      <div class="skin-photo-wrap">
-        <img class="skin-photo" src="${o.photo}" alt="${o.lbl}" onerror="this.style.background='var(--card2)'">
-        <div class="skin-photo-overlay"></div>
-      </div>
-      <div class="skin-lbl">${o.lbl}</div>
-    </div>`).join('');
-}
-function pickSkin(el,val){
-  document.querySelectorAll('.skin-opt').forEach(e=>e.classList.remove('sel'));
-  el.classList.add('sel'); prefSkin=val;
-  document.getElementById('btnSkin').disabled=false;
-}
-
-/* ── LOADING ── */
-function startLoading(){
-  go('p7');
-  matchTotal=180+Math.floor(Math.random()*140);
-  const msgs=['Scanning profiles in your area…','Filtering by your preferences…','Checking who\'s online right now…','Almost ready…'];
-  let mi=0,count=0,prog=0;
-  const fillEl=document.getElementById('loadFill');
-  const numEl=document.getElementById('loadNum');
-  const statusEl=document.getElementById('loadStatus');
-  const msgInt=setInterval(()=>{mi=(mi+1)%msgs.length;statusEl.textContent=msgs[mi];},900);
-  const countInt=setInterval(()=>{
-    count=Math.min(count+Math.ceil(matchTotal/36),matchTotal);
-    prog=Math.min(prog+100/36,100);
-    numEl.textContent=count.toLocaleString();
-    fillEl.style.width=prog+'%';
-    if(count>=matchTotal){
-      clearInterval(countInt);clearInterval(msgInt);
-      statusEl.textContent='Found your matches! 🎉';
-      document.getElementById('matchDisp').textContent=matchTotal.toLocaleString();
-      setTimeout(()=>go('p8'),1100);
-    }
-  },65);
-}
-
-/* ── HELPERS ── */
-function generateUsername(email){
-  const base=email.split('@')[0].replace(/[^a-zA-Z0-9]/g,'').toLowerCase().slice(0,12);
-  return base+Math.floor(1000+Math.random()*9000);
-}
-function generatePassword(){
-  const u='ABCDEFGHJKMNPQRSTUVWXYZ',l='abcdefghjkmnpqrstuvwxyz',n='23456789',s='!@#$';
-  const all=u+l+n;
-  let pw=u[Math.floor(Math.random()*u.length)]+l[Math.floor(Math.random()*l.length)]
-        +n[Math.floor(Math.random()*n.length)]+s[Math.floor(Math.random()*s.length)];
-  for(let i=0;i<8;i++) pw+=all[Math.floor(Math.random()*all.length)];
-  return pw.split('').sort(()=>Math.random()-0.5).join('');
-}
-function onTurnstileSuccess(token){window._tsToken=token;}
-
-/* ── EMAIL SUBMIT ── */
-async function submitEmail(){
-  const inp=document.getElementById('emailInp');
-  const val=inp.value.trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){
-    inp.style.borderColor='var(--pink2)';
-    inp.focus();
-    return;
-  }
-  inp.style.borderColor='';
-  track('email_submitted',{domain:val.split('@')[1],source:getUTM().utm_source||'direct'});
-  try{
-    await fetch('https://hv-api.chancy-tsonga.workers.dev/register',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        email:val,
-        username:generateUsername(val),
-        password:generatePassword(),
-        turnstileToken:window._tsToken,
-        prefs:{age:userAge,meets:meetWho,type:prefType,skin:prefSkin},
-        source:getUTM(),
-        ts:Date.now()
-      })
-    });
-  }catch(e){/* fail silently */}
-  go('p9');
-  runVerify();
-}
-
-/* ── VERIFICATION ── */
-function runVerify(){
-  const steps=[
-    {dotId:'vd1',txtId:'vt1',stepId:'vs1',done:'Email verified ✓'},
-    {dotId:'vd2',txtId:'vt2',stepId:'vs2',done:'Preferences matched ✓'},
-    {dotId:'vd3',txtId:'vt3',stepId:'vs3',done:'Matches loaded ✓'},
-  ];
-  let si=0;
-  function advance(){
-    if(si>=steps.length){
-      setTimeout(()=>{buildGallery();go('pgal');},600);
-      return;
-    }
-    const s=steps[si];
-    document.getElementById(s.stepId).classList.remove('active');
-    document.getElementById(s.stepId).classList.add('done');
-    document.getElementById(s.dotId).innerHTML='✓';
-    document.getElementById(s.txtId).textContent=s.done;
-    si++;
-    if(si<steps.length){
-      const ns=steps[si];
-      document.getElementById(ns.stepId).classList.add('active');
-      document.getElementById(ns.dotId).innerHTML='<div class="vring"></div>';
-    }
-    setTimeout(advance,1300);
-  }
-  setTimeout(advance,1500);
-}
-
-/* ── MATCH % CALCULATION ── */
-function calcMatch(model){
-  let score=62;
-  if(!prefType&&!prefSkin) return 72+Math.floor(Math.random()*22);
-  if(prefType&&(prefType==='any'||prefType===model.type)) score+=25;
-  else if(prefType) score+=Math.floor(Math.random()*8);
-  if(prefSkin&&(prefSkin==='any'||prefSkin===model.skin)) score+=18;
-  else if(prefSkin) score+=Math.floor(Math.random()*5);
-  score+=Math.floor(Math.random()*10)-4;
-  return Math.min(99,Math.max(68,score));
-}
-
-/* ── MODELS DATA ── */
-const MODELS=[
-  {
-    name:'Alexis Ocean',age:24,location:'3 miles away',
-    status:'Online now',lastActive:'2 min ago',
-    bio:'"Fitness trainer by day, trouble at night 😈 I match energy — bring yours."',
-    tags:['fitness','travel','night owl'],
-    photoCount:247,videoCount:48,
-    message:"Hey, I saw your profile and honestly? You seem like exactly my type 🔥",
-    type:'athletic',skin:'white',
-    photos:['images/alexis1.jpg','images/alexis2.jpg','images/alexis3.jpg','images/alexis4.jpg']
-  },
-  {
-    name:'Alisha Bell',age:27,location:'1 mile away',
-    status:'Online now',lastActive:'5 min ago',
-    bio:'"Artist & overthinker. Here for a good time, not a long time 🎨 Surprise me."',
-    tags:['art','music','wine lover'],
-    photoCount:183,videoCount:31,
-    message:"I don't usually message first but something about your profile caught my eye...",
-    type:'petite',skin:'latina',
-    photos:['images/alisha1.jpg','images/alisha2.jpg','images/alisha3.jpg','images/alisha4.jpg']
-  },
-  {
-    name:'Amber Xoo',age:22,location:'5 miles away',
-    status:'Live now 🔴',lastActive:'Live now',
-    bio:'"Full-time bad influence 🌶️ Part-time angel. Always online late. Come find out why."',
-    tags:['gaming','cosplay','late nights'],
-    photoCount:312,videoCount:67,
-    message:"You seem like exactly my type tbh... should we find out? 😏",
-    type:'curvy',skin:'mixed',
-    photos:['images/amber1.jpg','images/amber2.jpg','images/amber3.jpg','images/amber4.jpg']
-  },
-  {
-    name:'Cali Moon',age:29,location:'8 miles away',
-    status:'Online now',lastActive:'12 min ago',
-    bio:'"Beach girl, sun & secrets ☀️ More fun than my bio suggests. Way more."',
-    tags:['beach','yoga','foodie'],
-    photoCount:198,videoCount:44,
-    message:"Okay so I may have looked at your profile more than once 😅",
-    type:'athletic',skin:'white',
-    photos:['images/cali1.jpg','images/cali2.jpg','images/cali3.jpg','images/cali4.jpg']
-  },
-  {
-    name:'Anastasia',age:26,location:'2 miles away',
-    status:'Online now',lastActive:'8 min ago',
-    bio:'"Eastern European mystery 🖤 I speak fluent trouble. Curious? You should be."',
-    tags:['fashion','travel','dancing'],
-    photoCount:276,videoCount:59,
-    message:"We have 3 things in common already. Curious which ones? 🔒",
-    type:'exotic',skin:'white',
-    photos:['images/anastasia1.jpg','images/anastasia2.jpg','images/anastasia3.jpg','images/anastasia4.jpg']
-  },
-  {
-    name:'April Wong',age:23,location:'4 miles away',
-    status:'Live now 🔴',lastActive:'Live now',
-    bio:'"Soft aesthetic, hard to forget 🌸 Your new favourite distraction. Don\'t say I didn\'t warn you."',
-    tags:['k-pop','skincare','cats'],
-    photoCount:341,videoCount:72,
-    message:"Not gonna lie, I swiped right immediately 💕 ping me?",
-    type:'petite',skin:'asian',
-    photos:['images/april1.jpg','images/april2.jpg','images/april3.jpg','images/april4.jpg']
-  },
-  {
-    name:'Eva Williams',age:31,location:'6 miles away',
-    status:'Online now',lastActive:'19 min ago',
-    bio:'"Confident. Curious. Slightly chaotic 🔥 You\'ve been warned. Still here? Perfect."',
-    tags:['fitness','red wine','hiking'],
-    photoCount:229,videoCount:38,
-    message:"Your profile is actually interesting. That's rare here 👀",
-    type:'curvy',skin:'black',
-    photos:['images/eva1.jpg','images/eva2.jpg','images/eva3.jpg','images/eva4.jpg']
-  },
-  {
-    name:'Maya Levi',age:28,location:'7 miles away',
-    status:'Live now 🔴',lastActive:'Live now',
-    bio:'"Leo energy — can\'t help it 🦁 Not here to be boring. Match me if you dare."',
-    tags:['astrology','photography','spontaneous'],
-    photoCount:194,videoCount:55,
-    message:"Tell me something about yourself that your friends don't know 🔥",
-    type:'exotic',skin:'latina',
-    photos:['images/maya1.jpg','images/maya2.jpg','images/maya3.jpg','images/maya4.jpg']
-  }
-];
-
-const FREE_VIEWS=3;
-
-const CLIPS=[
-  {src:'videos/cali_01.mp4',free:true},{src:'videos/alisha_01.mp4',free:true},
-  {src:'videos/amber_01.mp4',free:true},{src:'videos/mia_01.mp4',free:true},
-  {src:'videos/gia_01.mp4',free:false},{src:'videos/olivia_01.mp4',free:false},
-  {src:'videos/eva_01.mp4',free:false},{src:'videos/anastasia_01.mp4',free:false},
-];
-
-/* ── BUILD GALLERY ── */
-function buildGallery(){
-  const body=document.getElementById('galBody');
-
-  let html=`<div class="gal-header"><h2>Your <em>matches</em> are here</h2>
-    <p>Based on your preferences — ${matchTotal||247} compatible profiles found</p></div>
-    <div class="clips-section">
-      <div class="clips-label">Live Clips</div>
-      <div class="clips-scroll">`;
-  CLIPS.forEach(c=>{
-    if(c.free){
-      html+=`<div class="clip-card" onclick="playClip(this)">
-        <video muted loop playsinline preload="metadata"><source src="${c.src}" type="video/mp4"></video>
-        <div class="clip-overlay"><div class="clip-play">▶</div></div>
-      </div>`;
-    } else {
-      html+=`<div class="clip-card locked" onclick="aff('clip_lock')">
-        <video muted loop playsinline preload="metadata"><source src="${c.src}" type="video/mp4"></video>
-        <div class="clip-overlay"><div class="clip-play">🔒</div></div>
-      </div>`;
-    }
-  });
-  html+=`</div></div>`;
-
-  MODELS.forEach((m,mi)=>{
-    const locked=mi>=FREE_VIEWS;
-    const isLive=m.status.includes('Live');
-    const ringClass=isLive?'ring-live':'ring-online';
-    const matchPct=calcMatch(m);
-    const endMs=isLive?(Date.now()+(18+Math.floor(Math.random()*22))*60000):0;
-
-    html+=`<div class="model-card ${locked?'locked-card':'free-card'}" id="mrow${mi}">`;
-
-    html+=`<div class="mc-head">
-      <div class="mc-avatar-wrap ${ringClass}">
-        <img class="mc-avatar" src="${m.photos[0]}" alt="${m.name}" onerror="this.style.background='var(--card2)'">
-        <div class="mc-notif">1</div>
-      </div>
-      <div class="mc-head-info">
-        <div class="mc-name">${m.name}, <span class="mc-age">${m.age}</span></div>
-        <div class="mc-loc">📍 ${m.location} · ${m.lastActive}</div>
-        ${isLive?`<div class="mc-live-row"><div class="mc-live-dot"></div>
-          <span class="mc-countdown" data-end="${endMs}">Going offline soon…</span></div>`:''}
-      </div>
-      <div class="mc-match-box">
-        <div class="mc-match-pct">${matchPct}%</div>
-        <div class="mc-match-lbl">match</div>
-      </div>
-    </div>`;
-
-    html+=`<div class="mc-bio">${m.bio}</div>`;
-    html+=`<div class="mc-tags">${m.tags.map(t=>`<span class="mc-tag">${t}</span>`).join('')}</div>`;
-    html+=`<div class="mc-stats">
-      <span>📸 ${m.photoCount} photos</span>
-      <span>🎬 ${m.videoCount} videos</span>
-    </div>`;
-
-    if(locked){
-      html+=`<div class="mc-message" onclick="aff('message_lock_${mi}')">
-        <div class="mc-msg-avt"><img src="${m.photos[0]}" alt="" onerror="this.style.background='var(--card2)'"></div>
-        <div class="mc-msg-body">
-          <div class="mc-msg-text blurred">${m.message}</div>
-          <span class="mc-msg-unlock">🔒 Unlock to read her message</span>
+      <div class="prog"><div class="prog-bar" style="width:0%"></div></div>
+      <div class="body">
+        <div class="reels">
+          <div class="reel">
+            <video class="reel-ph" autoplay muted loop playsinline poster="images/cali1.jpg">
+              <source src="videos/cali_01.mp4" type="video/mp4">
+            </video>
+            <div class="reel-veil">🔥</div>
+          </div>
+          <div class="reel">
+            <video class="reel-ph" autoplay muted loop playsinline poster="images/alisha1.jpg">
+              <source src="videos/alisha_01.mp4" type="video/mp4">
+            </video>
+            <div class="reel-veil">😏</div>
+          </div>
+          <div class="reel">
+            <video class="reel-ph" autoplay muted loop playsinline poster="images/amber1.jpg">
+              <source src="videos/mia_01.mp4" type="video/mp4">
+            </video>
+            <div class="reel-veil">💋</div>
+          </div>
+          <div class="reel">
+            <video class="reel-ph" autoplay muted loop playsinline poster="images/april1.jpg">
+              <source src="videos/amber_01.mp4" type="video/mp4">
+            </video>
+            <div class="reel-veil">🌶️</div>
+          </div>
         </div>
-        <div class="mc-msg-icon">💬</div>
-      </div>`;
-    } else {
-      html+=`<div class="mc-message">
-        <div class="mc-msg-avt"><img src="${m.photos[0]}" alt="" onerror="this.style.background='var(--card2)'"></div>
-        <div class="mc-msg-body">
-          <div class="mc-msg-text">${m.message}</div>
-          <span class="mc-msg-unlock" style="color:var(--dim)">Reply unlocked after sign-up ✓</span>
+        <div class="badge">18+ · Adults Only</div>
+        <h1 class="gate-h">She's already online.<br>Are you <em>ready?</em></h1>
+        <p class="gate-sub">Thousands of real creators live every night. Your match is waiting — but this is strictly for adults.</p>
+        <div class="gate-btns">
+          <button class="btn-main" onclick="go('p2');track('age_confirmed')">Yes, I'm 18+ — Let me in 🔥</button>
+          <button class="btn-ghost" onclick="go('p-no')">No, take me back</button>
         </div>
-        <div class="mc-msg-icon">💬</div>
-      </div>`;
-    }
+        <p class="legal">By entering you confirm you are 18 or older and agree to our
+          <a onclick="openLegal('terms')">Terms</a> and
+          <a onclick="openLegal('privacy')">Privacy Policy</a>.</p>
+      </div>
+    </div>
 
-    html+=`<div class="photos-2col">`;
-    m.photos.forEach((p,pi)=>{
-      if(locked){
-        html+=`<div class="photo-thumb locked" onclick="aff('photo_lock_${mi}')">
-          <img src="${p}" alt="" loading="lazy" onerror="this.style.background='var(--card2)'">
-          <div class="lock-icon">🔒<span>Unlock</span></div>
-        </div>`;
-      } else {
-        html+=`<div class="photo-thumb" onclick="track('photo_view',{model:'${m.name}',idx:${pi}})">
-          <img src="${p}" alt="" loading="lazy" onerror="this.style.background='var(--card2)'">
-        </div>`;
-      }
-    });
-    html+=`</div>`;
+    <!-- P2 · YOUR AGE -->
+    <div class="screen off" id="p2">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:14%"></div></div>
+      <div class="quiz-body">
+        <div class="step-tag">Step 1 of 5</div>
+        <h2 class="quiz-q">How <em>old</em> are you?</h2>
+        <p class="quiz-sub">We match you with people your age group actually connects with.</p>
+        <div class="model-strip">
+          <img src="images/alexis1.jpg" alt=""><img src="images/alisha1.jpg" alt="">
+          <img src="images/amber1.jpg"  alt=""><img src="images/cali1.jpg"   alt="">
+          <img src="images/anastasia1.jpg" alt=""><img src="images/april1.jpg" alt="">
+        </div>
+        <div class="age-grid" id="yourAgeGrid"></div>
+        <button class="btn-continue" id="btnYourAge" disabled
+          onclick="go('p3');track('your_age',{v:userAge})">Continue →</button>
+      </div>
+    </div>
 
-    if(locked){
-      html+=`<button class="mc-unlock-btn" onclick="aff('card_unlock_${mi}')">
-        🔥 Unlock ${m.name.split(' ')[0]}'s Full Profile
-      </button>`;
-    }
+    <!-- P3 · WHO TO MEET -->
+    <div class="screen off" id="p3">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:28%"></div></div>
+      <div class="quiz-body">
+        <div class="step-tag">Step 2 of 5</div>
+        <h2 class="quiz-q">Who do you want to <em>meet?</em></h2>
+        <p class="quiz-sub">No judgment — just tell us so we show you the right people.</p>
+        <div class="model-strip">
+          <img src="images/alexis1.jpg" alt=""><img src="images/alisha1.jpg" alt="">
+          <img src="images/amber1.jpg"  alt=""><img src="images/cali1.jpg"   alt="">
+          <img src="images/anastasia1.jpg" alt=""><img src="images/april1.jpg" alt="">
+        </div>
+        <div class="meet-grid" id="meetGrid"></div>
+        <button class="btn-continue" id="btnMeet" disabled
+          onclick="go('p4');track('meet_who',{v:meetWho})">Continue →</button>
+      </div>
+    </div>
 
-    html+=`</div>`;
+    <!-- P4 · TYPE PREFERENCE -->
+    <div class="screen off" id="p4">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:56%"></div></div>
+      <div class="quiz-body">
+        <div class="step-tag">Step 3 of 5</div>
+        <h2 class="quiz-q">What's your <em>type?</em></h2>
+        <p class="quiz-sub">Be honest — it helps us filter the right matches for you.</p>
+        <div class="model-strip">
+          <img src="images/april1.jpg" alt=""><img src="images/cali1.jpg" alt="">
+          <img src="images/eva1.jpg"   alt=""><img src="images/maya1.jpg" alt="">
+          <img src="images/anastasia1.jpg" alt=""><img src="images/amber1.jpg" alt="">
+        </div>
+        <div class="type-grid" id="typeGrid"></div>
+        <button class="btn-continue" id="btnType" disabled
+          onclick="go('p5');track('type_pref',{v:prefType})">Continue →</button>
+      </div>
+    </div>
 
-    if(mi===FREE_VIEWS-1){
-      html+=`<div class="gal-lock-banner">
-        <h3>🔒 ${MODELS.length-FREE_VIEWS} more profiles waiting</h3>
-        <p>You've seen your free preview. Unlock all profiles, full galleries, and direct messaging now.</p>
-        <button class="btn-main" style="width:100%" onclick="aff('banner_unlock')">Unlock All Profiles 🔥</button>
-      </div>`;
-    }
-  });
+    <!-- P5 · APPEARANCE -->
+    <div class="screen off" id="p5">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:70%"></div></div>
+      <div class="quiz-body">
+        <div class="step-tag">Step 4 of 5</div>
+        <h2 class="quiz-q">Any <em>appearance</em> preference?</h2>
+        <p class="quiz-sub">We will prioritise matches that fit your taste.</p>
+        <div class="model-strip">
+          <img src="images/alisha1.jpg" alt=""><img src="images/eva1.jpg"       alt="">
+          <img src="images/april1.jpg"  alt=""><img src="images/anastasia1.jpg" alt="">
+          <img src="images/maya1.jpg"   alt=""><img src="images/amber1.jpg"     alt="">
+        </div>
+        <div class="skin-grid" id="skinGrid"></div>
+        <button class="btn-continue" id="btnSkin" disabled
+          onclick="startLoading();track('skin_pref',{v:prefSkin})">Continue →</button>
+      </div>
+    </div>
 
-  body.innerHTML=html;
-  startCountdowns();
-  initExitIntent();
-}
+    <!-- P6 · LOADING -->
+    <div class="screen off" id="p7">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span>Searching…</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:85%"></div></div>
+      <div class="body">
+        <div class="load-ring"></div>
+        <div class="load-status" id="loadStatus">Scanning profiles in your area…</div>
+        <div class="load-num"    id="loadNum">0</div>
+        <div class="load-unit">matches found</div>
+        <div class="load-track"><div class="load-fill" id="loadFill"></div></div>
+      </div>
+    </div>
 
-/* ── COUNTDOWN TIMERS ── */
-function startCountdowns(){
-  setInterval(()=>{
-    document.querySelectorAll('.mc-countdown').forEach(el=>{
-      const end=parseInt(el.dataset.end);
-      if(!end) return;
-      const rem=Math.max(0,end-Date.now());
-      const mins=Math.floor(rem/60000);
-      const secs=Math.floor((rem%60000)/1000);
-      if(rem===0){
-        el.textContent='Going offline…';
-        el.style.color='#f87171';
-      } else {
-        el.textContent=`Going offline in ${mins}m ${secs}s`;
-      }
-    });
-  },1000);
-}
+    <!-- P7 · EMAIL CAPTURE -->
+    <div class="screen off" id="p8">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:92%"></div></div>
+      <div class="body">
+        <div class="match-badge">🎯 Matches Ready</div>
+        <h2 class="match-h"><em id="matchDisp">247</em> women are<br>waiting for you</h2>
+        <p class="match-sub">Enter your email to unlock your personalised matches and get notified when they go live tonight.</p>
+        <input class="email-inp" id="emailInp" type="email"
+          placeholder="Enter your email address"
+          onkeydown="if(event.key==='Enter') submitEmail()"
+          autocomplete="email">
+        <!-- Turnstile: swap sitekey + remove display:none to re-enable bot protection -->
+        <div id="cf-turnstile" class="cf-turnstile"
+          data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+          data-theme="dark"
+          data-callback="onTurnstileSuccess"
+          data-refresh-expired="auto"
+          style="display:none;"></div>
+        <button class="btn-main" style="width:100%;max-width:340px" onclick="submitEmail()">
+          See My Matches 🔥
+        </button>
+        <p class="email-note">🔒 Your email is safe. We never share it with third parties.<br>
+          <a onclick="openLegal('privacy')">Privacy Policy</a> ·
+          <a onclick="openLegal('terms')">Terms of Use</a></p>
+      </div>
+    </div>
 
-/* ── CLIP PLAYBACK ── */
-function playClip(card){
-  const vid=card.querySelector('video');
-  const overlay=card.querySelector('.clip-overlay');
-  if(vid.paused){
-    document.querySelectorAll('.clip-card video').forEach(v=>{
-      if(v!==vid){v.pause();v.closest('.clip-card').querySelector('.clip-overlay').style.opacity='1';}
-    });
-    vid.play();overlay.style.opacity='0';
-  } else {
-    vid.pause();overlay.style.opacity='1';
-  }
-}
+    <!-- P8 · VERIFY -->
+    <div class="screen off" id="p9">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:100%"></div></div>
+      <div class="body">
+        <div style="font-size:3rem;margin-bottom:16px">✉️</div>
+        <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:8px">Verifying your account…</h2>
+        <p style="font-size:.85rem;color:var(--muted);max-width:280px;line-height:1.65;margin-bottom:4px">
+          Checking your details and loading your personalised matches.</p>
+        <div class="vsteps" id="vsteps">
+          <div class="vstep active" id="vs1">
+            <div class="vstep-dot" id="vd1"><div class="vring"></div></div>
+            <div class="vstep-txt" id="vt1">Verifying email address…</div>
+          </div>
+          <div class="vstep" id="vs2">
+            <div class="vstep-dot" id="vd2">2</div>
+            <div class="vstep-txt" id="vt2">Matching your preferences…</div>
+          </div>
+          <div class="vstep" id="vs3">
+            <div class="vstep-dot" id="vd3">3</div>
+            <div class="vstep-txt" id="vt3">Loading your matches…</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-/* ── EXIT INTENT ── */
-let exitShown=false;
-let exitInterval=null;
-function initExitIntent(){
-  document.addEventListener('mouseleave',e=>{
-    if(e.clientY<20&&!exitShown){
-      exitShown=true;
-      showExitModal();
-    }
-  },{once:false});
-}
-function showExitModal(){
-  document.getElementById('exitModal').classList.remove('off');
-  let secs=599;
-  exitInterval=setInterval(()=>{
-    secs--;
-    if(secs<=0){clearInterval(exitInterval);closeExit();return;}
-    const m=Math.floor(secs/60).toString().padStart(2,'0');
-    const s=(secs%60).toString().padStart(2,'0');
-    document.getElementById('exitTimerDisplay').textContent=`${m}:${s}`;
-  },1000);
-  track('exit_intent_shown');
-}
-function closeExit(){
-  clearInterval(exitInterval);
-  document.getElementById('exitModal').classList.add('off');
-}
+    <!-- GALLERY -->
+    <div class="screen off" id="pgal">
+      <div class="topbar">
+        <div class="logo">H<span class="o">🔥</span>tica</div>
+        <div class="pill"><div class="dot"></div><span class="online-count">3,204 online now</span></div>
+      </div>
+      <div class="prog"><div class="prog-bar" style="width:100%"></div></div>
+      <div class="gal-body" id="galBody"></div>
+      <div class="gal-cta-row">
+        <button class="btn-main" onclick="aff('gallery_cta_bar')">Unlock All Profiles 🔥</button>
+      </div>
+    </div>
 
-/* ── LEGAL MODALS ── */
-function openLegal(type){
-  document.getElementById(type==='terms'?'termsModal':'privacyModal').classList.remove('off');
-}
-function closeLegal(type){
-  document.getElementById(type==='terms'?'termsModal':'privacyModal').classList.add('off');
-}
+    <!-- EXIT / UNDER 18 -->
+    <div class="screen off" id="p-no">
+      <div class="exit-wrap">
+        <div style="font-size:3rem;margin-bottom:14px">🚫</div>
+        <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:10px">Access Denied</h2>
+        <p style="color:var(--muted);font-size:.86rem;max-width:270px">You must be 18 or older. Please close this page.</p>
+      </div>
+    </div>
 
-/* ── INIT ── */
-buildAgeGrid('yourAgeGrid','btnYourAge','userAge');
-buildMeetGrid();
-buildTypeGrid();
-buildSkinGrid();
-</script>
+    <!-- EXIT INTENT MODAL -->
+    <div class="exit-modal off" id="exitModal">
+      <div class="exit-modal-card">
+        <div class="exit-emoji">⏰</div>
+        <h3>Your matches expire soon</h3>
+        <p>Your personalised results reset in:</p>
+        <div class="exit-timer" id="exitTimerDisplay">09:59</div>
+        <button class="btn-main" style="width:100%" onclick="closeExit();aff('exit_intent')">View My Matches Now 🔥</button>
+        <button class="exit-dismiss" onclick="closeExit()">I'll pass for now</button>
+      </div>
+    </div>
+
+    <!-- TERMS MODAL -->
+    <div class="legal-modal off" id="termsModal">
+      <div class="legal-modal-card">
+        <h3>Terms of Use <button class="legal-close" onclick="closeLegal('terms')">Close</button></h3>
+        <p>By accessing HOTICA you confirm you are at least 18 years of age and legally permitted to view adult content in your jurisdiction.</p>
+        <h4>Use of Service</h4>
+        <p>HOTICA is an adult entertainment and social platform. All profiles and content are created by independent creators. You agree not to reproduce, distribute, or commercially exploit any content without written permission.</p>
+        <h4>Account &amp; Payments</h4>
+        <p>Subscriptions are billed on a recurring basis. You may cancel at any time via your account settings. Refunds are subject to our refund policy available on request.</p>
+        <h4>Prohibited Conduct</h4>
+        <p>You must not harass, threaten, or impersonate other users. Any attempt to circumvent access controls or reverse-engineer the platform is prohibited.</p>
+        <h4>Limitation of Liability</h4>
+        <p>HOTICA is provided "as is." We are not liable for any indirect or consequential damages arising from your use of the platform.</p>
+        <p style="margin-top:16px">Last updated: May 2026</p>
+      </div>
+    </div>
+
+    <!-- PRIVACY MODAL -->
+    <div class="legal-modal off" id="privacyModal">
+      <div class="legal-modal-card">
+        <h3>Privacy Policy <button class="legal-close" onclick="closeLegal('privacy')">Close</button></h3>
+        <p>HOTICA respects your privacy. This policy explains what data we collect and how we use it.</p>
+        <h4>Data We Collect</h4>
+        <p>We collect your email address when you register, along with preference data (age range, interests) entered during onboarding. We also collect standard analytics data via Google Analytics.</p>
+        <h4>How We Use It</h4>
+        <p>Your email is used to notify you of matches, platform updates, and relevant offers. We do not sell your email to third parties. Preference data is used solely to personalise your experience.</p>
+        <h4>Cookies</h4>
+        <p>We use cookies for session management and analytics. You may disable cookies in your browser settings, though this may limit some functionality.</p>
+        <h4>Your Rights</h4>
+        <p>You may request deletion of your data at any time by contacting us. We will process your request within 30 days.</p>
+        <p style="margin-top:16px">Last updated: May 2026</p>
+      </div>
+    </div>
+
+  </div><!-- /.app-shell -->
+
+  <!-- ══════════════════════════════════════
+       SIDE PANEL — desktop only (≥900px)
+       Photo mosaic + featured model card
+       ══════════════════════════════════════ -->
+  <aside id="side-panel" aria-hidden="true">
+    <div class="sp-header">
+      <div class="pill">
+        <div class="dot"></div>
+        <span class="online-count">3,204 online now</span>
+      </div>
+      <p class="sp-tagline">Women online near you tonight</p>
+    </div>
+    <div class="sp-mosaic" id="spMosaic"></div>
+    <div id="spFeatured"></div>
+    <div class="sp-footer">
+      <div class="sp-stats">
+        <span><strong>3,200+</strong> profiles</span>
+        <span><strong>127</strong> joined today</span>
+      </div>
+      <button class="btn-main sp-cta" onclick="aff('side_panel_cta')">Join Free Tonight 🔥</button>
+    </div>
+  </aside>
+
+</div><!-- /.layout -->
+
+<script src="js/tracking.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/gallery.js"></script>
 </body>
 </html>
