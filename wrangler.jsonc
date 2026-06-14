@@ -10,5 +10,9 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "routes": [
+    {"pattern": "hotvibes26.com/*", "zone_name": "hotvibes26.com"},
+    {"pattern": "www.hotvibes26.com/*", "zone_name": "hotvibes26.com"}
   ]
 }
