@@ -214,7 +214,7 @@ function buildCard(p) {
     : '';
 
   card.innerHTML = `
-    <a href="${escHtml(p.referralUrl)}" target="_blank" rel="noopener noreferrer" data-user="${escHtml(p.userId)}">
+    <a href="/profiles/${escHtml(p.userId)}" data-user="${escHtml(p.userId)}">
       <div class="card-img">
         ${imgHtml}
         ${onlineBadge}
@@ -228,7 +228,7 @@ function buildCard(p) {
 
   card.querySelector('a').addEventListener('click', () => {
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'aw_profile_click', { user_id: p.userId, nickname: p.nickname });
+      gtag('event', 'profile_page_open', { user_id: p.userId, nickname: p.nickname });
     }
   });
 
