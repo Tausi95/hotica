@@ -13,6 +13,7 @@ ADULTWORK_API_BASE = "https://developers.adultwork.com"
 # Secrets — set with wrangler secret put, never hardcode here:
 #   wrangler secret put PARTNER_ID
 #   wrangler secret put PARTNER_KEY
-#   wrangler secret put ADULTWORK_API_KEY   ← X-ApiKey header for SearchProfiles
+#   wrangler secret put ADULTWORK_API_KEY    ← X-ApiKey header for SearchProfiles
 #   wrangler secret put ADULTWORK_API_SECRET ← X-ApiSecret (if required by your project tier)
-#   wrangler secret put ADULTWORK_PID       ← your project/affiliate PID for referral URLs
+#   wrangler secret put ADULTWORK_PID        ← your project/affiliate PID for referral URLs
+#   wrangler secret put AW_INTERNAL_SECRET   ← x-internal-secret bypass header (from AW support)

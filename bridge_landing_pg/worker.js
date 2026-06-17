@@ -43,6 +43,7 @@ function awHeaders(env) {
     'X-ApiSecret': env.ADULTWORK_API_SECRET || '',
     'Accept': 'application/json',
     'X-CaseType': 'camelcase',
+    'x-internal-secret': env.AW_INTERNAL_SECRET || '',
   };
 }
 
