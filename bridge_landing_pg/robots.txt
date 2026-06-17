@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /api/
+Disallow: /profiles/[0-9]*/
+Allow: /profiles/
+Allow: /browse/
+Allow: /
+
+Sitemap: https://hotvibes26.com/sitemap.xml
