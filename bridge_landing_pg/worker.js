@@ -28,6 +28,10 @@ export default {
       return handleProfilePage(profilePageMatch[1], request, env);
     }
 
+    if (request.method === 'GET' && url.pathname === '/api/news') {
+      return handleNews(request, corsHeaders);
+    }
+
     if (request.method === 'POST' && url.pathname === '/register') {
       return handleHoticaRegister(request, env, corsHeaders);
     }
@@ -237,6 +241,94 @@ async function handleHoticaRegister(request, env, corsHeaders) {
   return new Response(data, {
     status: hoticaRes.status,
     headers: { ...corsHeaders2, 'Content-Type': 'application/json' },
+  });
+}
+
+// ── News / RSS ────────────────────────────────────────────────────────────────
+
+const RSS_FEEDS = {
+  gossip: [
+    'https://pagesix.com/feed/',
+    'https://www.dailymail.co.uk/tvshowbiz/index.rss',
+  ],
+  crypto: [
+    'https://cointelegraph.com/rss',
+    'https://decrypt.co/feed',
+  ],
+  sports: [
+    'https://feeds.bbci.co.uk/sport/football/rss.xml',
+    'https://www.skysports.com/rss/12040',
+  ],
+  world: [
+    'https://feeds.bbci.co.uk/news/world/rss.xml',
+    'https://feeds.reuters.com/reuters/worldNews',
+  ],
+};
+
+function parseRss(xml) {
+  const items = [];
+  const itemRx = /<item[^>]*>([\s\S]*?)<\/item>/gi;
+  let m;
+  while ((m = itemRx.exec(xml)) !== null) {
+    const block = m[1];
+    const get = (tag) => {
+      const r = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?<\\/${tag}>`, 'i');
+      const match = r.exec(block);
+      return match ? match[1].trim() : '';
+    };
+    const imgMatch =
+      /(?:media:content|media:thumbnail)[^>]+url="([^"]+)"/i.exec(block) ||
+      /<enclosure[^>]+url="([^"]+)"/i.exec(block) ||
+      /<img[^>]+src="([^"]+)"/i.exec(block);
+
+    const title = get('title');
+    const link  = get('link') || (/<link[^>]*\/?>([^<]+)/i.exec(block) || [])[1] || '';
+    if (!title || !link) continue;
+
+    items.push({
+      title:     title.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#\d+;/g,'').slice(0,120),
+      link:      link.trim(),
+      image:     imgMatch ? imgMatch[1] : '',
+      summary:   get('description').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').slice(0,160),
+      published: get('pubDate') || get('dc:date') || '',
+      source:    '',
+    });
+    if (items.length >= 10) break;
+  }
+  return items;
+}
+
+async function fetchFeed(url) {
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; HoticaBot/1.0)' },
+      cf: { cacheTtl: 600, cacheEverything: true },
+    });
+    if (!res.ok) return [];
+    const xml = await res.text();
+    const source = (/<title[^>]*>(?:<!\\[CDATA\\[)?([^<]{2,60})/i.exec(xml) || [])[1] || new URL(url).hostname;
+    return parseRss(xml).map(a => ({ ...a, source: source.trim() }));
+  } catch {
+    return [];
+  }
+}
+
+async function handleNews(request, corsHeaders) {
+  const url = new URL(request.url);
+  const category = url.searchParams.get('category') || 'world';
+  const feeds = RSS_FEEDS[category] || RSS_FEEDS.world;
+
+  const results = await Promise.all(feeds.map(fetchFeed));
+  const articles = results.flat()
+    .filter((a, i, arr) => arr.findIndex(b => b.title === a.title) === i)
+    .slice(0, 20);
+
+  return new Response(JSON.stringify({ category, articles }), {
+    headers: {
+      ...corsHeaders,
+      'Content-Type': 'application/json',
+      'Cache-Control': 'public, max-age=600',
+    },
   });
 }
 
