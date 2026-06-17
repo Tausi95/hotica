@@ -17,6 +17,7 @@ export default {
       return handleAwProfiles(request, env, corsHeaders);
     }
 
+
     const profileApiMatch = url.pathname.match(/^\/api\/aw-profile\/([^/]+)$/);
     if (request.method === 'GET' && profileApiMatch) {
       return handleAwProfileApi(profileApiMatch[1], env, corsHeaders);
@@ -78,21 +79,23 @@ async function fetchAwProfile(userId, env) {
 }
 
 function normaliseProfile(p, env) {
+  const rawThumb = p.profileThumbnailURL || p.profileImageUrl || p.thumbnailUrl || '';
+  const thumbnail = rawThumb.startsWith('//') ? 'https:' + rawThumb : rawThumb;
+
   const pid = env.ADULTWORK_PID || '';
-  const profileUrl = `https://m.adultwork.com/${p.userId || p.id}`;
-  const referralUrl = pid
-    ? `https://refer.adultwork.com/?PID=${pid}&T=${encodeURIComponent(profileUrl)}`
-    : profileUrl;
+  const fallbackUrl = `https://www.adultwork.com/${p.userID || p.userId || p.id}`;
+  const referralUrl = p.profileURL ||
+    (pid ? `https://refer.adultwork.com/?PID=${pid}&T=${encodeURIComponent(fallbackUrl)}` : fallbackUrl);
 
   return {
-    userId:    String(p.userId || p.id || ''),
-    nickname:  p.nickname || p.username || '',
-    thumbnail: p.profileImageUrl || p.thumbnailUrl || '',
-    isOnline:  p.isLoggedInNow || p.isOnline || false,
-    rating:    p.rating || null,
-    location:  p.location || p.country || '',
-    bio:       p.aboutMe || p.description || '',
-    age:       p.age || null,
+    userId:     String(p.userID || p.userId || p.id || ''),
+    nickname:   p.nickname || p.username || '',
+    thumbnail,
+    isOnline:   p.availableTodayEscort || p.availableNowWebcam || p.isLoggedInNow || false,
+    rating:     p.ratings?.ratings ?? p.ratings?.total ?? p.rating ?? null,
+    location:   p.town || p.region || p.country || p.location || '',
+    bio:        p.summary || p.aboutMe || p.description || '',
+    age:        p.age || null,
     referralUrl,
   };
 }
@@ -111,7 +114,6 @@ async function handleAwProfiles(request, env, corsHeaders) {
     ProfilesPerPage: url.searchParams.get('limit') || '24',
     PageNumber:      url.searchParams.get('page') || '1',
     OrderBy:         url.searchParams.get('orderBy') || 'lastupdated',
-    IsWebcam:        'true',
     GenderIDs:       url.searchParams.get('genderIds') || '1',
   });
 
@@ -134,25 +136,9 @@ async function handleAwProfiles(request, env, corsHeaders) {
   }
 
   const data = await awRes.json();
-  const pid = env.ADULTWORK_PID || '';
-
   const profiles = (data.profiles || data.searchResults || [])
-    .filter(p => p.userId && p.profileImageUrl)
-    .map(p => {
-      const profileUrl = `https://m.adultwork.com/${p.userId}`;
-      const referralUrl = pid
-        ? `https://refer.adultwork.com/?PID=${pid}&T=${encodeURIComponent(profileUrl)}`
-        : profileUrl;
-      return {
-        userId:    p.userId,
-        nickname:  p.nickname || '',
-        thumbnail: p.profileImageUrl,
-        isOnline:  p.isLoggedInNow || false,
-        rating:    p.rating || null,
-        location:  p.location || '',
-        referralUrl,
-      };
-    });
+    .filter(p => (p.userID || p.userId) && (p.profileThumbnailURL || p.profileImageUrl))
+    .map(p => normaliseProfile(p, env));
 
   return new Response(
     JSON.stringify({ profiles, total: data.totalResults || profiles.length }),
