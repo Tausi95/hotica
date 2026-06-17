@@ -257,13 +257,34 @@ const RSS_FEEDS = {
   ],
   sports: [
     'https://feeds.bbci.co.uk/sport/football/rss.xml',
-    'https://www.skysports.com/rss/12040',
+    'https://feeds.bbci.co.uk/sport/rss.xml',
   ],
   world: [
     'https://feeds.bbci.co.uk/news/world/rss.xml',
-    'https://feeds.reuters.com/reuters/worldNews',
+    'https://www.aljazeera.com/xml/rss/all.xml',
   ],
 };
+
+function extractImage(block) {
+  // media:content or media:thumbnail — url attr in any position, single or double quotes
+  let m = /(?:media:content|media:thumbnail)[^>]*\surl=["']([^"']+)["']/i.exec(block);
+  if (m) return m[1];
+
+  // enclosure tag — image type preferred but accept any
+  m = /<enclosure[^>]*\surl=["']([^"']+)["'][^>]*(?:type=["']image[^"']*["'])?/i.exec(block);
+  if (!m) m = /<enclosure[^>]*type=["']image[^"']*["'][^>]*\surl=["']([^"']+)["']/i.exec(block);
+  if (m) return m[1];
+
+  // img tag inside description/content CDATA
+  m = /<img[^>]+src=["']([^"']+)["']/i.exec(block);
+  if (m) return m[1];
+
+  // bare image URL anywhere in block (jpg/jpeg/png/webp)
+  m = /https?:\/\/[^\s"'<>]+\.(?:jpe?g|png|webp)(?:\?[^\s"'<>]*)?/i.exec(block);
+  if (m) return m[0];
+
+  return '';
+}
 
 function parseRss(xml) {
   const items = [];
@@ -276,10 +297,7 @@ function parseRss(xml) {
       const match = r.exec(block);
       return match ? match[1].trim() : '';
     };
-    const imgMatch =
-      /(?:media:content|media:thumbnail)[^>]+url="([^"]+)"/i.exec(block) ||
-      /<enclosure[^>]+url="([^"]+)"/i.exec(block) ||
-      /<img[^>]+src="([^"]+)"/i.exec(block);
+    const image = extractImage(block);
 
     const title = get('title');
     const link  = get('link') || (/<link[^>]*\/?>([^<]+)/i.exec(block) || [])[1] || '';
@@ -288,7 +306,7 @@ function parseRss(xml) {
     items.push({
       title:     title.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#\d+;/g,'').slice(0,120),
       link:      link.trim(),
-      image:     imgMatch ? imgMatch[1] : '',
+      image,
       summary:   get('description').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').slice(0,160),
       published: get('pubDate') || get('dc:date') || '',
       source:    '',
