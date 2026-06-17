@@ -1,21 +1,56 @@
-media/
-social/media/
-social/gifs/
 __pycache__/
 *.pyc
 
-# Landing page — upload artefacts (not needed in repo)
-bridge_landing_pg/hotica-landing-upload/
-bridge_landing_pg/hotica-landing-upload.zip
-
-# Landing page videos — host on Cloudflare R2 instead of git
-# Once R2 URLs are set in index.html, uncomment the line below:
-# bridge_landing_pg/videos/
-
-
-# wrangler files
+# Wrangler / Cloudflare
 .wrangler
 .dev.vars*
 !.dev.vars.example
 .env*
 !.env.example
+
+# ── Landing page ─────────────────────────────────────────────────────────────
+
+# Upload artefacts
+bridge_landing_pg/hotica-landing-upload
+bridge_landing_pg/hotica-landing-upload.zip
+
+# Videos — hosted on Cloudflare R2, not in git
+bridge_landing_pg/videos/
+*.mp4
+
+# External / temp zips
+[EXTERNAL]*
+bridge_landing_pg/*.zip
+
+# Raw source photos inside profile dirs (only index.html belongs in git)
+bridge_landing_pg/profiles/nikkiholland/*.jpg
+bridge_landing_pg/profiles/nikkiholland/*.png
+
+# ── Ad / video production ────────────────────────────────────────────────────
+conversion/Done/
+conversion/fix/
+conversion/*.mp4
+conversion/background*.png
+conversion/eff.png
+
+# ── Social content ────────────────────────────────────────────────────────────
+social/cinematic/
+social/features/
+social/graded/
+social/optimized/
+social/slomode/
+social/media/
+social/gifs/
+social/*.mp4
+social/*.zip
+
+# ── Sensitive / personal documents ───────────────────────────────────────────
+documentation and finance invoices/
+social tradia/
+AdultWork/*.pdf
+AdultWork/*.png
+AdultWork/*.jpg
+
+# Root-level PDFs and screenshots
+*.pdf
+Screenshot*.png

@@ -1,0 +1,18 @@
+name = "hv-api"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+# Set these to your Cloudflare Pages domain (no trailing slash)
+ALLOWED_ORIGIN = "https://hotvibes26.com"
+ORIGIN_URL     = "https://hotvibes26.com"
+
+# AdultWork API base URL (override if the base URL differs from the default)
+ADULTWORK_API_BASE = "https://developers.adultwork.com"
+
+# Secrets — set with wrangler secret put, never hardcode here:
+#   wrangler secret put PARTNER_ID
+#   wrangler secret put PARTNER_KEY
+#   wrangler secret put ADULTWORK_API_KEY   ← X-ApiKey header for SearchProfiles
+#   wrangler secret put ADULTWORK_API_SECRET ← X-ApiSecret (if required by your project tier)
+#   wrangler secret put ADULTWORK_PID       ← your project/affiliate PID for referral URLs

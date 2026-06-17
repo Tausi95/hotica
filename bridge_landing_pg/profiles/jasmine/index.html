@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MissJasmineUK – AdultWork Profile</title>
+
+<meta property="og:title" content="MissJasmineUK is live on AdultWork right now">
+<meta property="og:description" content="GFE • Natural Curves • C2C • Squirter • Kink-Friendly. Your switch. Your girlfriend. Your escape.">
+<meta property="og:image" content="https://hotvibes26.com/images/jasmine1.png">
+<meta property="og:url" content="https://hotvibes26.com/jasmine/">
+<meta property="og:type" content="profile">
+<meta name="twitter:card" content="summary_large_image">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S8NPHZS7LL"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-S8NPHZS7LL');
+</script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','YOUR_PIXEL_ID');
+fbq('track','PageView');
+</script>
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+/* ── AdultWork brand palette applied to dark modern theme ── */
+:root{
+  /* AW Brand extracted from screenshot */
+  --aw1:#3c0064;   /* primary deep violet */
+  --aw2:#7814a0;   /* medium purple */
+  --aw3:#9b2cc7;   /* bright purple (dark bg readable) */
+  --aw4:#b86de0;   /* light purple */
+  --aw5:#f9effb;   /* pale lavender (AW section bg) */
+
+  /* Page */
+  --bg:#09040f;
+  --bg2:#110820;
+  --card:rgba(60,0,100,.22);
+  --card2:rgba(80,10,130,.3);
+  --border:rgba(120,20,160,.25);
+  --border2:rgba(184,109,224,.2);
+
+  /* Text */
+  --text:#f5eeff;
+  --muted:#c9a8e8;
+  --dim:#7c5e96;
+
+  /* Actions */
+  --green:#22c55e;
+  --glow:rgba(120,20,160,.42);
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Segoe UI',Inter,Arial,system-ui,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── subtle ambient ── */
+.ambient{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(180px);opacity:.12;}
+.b1{width:600px;height:600px;background:var(--aw1);top:-180px;left:-120px;}
+.b2{width:450px;height:450px;background:var(--aw2);bottom:-120px;right:-80px;}
+
+/* ── live dot ── */
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 8px var(--green);
+  animation:blink 2s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+/* ═══════════════════════════════════════
+   AGE GATE
+   ═══════════════════════════════════════ */
+#ageGate{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(5,2,10,.97);backdrop-filter:blur(28px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:32px 20px;text-align:center;
+}
+.ag-logo{
+  font-size:1.7rem;font-weight:900;letter-spacing:-1px;margin-bottom:24px;
+  color:var(--text);
+}
+.ag-logo .aw{color:var(--aw4);}
+
+/* Spinning gradient ring avatar */
+.ag-ring-wrap{position:relative;width:108px;height:108px;margin:0 auto 18px;}
+.ag-ring{
+  position:absolute;inset:0;border-radius:50%;padding:3px;
+  background:linear-gradient(135deg,var(--aw1),var(--aw3),var(--aw4));
+  animation:spin 5s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.ag-avatar{
+  position:absolute;inset:3px;border-radius:50%;
+  background-image:url('../images/jasmine1.png');
+  background-size:cover;background-position:center 8%;
+  border:2px solid var(--bg);
+}
+.ag-badge{
+  position:absolute;bottom:3px;right:3px;z-index:2;
+  background:var(--bg);border-radius:50px;padding:2px 8px;
+  font-size:.58rem;font-weight:800;color:var(--green);
+  display:flex;align-items:center;gap:4px;
+  border:1px solid rgba(34,197,94,.4);
+}
+
+.ag-name{font-size:1.55rem;font-weight:900;margin-bottom:4px;}
+.ag-name span{color:var(--aw4);}
+.ag-handle{font-size:.78rem;color:var(--dim);margin-bottom:10px;}
+.ag-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:22px;}
+.ag-tag{
+  font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:20px;
+  background:rgba(120,20,160,.15);border:1px solid rgba(120,20,160,.35);color:var(--aw4);
+}
+.ag-sub{font-size:.82rem;color:var(--muted);line-height:1.65;max-width:290px;margin-bottom:22px;}
+
+.ag-btns{display:flex;flex-direction:column;gap:9px;width:100%;max-width:290px;}
+.btn-enter{
+  border:none;cursor:pointer;font-weight:800;
+  background:linear-gradient(135deg,var(--aw1),var(--aw3));color:#fff;
+  padding:16px;border-radius:50px;font-size:.97rem;
+  box-shadow:0 12px 36px var(--glow);transition:transform .2s,box-shadow .2s;
+}
+.btn-enter:hover{transform:translateY(-2px);box-shadow:0 18px 44px var(--glow);}
+.btn-enter:active{transform:scale(.96);}
+.btn-decline{
+  border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--dim);
+  cursor:pointer;font-weight:600;padding:12px;border-radius:50px;font-size:.86rem;
+}
+.ag-legal{font-size:.61rem;color:var(--dim);max-width:290px;line-height:1.75;margin-top:13px;}
+.ag-legal a{color:var(--muted);cursor:pointer;text-decoration:underline;}
+
+/* ═══════════════════════════════════════
+   TOPBAR
+   ═══════════════════════════════════════ */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;
+  background:rgba(9,4,15,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.tb-logo{font-size:1.35rem;font-weight:900;letter-spacing:-.5px;color:var(--text);}
+.tb-logo .aw{color:var(--aw4);}
+.tb-right{display:flex;align-items:center;gap:8px;}
+.tb-live{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);
+  padding:4px 11px;border-radius:20px;font-size:.68rem;font-weight:700;color:var(--green);
+}
+.tb-count{font-size:.68rem;color:var(--dim);}
+
+/* ═══════════════════════════════════════
+   BANNER + PROFILE HEADER
+   ═══════════════════════════════════════ */
+.profile-wrap{max-width:600px;margin:0 auto;}
+
+/* Banner */
+.banner{
+  width:100%;height:200px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--aw1) 0%,#2a0048 40%,#5c0088 70%,var(--aw2) 100%);
+}
+.banner-img{
+  position:absolute;inset:0;
+  background-image:url('../images/jasmine1.png');
+  background-size:cover;background-position:center 15%;
+  opacity:.35;mix-blend-mode:luminosity;
+}
+.banner-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(9,4,15,0) 0%,
+    rgba(9,4,15,.1) 50%,
+    rgba(9,4,15,.8) 100%
+  );
+}
+/* AW pattern subtle texture */
+.banner-pattern{
+  position:absolute;inset:0;opacity:.06;
+  background-image:repeating-linear-gradient(
+    45deg,
+    var(--aw4) 0,var(--aw4) 1px,
+    transparent 0,transparent 50%
+  );
+  background-size:14px 14px;
+}
+
+/* Avatar row */
+.avatar-row{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 16px;margin-top:-46px;position:relative;z-index:2;
+}
+.avatar-outer{
+  width:92px;height:92px;border-radius:50%;
+  background:linear-gradient(135deg,var(--aw2),var(--aw3),var(--aw4));
+  padding:3px;
+  box-shadow:0 0 0 3px var(--bg),0 8px 28px rgba(0,0,0,.6);
+  flex-shrink:0;position:relative;
+}
+.avatar-img{
+  width:100%;height:100%;border-radius:50%;
+  background-image:url('../images/jasmine1.png');
+  background-size:cover;background-position:center 8%;
+}
+.avatar-live{
+  position:absolute;bottom:4px;right:4px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--green);border:3px solid var(--bg);
+  box-shadow:0 0 8px var(--green);
+}
+.header-actions{
+  display:flex;align-items:center;gap:8px;padding-bottom:6px;
+}
+.btn-view{
+  display:flex;align-items:center;gap:6px;
+  padding:10px 20px;border-radius:50px;border:none;cursor:pointer;text-decoration:none;
+  background:linear-gradient(135deg,var(--aw2),var(--aw3));
+  color:#fff;font-size:.84rem;font-weight:800;
+  box-shadow:0 8px 24px var(--glow);transition:transform .15s,box-shadow .15s;
+}
+.btn-view:hover{transform:translateY(-2px);box-shadow:0 14px 32px var(--glow);}
+.btn-view:active{transform:scale(.96);}
+.btn-msg{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--border2);
+  background:var(--card2);color:var(--muted);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .15s;text-decoration:none;
+}
+.btn-msg:hover{border-color:var(--aw4);color:var(--aw4);}
+
+/* Profile meta */
+.profile-meta{padding:12px 16px 0;}
+.profile-name{
+  font-size:1.4rem;font-weight:900;letter-spacing:-.3px;
+  display:flex;align-items:center;gap:8px;margin-bottom:3px;
+}
+.verified{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;
+  background:linear-gradient(135deg,var(--aw2),var(--aw3));
+  font-size:.58rem;color:#fff;font-weight:900;flex-shrink:0;
+}
+.profile-handle{
+  font-size:.78rem;color:var(--dim);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.online-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.7rem;font-weight:700;color:var(--green);
+}
+
+/* Tags */
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.ptag{
+  font-size:.66rem;font-weight:700;padding:4px 11px;border-radius:20px;
+  background:rgba(120,20,160,.12);border:1px solid rgba(155,44,199,.3);color:var(--aw4);
+  cursor:default;transition:all .15s;
+}
+.ptag:hover{background:rgba(120,20,160,.25);border-color:var(--aw4);}
+
+/* Bio snippet */
+.bio-snippet{
+  font-size:.86rem;color:var(--muted);line-height:1.65;margin-bottom:12px;
+}
+.bio-snippet strong{color:var(--aw4);}
+
+/* Stats strip — OF style */
+.stats-strip{
+  display:flex;gap:0;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  margin:0;
+}
+.sstat{
+  flex:1;text-align:center;padding:12px 6px;
+  border-right:1px solid rgba(255,255,255,.06);
+  cursor:default;transition:background .15s;
+}
+.sstat:last-child{border-right:none;}
+.sstat:hover{background:rgba(120,20,160,.1);}
+.sstat-val{font-size:1rem;font-weight:900;color:var(--text);line-height:1;}
+.sstat-lbl{font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-top:3px;}
+
+/* ═══════════════════════════════════════
+   TAB NAV — like Fansly / OF
+   ═══════════════════════════════════════ */
+.tab-nav{
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  position:sticky;top:45px;z-index:30;
+  background:rgba(9,4,15,.95);backdrop-filter:blur(16px);
+}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{
+  flex-shrink:0;padding:13px 18px;
+  font-size:.78rem;font-weight:700;color:var(--dim);
+  border-bottom:2px solid transparent;cursor:pointer;
+  transition:all .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;
+}
+.tab-btn.active{color:var(--aw4);border-bottom-color:var(--aw4);}
+.tab-btn:hover:not(.active){color:var(--muted);}
+
+/* ═══════════════════════════════════════
+   PAGE BODY
+   ═══════════════════════════════════════ */
+.page{max-width:600px;margin:0 auto;padding-bottom:120px;}
+
+/* Tab panels */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ── POST GRID (OF/Fansly style) ── */
+.post-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  padding:2px;
+}
+.post-card{
+  aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;
+  background:var(--bg2);
+}
+.post-card img{
+  width:100%;height:100%;object-fit:cover;object-position:center 20%;
+  display:block;transition:transform .3s;
+}
+.post-card:hover img{transform:scale(1.07);}
+
+/* locked overlay */
+.post-lock{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(9,4,15,.9) 0%,rgba(9,4,15,.4) 60%,transparent 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:8px;
+}
+.post-lock-icon{font-size:1.1rem;margin-bottom:2px;}
+.post-lock-price{
+  font-size:.6rem;font-weight:800;color:#fff;
+  background:rgba(0,0,0,.6);padding:2px 7px;border-radius:8px;
+}
+
+/* teaser card (slightly visible) */
+.post-card.teaser img{filter:blur(3px) brightness(.7);}
+.post-card:not(.teaser) img{filter:blur(12px) brightness(.45);}
+
+/* post type badge */
+.post-type{
+  position:absolute;top:6px;right:6px;
+  font-size:.6rem;font-weight:800;padding:2px 6px;border-radius:6px;
+  background:rgba(0,0,0,.65);color:#fff;backdrop-filter:blur(4px);
+}
+
+/* post stats */
+.post-stats{
+  position:absolute;bottom:6px;left:6px;
+  display:flex;align-items:center;gap:5px;
+}
+.post-stat{font-size:.6rem;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:2px;}
+
+/* unlock CTA bar */
+.unlock-bar{
+  margin:2px 16px 16px;padding:14px 16px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(60,0,100,.4),rgba(120,20,160,.3));
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:all .2s;
+}
+.unlock-bar:hover{border-color:var(--aw4);background:rgba(120,20,160,.35);}
+.unlock-info{}
+.unlock-count{font-size:.95rem;font-weight:900;color:var(--text);}
+.unlock-sub{font-size:.7rem;color:var(--muted);margin-top:2px;}
+.unlock-btn{
+  background:linear-gradient(135deg,var(--aw2),var(--aw3));
+  color:#fff;font-size:.76rem;font-weight:800;
+  padding:9px 16px;border-radius:50px;white-space:nowrap;
+  box-shadow:0 6px 18px var(--glow);
+}
+
+/* ── ABOUT PANEL ── */
+.about-panel{padding:20px 16px;}
+
+.about-card{
+  background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--border);border-radius:18px;
+  padding:20px;margin-bottom:14px;
+}
+.about-card-title{
+  font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--aw4);margin-bottom:14px;
+  display:flex;align-items:center;gap:7px;
+}
+.about-card-title::before{
+  content:'';width:12px;height:2px;
+  background:linear-gradient(90deg,var(--aw2),var(--aw4));border-radius:2px;
+}
+.about-bio{font-size:.88rem;color:var(--muted);line-height:1.75;}
+.about-bio strong{color:var(--aw4);}
+.about-bio em{color:var(--text);font-style:normal;}
+.bio-quote{
+  margin-top:14px;padding:13px 15px;border-radius:12px;
+  background:rgba(120,20,160,.1);border-left:3px solid var(--aw3);
+  font-size:.85rem;color:var(--muted);line-height:1.7;font-style:italic;
+}
+
+/* Switch cards */
+.switch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.switch-card{border-radius:16px;padding:16px 14px;text-align:center;border:1px solid;}
+.switch-card.soft{background:rgba(120,20,160,.1);border-color:rgba(184,109,224,.3);}
+.switch-card.bold{background:rgba(60,0,100,.2);border-color:rgba(155,44,199,.35);}
+.sc-icon{font-size:1.8rem;margin-bottom:8px;}
+.sc-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:5px;color:var(--aw4);}
+.sc-desc{font-size:.74rem;color:var(--muted);line-height:1.5;}
+
+/* Lovense card */
+.lovense-card{
+  background:linear-gradient(135deg,rgba(120,20,160,.18),rgba(60,0,100,.25));
+  border:1px solid rgba(184,109,224,.35);border-radius:18px;
+  padding:18px;display:flex;align-items:center;gap:14px;margin-bottom:14px;
+}
+.lv-icon{font-size:2.2rem;animation:pulse-lv 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse-lv{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+.lv-title{font-size:.92rem;font-weight:800;color:var(--aw4);margin-bottom:4px;}
+.lv-desc{font-size:.8rem;color:var(--muted);line-height:1.55;}
+
+/* Show lists */
+.show-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.show-col{
+  background:var(--card);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:16px;padding:16px;
+}
+.show-col-title{font-size:.65rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--aw4);margin-bottom:11px;
+  display:flex;align-items:center;gap:6px;}
+.show-list{display:flex;flex-direction:column;gap:8px;}
+.show-item{
+  display:flex;align-items:center;gap:7px;
+  font-size:.79rem;color:var(--muted);
+}
+.show-item::before{
+  content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--aw3),var(--aw4));
+}
+
+/* ── REVIEWS PANEL ── */
+.reviews-panel{padding:16px;}
+.reviews{display:flex;flex-direction:column;gap:10px;}
+.review-card{
+  background:var(--card);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:16px;padding:16px 18px;
+}
+.review-stars{color:#f59e0b;font-size:.9rem;letter-spacing:2px;margin-bottom:8px;}
+.review-text{font-size:.85rem;color:var(--muted);line-height:1.7;font-style:italic;margin-bottom:10px;}
+.review-author{display:flex;align-items:center;gap:8px;}
+.review-ava{
+  width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--aw2),var(--aw3));
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;
+}
+.review-name{font-size:.72rem;font-weight:700;color:var(--aw4);}
+.review-date{font-size:.62rem;color:var(--dim);margin-top:1px;}
+
+/* ── MESSAGE PREVIEW ── */
+.msg-section{padding:16px;}
+.msg-card{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(120,20,160,.1);border:1px solid var(--border);
+  border-radius:16px;padding:13px 15px;cursor:pointer;transition:all .2s;
+}
+.msg-card:hover{background:rgba(120,20,160,.2);border-color:var(--aw4);}
+.msg-ava{
+  width:48px;height:48px;border-radius:50%;flex-shrink:0;
+  background-image:url('../images/jasmine1.png');
+  background-size:cover;background-position:center 8%;
+  border:2px solid var(--aw3);
+}
+.msg-body{flex:1;min-width:0;}
+.msg-name{font-size:.76rem;font-weight:800;color:var(--aw4);margin-bottom:3px;}
+.msg-text{font-size:.81rem;color:var(--muted);filter:blur(5px);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  user-select:none;pointer-events:none;}
+.msg-unlock{font-size:.66rem;color:var(--aw4);font-weight:700;margin-top:4px;display:block;}
+.msg-badge{
+  width:21px;height:21px;background:var(--aw3);border-radius:50%;
+  font-size:.58rem;font-weight:900;color:#fff;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* ═══════════════════════════════════════
+   STICKY CTA
+   ═══════════════════════════════════════ */
+.cta-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:40;
+  padding:10px 16px 22px;
+  background:linear-gradient(to top,rgba(9,4,15,1) 60%,rgba(9,4,15,0));
+  pointer-events:none;
+}
+.cta-inner{pointer-events:all;max-width:600px;margin:0 auto;}
+.cta-main{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:17px;border-radius:50px;border:none;
+  cursor:pointer;text-decoration:none;
+  background:linear-gradient(135deg,var(--aw1) 0%,var(--aw2) 50%,var(--aw3) 100%);
+  color:#fff;font-size:1rem;font-weight:800;
+  box-shadow:0 12px 40px var(--glow);transition:transform .2s,box-shadow .2s;
+}
+.cta-main:hover{transform:translateY(-2px);box-shadow:0 18px 48px var(--glow);}
+.cta-main:active{transform:scale(.97);}
+.cta-sub{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:6px;font-size:.68rem;color:var(--dim);
+}
+.cta-sdot{width:5px;height:5px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 4px var(--green);animation:blink 1.8s infinite;}
+
+/* ═══════════════════════════════════════
+   LEGAL
+   ═══════════════════════════════════════ */
+.modal{
+  position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);
+  display:flex;align-items:flex-end;transition:opacity .3s;
+}
+.modal.off{opacity:0;pointer-events:none;}
+.modal-sheet{
+  background:#100720;border-radius:22px 22px 0 0;
+  padding:22px 18px 44px;max-height:70vh;overflow-y:auto;width:100%;
+  border-top:1px solid var(--border);
+}
+.modal-sheet h3{font-size:.95rem;font-weight:800;margin-bottom:13px;
+  display:flex;justify-content:space-between;align-items:center;}
+.modal-close{
+  background:#1e0a38;border:1px solid var(--border);border-radius:50px;
+  padding:4px 13px;color:var(--muted);cursor:pointer;font-size:.76rem;font-weight:600;
+}
+.modal-sheet p{font-size:.76rem;color:var(--muted);line-height:1.8;margin-bottom:7px;}
+.modal-sheet h4{font-size:.8rem;font-weight:700;margin:13px 0 5px;color:var(--text);}
+
+@media(min-width:580px){
+  .banner{height:260px;}
+  .post-grid{grid-template-columns:repeat(3,1fr);}
+  .switch-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+</div>
+
+<!-- ═══ AGE GATE ═══ -->
+<div id="ageGate">
+  <div class="ag-logo">Adult<span class="aw">Work</span></div>
+  <div class="ag-ring-wrap">
+    <div class="ag-ring"></div>
+    <div class="ag-avatar"></div>
+    <div class="ag-badge"><div class="live-dot"></div>LIVE</div>
+  </div>
+  <div class="ag-name"><span>MissJasmineUK</span></div>
+  <div class="ag-handle">@MissJasmineUK · Age Verified ✓</div>
+  <div class="ag-tags">
+    <span class="ag-tag">GFE</span>
+    <span class="ag-tag">Natural Curves</span>
+    <span class="ag-tag">C2C</span>
+    <span class="ag-tag">Squirter</span>
+    <span class="ag-tag">Kink-Friendly</span>
+  </div>
+  <p class="ag-sub">This profile contains adult content. You must be 18 or older to continue.</p>
+  <div class="ag-btns">
+    <button class="btn-enter" onclick="enterProfile()">I'm 18+ — View Profile 🔒</button>
+    <button class="btn-decline" onclick="window.location.href='about:blank'">No, I'm under 18</button>
+  </div>
+  <p class="ag-legal">By entering you confirm you are 18+ and agree to our
+    <a onclick="openLegal('terms')">Terms</a> &amp; <a onclick="openLegal('privacy')">Privacy Policy</a>.</p>
+</div>
+
+<!-- ═══ TOPBAR ═══ -->
+<div class="topbar">
+  <div class="tb-logo">Adult<span class="aw">Work</span></div>
+  <div class="tb-right">
+    <div class="tb-live"><div class="live-dot"></div>Live Now</div>
+    <div class="tb-count" id="onlineCount">3,204 online</div>
+  </div>
+</div>
+
+<!-- ═══ PROFILE HEADER ═══ -->
+<div class="profile-wrap">
+  <div class="banner">
+    <div class="banner-img"></div>
+    <div class="banner-pattern"></div>
+    <div class="banner-overlay"></div>
+  </div>
+
+  <div class="avatar-row">
+    <div style="position:relative;">
+      <div class="avatar-outer"><div class="avatar-img"></div></div>
+      <div class="avatar-live"></div>
+    </div>
+    <div class="header-actions">
+      <a class="btn-msg" href="https://www.adultwork.com/ViewProfile.asp?UserID=7083955" target="_blank" rel="noopener" onclick="goProfile('msg_icon')" title="Message">💬</a>
+      <a class="btn-view" href="https://www.adultwork.com/ViewProfile.asp?UserID=7083955" target="_blank" rel="noopener" onclick="goProfile('view_profile')">
+        View Profile →
+      </a>
+    </div>
+  </div>
+
+  <div class="profile-meta">
+    <div class="profile-name">
+      MissJasmineUK
+      <span class="verified" title="Age Verified">✓</span>
+    </div>
+    <div class="profile-handle">
+      <span>@MissJasmineUK</span>
+      <span class="online-badge"><div class="live-dot"></div>Online Now</span>
+    </div>
+    <div class="profile-tags">
+      <span class="ptag">⭐ GFE</span>
+      <span class="ptag">Natural Curves</span>
+      <span class="ptag">C2C</span>
+      <span class="ptag">Squirter</span>
+      <span class="ptag">Switch</span>
+      <span class="ptag">Kink-Friendly</span>
+    </div>
+    <p class="bio-snippet">
+      <strong>Your playful, sensual escape</strong> — GFE or the perfect switch dynamic you crave. Natural curves · Lovense always on 🌶️
+    </p>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="stats-strip">
+    <div class="sstat">
+      <div class="sstat-val">⭐ 4.9</div>
+      <div class="sstat-lbl">Rating</div>
+    </div>
+    <div class="sstat">
+      <div class="sstat-val">12.4K</div>
+      <div class="sstat-lbl">Followers</div>
+    </div>
+    <div class="sstat">
+      <div class="sstat-val">2.1K</div>
+      <div class="sstat-lbl">Shows</div>
+    </div>
+    <div class="sstat">
+      <div class="sstat-val">78%</div>
+      <div class="sstat-lbl">Return</div>
+    </div>
+    <div class="sstat">
+      <div class="sstat-val">86+</div>
+      <div class="sstat-lbl">Media</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB NAV ═══ -->
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="switchTab('photos',this)">📷 Photos</button>
+  <button class="tab-btn" onclick="switchTab('videos',this)">🎥 Videos</button>
+  <button class="tab-btn" onclick="switchTab('about',this)">👤 About</button>
+  <button class="tab-btn" onclick="switchTab('reviews',this)">⭐ Reviews</button>
+</div>
+
+<!-- ═══ PAGE ═══ -->
+<div class="page">
+
+  <!-- PHOTOS TAB -->
+  <div class="tab-panel active" id="tab-photos">
+    <div class="post-grid">
+      <!-- teaser (slightly visible) -->
+      <div class="post-card teaser" onclick="goProfile('photo_1')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy">
+        <div class="post-lock">
+          <div class="post-lock-icon">🔒</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">📷</div>
+        <div class="post-stats">
+          <span class="post-stat">🤍 2.1K</span>
+        </div>
+      </div>
+      <div class="post-card" onclick="goProfile('photo_2')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:center 30%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">🔒</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">📷</div>
+        <div class="post-stats"><span class="post-stat">🤍 1.8K</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('photo_3')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:center 55%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">🔒</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">📷</div>
+        <div class="post-stats"><span class="post-stat">🤍 1.4K</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('photo_4')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:right 20%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">🔒</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">📷</div>
+        <div class="post-stats"><span class="post-stat">🤍 987</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('photo_5')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:left 40%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">🔒</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">📷</div>
+        <div class="post-stats"><span class="post-stat">🤍 756</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('photo_6')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:center 70%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">🔒</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">📷</div>
+        <div class="post-stats"><span class="post-stat">🤍 623</span></div>
+      </div>
+    </div>
+    <div class="unlock-bar" onclick="goProfile('unlock_photos')">
+      <div class="unlock-info">
+        <div class="unlock-count">64 Private Photos</div>
+        <div class="unlock-sub">Full sets · Natural & uncensored</div>
+      </div>
+      <div class="unlock-btn">Unlock All →</div>
+    </div>
+    <div class="msg-section">
+      <div class="msg-card" onclick="goProfile('message_preview')">
+        <div class="msg-ava"></div>
+        <div class="msg-body">
+          <div class="msg-name">MissJasmineUK</div>
+          <div class="msg-text">Hey handsome… I've been thinking about you since you visited my page. I can't wait to play with you. 🌶️</div>
+          <span class="msg-unlock">🔒 Tap to read &amp; reply</span>
+        </div>
+        <div class="msg-badge">1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEOS TAB -->
+  <div class="tab-panel" id="tab-videos">
+    <div class="post-grid">
+      <div class="post-card teaser" onclick="goProfile('video_1')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy">
+        <div class="post-lock">
+          <div class="post-lock-icon">▶️</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">🎥</div>
+        <div class="post-stats"><span class="post-stat">🤍 3.2K</span><span class="post-stat">⏱ 8:42</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('video_2')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:center 40%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">▶️</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">🎥</div>
+        <div class="post-stats"><span class="post-stat">🤍 2.7K</span><span class="post-stat">⏱ 12:15</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('video_3')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:center 60%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">▶️</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">🎥 LIVE</div>
+        <div class="post-stats"><span class="post-stat">🤍 1.9K</span><span class="post-stat">⏱ 22:07</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('video_4')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:right 30%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">▶️</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">🎥</div>
+        <div class="post-stats"><span class="post-stat">🤍 1.2K</span><span class="post-stat">⏱ 6:50</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('video_5')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:center 50%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">▶️</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">🎥</div>
+        <div class="post-stats"><span class="post-stat">🤍 890</span><span class="post-stat">⏱ 15:30</span></div>
+      </div>
+      <div class="post-card" onclick="goProfile('video_6')">
+        <img src="/images/jasmine1.png" alt="Jasmine" loading="lazy" style="object-position:left 60%;">
+        <div class="post-lock">
+          <div class="post-lock-icon">▶️</div>
+          <div class="post-lock-price">Members only</div>
+        </div>
+        <div class="post-type">🔴 Lovense</div>
+        <div class="post-stats"><span class="post-stat">🤍 762</span><span class="post-stat">⏱ 44:20</span></div>
+      </div>
+    </div>
+    <div class="unlock-bar" onclick="goProfile('unlock_videos')">
+      <div class="unlock-info">
+        <div class="unlock-count">22 Private Videos</div>
+        <div class="unlock-sub">Shows · C2C sessions · Lovense recordings</div>
+      </div>
+      <div class="unlock-btn">Unlock All →</div>
+    </div>
+  </div>
+
+  <!-- ABOUT TAB -->
+  <div class="tab-panel" id="tab-about">
+    <div class="about-panel">
+
+      <div class="about-card">
+        <div class="about-card-title">A Little About Me</div>
+        <div class="about-bio">
+          <p>Hey handsome… I'm Jasmine — <strong>your playful, sensual escape</strong> who can give you the full Girlfriend Experience… or the perfect switch dynamic you crave.</p>
+          <br>
+          <p>I'm a natural switch, which means I can be the <em>soft, nurturing, affectionate good girl</em> you take charge of — or the <em>confident woman who teases, controls, and takes full command</em> of your pleasure whenever you want it. <strong>Tell me your vibe… and I'll match your energy seamlessly.</strong></p>
+          <br>
+          <p>I'm all natural with soft curves, a peachy ass, smooth skin and a warm, irresistible presence. I'm affectionate, flirty, and love building genuine chemistry and connection.</p>
+          <div class="bio-quote">"Come get to know me in group or private if you want something more personal. I love spending time with men who appreciate a woman who can be both your sweet girlfriend… and your naughty switch."</div>
+        </div>
+      </div>
+
+      <div class="switch-grid">
+        <div class="switch-card soft">
+          <div class="sc-icon">🌸</div>
+          <div class="sc-label">Soft Side</div>
+          <div class="sc-desc">Nurturing, affectionate, warm GFE. The good girl you take charge of.</div>
+        </div>
+        <div class="switch-card bold">
+          <div class="sc-icon">👑</div>
+          <div class="sc-label">Bold Side</div>
+          <div class="sc-desc">Teases, controls, takes full command. Your pleasure on her terms.</div>
+        </div>
+      </div>
+
+      <div class="lovense-card">
+        <div class="lv-icon">💗</div>
+        <div>
+          <div class="lv-title">Lovense Always On</div>
+          <div class="lv-desc">Every tip buzzes her toy instantly. The more you tease her… the more she responds. 🌶️</div>
+        </div>
+      </div>
+
+      <div class="show-grid">
+        <div class="show-col">
+          <div class="show-col-title">💜 Group Shows</div>
+          <div class="show-list">
+            <div class="show-item">Chatting &amp; Flirting</div>
+            <div class="show-item">Teasing</div>
+            <div class="show-item">Boob Play</div>
+            <div class="show-item">Ass Worship</div>
+            <div class="show-item">JOI</div>
+            <div class="show-item">Orgasms w/ Lovense</div>
+          </div>
+        </div>
+        <div class="show-col">
+          <div class="show-col-title">🔒 Private Shows</div>
+          <div class="show-list">
+            <div class="show-item">Cam-to-Cam (C2C)</div>
+            <div class="show-item">Dirty Talk</div>
+            <div class="show-item">Full Nudity</div>
+            <div class="show-item">Sloppy BJ</div>
+            <div class="show-item">Dildo Play</div>
+            <div class="show-item">Orgasms w/ vibrator</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REVIEWS TAB -->
+  <div class="tab-panel" id="tab-reviews">
+    <div class="reviews-panel">
+      <div class="reviews">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"Best chemistry I've ever had online. Jasmine makes you feel like you're the only person in the world. I come back every week without fail."</div>
+          <div class="review-author">
+            <div class="review-ava">J</div>
+            <div><div class="review-name">Jake_M</div><div class="review-date">Verified · 3 days ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"She always remembers me — my name, what we talked about, everything. The personal touch is rare and that's why I keep coming back."</div>
+          <div class="review-author">
+            <div class="review-ava">T</div>
+            <div><div class="review-name">Thomas_R</div><div class="review-date">Verified · 1 week ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"The switch dynamic is real — one minute sweet and cuddly, the next completely in control. Genuinely never know what you'll get. Addictive."</div>
+          <div class="review-author">
+            <div class="review-ava">M</div>
+            <div><div class="review-name">Marcus_L</div><div class="review-date">Verified · 2 weeks ago</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"The Lovense interaction is incredible. She reacts in real time and makes it feel completely immersive. Worth every penny."</div>
+          <div class="review-author">
+            <div class="review-ava">D</div>
+            <div><div class="review-name">Dave_UK</div><div class="review-date">Verified · 3 weeks ago</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ STICKY CTA ═══ -->
+<div class="cta-bar">
+  <div class="cta-inner">
+    <a class="cta-main" href="https://www.adultwork.com/ViewProfile.asp?UserID=7083955" target="_blank" rel="noopener" onclick="goProfile('cta_sticky')">
+      Start a Private Show with Jasmine →
+    </a>
+    <div class="cta-sub">
+      <div class="cta-sdot"></div>
+      She's online right now · Lovense is on
+    </div>
+  </div>
+</div>
+
+<!-- TERMS -->
+<div class="modal off" id="termsModal">
+  <div class="modal-sheet">
+    <h3>Terms of Use <button class="modal-close" onclick="closeLegal('terms')">Close</button></h3>
+    <p>By accessing this page you confirm you are at least 18 years of age and legally permitted to view adult content in your jurisdiction.</p>
+    <h4>Use of Service</h4>
+    <p>All profiles and content are created by independent creators on AdultWork. You agree not to reproduce or distribute any content without written permission.</p>
+    <p style="margin-top:14px">Last updated: May 2026</p>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="modal off" id="privacyModal">
+  <div class="modal-sheet">
+    <h3>Privacy Policy <button class="modal-close" onclick="closeLegal('privacy')">Close</button></h3>
+    <p>We collect standard analytics data via Google Analytics. We do not collect personal data on this page.</p>
+    <h4>Your Rights</h4>
+    <p>You may request deletion of your data at any time by contacting us.</p>
+    <p style="margin-top:14px">Last updated: May 2026</p>
+  </div>
+</div>
+
+<script>
+const PROFILE_URL = 'https://www.adultwork.com/ViewProfile.asp?UserID=7083955';
+
+function getUTM(){
+  const p = new URLSearchParams(window.location.search);
+  const out = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content','sub1','sub2'].forEach(k=>{
+    if(p.get(k)) out[k] = p.get(k);
+  });
+  return out;
+}
+function buildProfileLink(label){
+  const utm = getUTM();
+  const params = new URLSearchParams({...utm, ref: label}).toString();
+  return PROFILE_URL + (PROFILE_URL.includes('?') ? '&' : '?') + params;
+}
+function track(n, p){
+  if(typeof gtag!=='undefined') gtag('event', n, p||{});
+  if(typeof fbq!=='undefined') fbq('trackCustom', n, p||{});
+}
+function goProfile(label){
+  track('profile_click', {label, source: getUTM().utm_source||'direct'});
+  window.open(buildProfileLink(label), '_blank', 'noopener');
+}
+function enterProfile(){
+  track('age_confirmed');
+  document.getElementById('ageGate').style.display='none';
+}
+
+/* Tab switching */
+function switchTab(name, btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+/* Online count fluctuation */
+let onlineBase = 3204;
+setInterval(()=>{
+  onlineBase += Math.floor(Math.random()*38)-17;
+  onlineBase = Math.max(2900,Math.min(3600,onlineBase));
+  const el = document.getElementById('onlineCount');
+  if(el) el.textContent = onlineBase.toLocaleString()+' online';
+}, 42000);
+
+function openLegal(t){ document.getElementById(t==='terms'?'termsModal':'privacyModal').classList.remove('off'); }
+function closeLegal(t){ document.getElementById(t==='terms'?'termsModal':'privacyModal').classList.add('off'); }
+</script>
+</body>
+</html>

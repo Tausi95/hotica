@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Profiles – HOTICA</title>
+
+<meta property="og:title" content="Browse Live Profiles – HOTICA">
+<meta property="og:description" content="Find your match. Hundreds of live profiles online right now.">
+<meta property="og:image" content="https://hotvibes26.com/images/og-preview.jpg">
+<meta property="og:url" content="https://hotvibes26.com/browse/">
+<meta property="og:type" content="website">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S8NPHZS7LL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-S8NPHZS7LL');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(ellipse at 15% 30%,rgba(160,40,255,.1) 0%,transparent 55%),
+    radial-gradient(ellipse at 88% 70%,rgba(255,40,90,.08) 0%,transparent 55%),
+    #0a0812;
+  color:#fff;
+  font-family:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Topbar ── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,8,18,.85);
+  backdrop-filter:blur(12px);
+}
+.logo{font-size:22px;font-weight:900;letter-spacing:-.5px;}
+.logo .o{font-style:normal;}
+.pill{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:#22c55e;
+  box-shadow:0 0 8px #22c55e;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+/* ── Filters ── */
+.filters{
+  display:flex;gap:10px;flex-wrap:wrap;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.filter-btn{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:99px;
+  color:#fff;font-size:13px;font-weight:600;
+  padding:7px 16px;cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.filter-btn:hover,.filter-btn.active{
+  background:rgba(160,40,255,.25);
+  border-color:rgba(160,40,255,.6);
+}
+
+/* ── Grid ── */
+.container{max-width:1200px;margin:0 auto;padding:20px;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:14px;
+}
+@media(min-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}
+
+/* ── Card ── */
+.card{
+  position:relative;border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  transition:transform .2s,border-color .2s;
+  cursor:pointer;
+}
+.card:hover{transform:translateY(-3px);border-color:rgba(160,40,255,.4);}
+.card a{display:block;text-decoration:none;color:inherit;}
+
+.card-img{
+  position:relative;width:100%;padding-top:130%;overflow:hidden;
+}
+.card-img img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .3s;
+}
+.card:hover .card-img img{transform:scale(1.04);}
+.card-img-placeholder{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(160,40,255,.15),rgba(255,40,90,.1));
+  display:flex;align-items:center;justify-content:center;font-size:40px;
+}
+
+.online-badge{
+  position:absolute;top:8px;left:8px;
+  display:flex;align-items:center;gap:4px;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(6px);
+  border-radius:99px;padding:3px 8px;font-size:11px;font-weight:700;
+}
+.online-badge .dot{width:6px;height:6px;}
+
+.card-body{padding:10px 12px 12px;}
+.card-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.card-meta{font-size:12px;color:rgba(255,255,255,.5);margin-top:3px;}
+.card-rating{font-size:12px;color:#fbbf24;margin-top:4px;}
+
+/* ── States ── */
+.state-msg{
+  text-align:center;padding:60px 20px;color:rgba(255,255,255,.4);
+  font-size:15px;
+}
+.spinner{
+  width:32px;height:32px;border:3px solid rgba(255,255,255,.1);
+  border-top-color:#a028ff;border-radius:50%;
+  animation:spin .7s linear infinite;margin:0 auto 12px;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── Load more ── */
+.load-more-wrap{text-align:center;padding:32px 0;}
+.btn-load{
+  background:linear-gradient(135deg,#a028ff,#ff285a);
+  border:none;border-radius:99px;color:#fff;
+  font-family:inherit;font-size:15px;font-weight:700;
+  padding:14px 40px;cursor:pointer;
+  transition:opacity .2s,transform .2s;
+}
+.btn-load:hover{opacity:.9;transform:scale(1.02);}
+.btn-load:disabled{opacity:.4;cursor:default;transform:none;}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:24px;font-size:12px;color:rgba(255,255,255,.2);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">H<span class="o">🔥</span>tica</div>
+  <div class="pill"><div class="dot"></div><span id="online-count">Loading…</span></div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-order="lastupdated">Recently Active</button>
+  <button class="filter-btn" data-order="views">Most Viewed</button>
+  <button class="filter-btn" data-order="rating">Highest Rated</button>
+</div>
+
+<div class="container">
+  <div id="grid" class="grid"></div>
+  <div id="state" class="state-msg">
+    <div class="spinner"></div>Loading profiles…
+  </div>
+  <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+    <button class="btn-load" id="btn-load-more">Load More</button>
+  </div>
+</div>
+
+<div class="footer">18+ Adults Only &nbsp;·&nbsp; All models are verified adults</div>
+
+<script>
+const API_BASE = '/api/aw-profiles';
+
+let currentPage = 1;
+let currentOrder = 'lastupdated';
+let isLoading = false;
+let hasMore = true;
+
+const grid = document.getElementById('grid');
+const state = document.getElementById('state');
+const loadMoreWrap = document.getElementById('load-more-wrap');
+const btnLoadMore = document.getElementById('btn-load-more');
+const onlineCount = document.getElementById('online-count');
+
+function buildCard(p) {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const imgHtml = p.thumbnail
+    ? `<img src="${escHtml(p.thumbnail)}" alt="${escHtml(p.nickname)}" loading="lazy">`
+    : `<div class="card-img-placeholder">💋</div>`;
+
+  const onlineBadge = p.isOnline
+    ? `<div class="online-badge"><div class="dot" style="background:#22c55e;box-shadow:0 0 6px #22c55e;border-radius:50%;"></div>Live</div>`
+    : '';
+
+  const ratingHtml = p.rating
+    ? `<div class="card-rating">★ ${Number(p.rating).toFixed(1)}</div>`
+    : '';
+
+  const locationHtml = p.location
+    ? `<div class="card-meta">${escHtml(p.location)}</div>`
+    : '';
+
+  card.innerHTML = `
+    <a href="${escHtml(p.referralUrl)}" target="_blank" rel="noopener noreferrer" data-user="${escHtml(p.userId)}">
+      <div class="card-img">
+        ${imgHtml}
+        ${onlineBadge}
+      </div>
+      <div class="card-body">
+        <div class="card-name">${escHtml(p.nickname || 'Profile')}</div>
+        ${locationHtml}
+        ${ratingHtml}
+      </div>
+    </a>`;
+
+  card.querySelector('a').addEventListener('click', () => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'aw_profile_click', { user_id: p.userId, nickname: p.nickname });
+    }
+  });
+
+  return card;
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+async function loadProfiles(reset) {
+  if (isLoading) return;
+  isLoading = true;
+  btnLoadMore.disabled = true;
+
+  if (reset) {
+    currentPage = 1;
+    grid.innerHTML = '';
+    loadMoreWrap.style.display = 'none';
+    state.style.display = 'block';
+    state.innerHTML = '<div class="spinner"></div>Loading profiles…';
+  }
+
+  try {
+    const url = `${API_BASE}?page=${currentPage}&orderBy=${currentOrder}&limit=24`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    state.style.display = 'none';
+
+    if (!data.profiles || data.profiles.length === 0) {
+      if (currentPage === 1) {
+        state.textContent = 'No profiles found. Try again shortly.';
+        state.style.display = 'block';
+      }
+      hasMore = false;
+      loadMoreWrap.style.display = 'none';
+      return;
+    }
+
+    data.profiles.forEach(p => grid.appendChild(buildCard(p)));
+
+    const loaded = currentPage * 24;
+    hasMore = loaded < (data.total || 0);
+    loadMoreWrap.style.display = hasMore ? 'block' : 'none';
+
+    onlineCount.textContent = (data.total || data.profiles.length) + ' online now';
+    currentPage++;
+  } catch (err) {
+    state.innerHTML = 'Could not load profiles. Please refresh.';
+    state.style.display = 'block';
+  } finally {
+    isLoading = false;
+    btnLoadMore.disabled = false;
+  }
+}
+
+// Filter buttons
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentOrder = btn.dataset.order;
+  loadProfiles(true);
+});
+
+btnLoadMore.addEventListener('click', () => loadProfiles(false));
+
+loadProfiles(true);
+</script>
+</body>
+</html>
