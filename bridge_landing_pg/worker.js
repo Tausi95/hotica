@@ -83,8 +83,11 @@ async function fetchAwProfile(userId, env) {
 }
 
 function normaliseProfile(p, env) {
-  const rawThumb = p.profileThumbnailURL || p.profileImageUrl || p.thumbnailUrl || '';
-  const thumbnail = rawThumb.startsWith('//') ? 'https:' + rawThumb : rawThumb;
+  // Prefer full-size image: strip /t/ thumbnail subfolder, fall back to thumbnail
+  const rawThumb  = p.profileThumbnailURL || p.profileImageUrl || p.thumbnailUrl || '';
+  const fullSize  = rawThumb.replace('/images/t/', '/images/');
+  const thumbnail = (fullSize.startsWith('//') ? 'https:' + fullSize : fullSize) ||
+                    (rawThumb.startsWith('//') ? 'https:' + rawThumb : rawThumb);
 
   const pid = env.ADULTWORK_PID || '';
   const fallbackUrl = `https://www.adultwork.com/${p.userID || p.userId || p.id}`;

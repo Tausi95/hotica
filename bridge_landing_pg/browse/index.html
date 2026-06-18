@@ -25,7 +25,6 @@
 }
 </script>
 
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8NPHZS7LL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -55,14 +54,14 @@ body{
 /* ── Topbar ── */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;
+  padding:14px 20px;
   border-bottom:1px solid rgba(255,255,255,.06);
-  position:sticky;top:0;z-index:100;
-  background:rgba(10,8,18,.85);
-  backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:200;
+  background:rgba(10,8,18,.9);
+  backdrop-filter:blur(14px);
 }
-.logo{font-size:22px;font-weight:900;letter-spacing:-.5px;}
-.logo .o{font-style:normal;}
+.logo{font-size:22px;font-weight:900;letter-spacing:-.5px;text-decoration:none;color:#fff;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
 .pill{
   display:flex;align-items:center;gap:6px;
   background:rgba(255,255,255,.06);
@@ -70,15 +69,56 @@ body{
   border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;
 }
 .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;
-  box-shadow:0 0 8px #22c55e;animation:pulse 2s infinite;}
+  box-shadow:0 0 8px #22c55e;animation:pulse 2s infinite;flex-shrink:0;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 
-/* ── Filters ── */
-.filters{
-  display:flex;gap:10px;flex-wrap:wrap;
-  padding:16px 20px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+/* ── News ticker ── */
+.ticker-bar{
+  background:rgba(255,255,255,.03);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  overflow:hidden;height:36px;display:flex;align-items:center;
+  position:sticky;top:53px;z-index:190;
+  backdrop-filter:blur(12px);
 }
+.ticker-label{
+  flex-shrink:0;padding:0 14px;font-size:11px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(160,40,255,.9);
+  border-right:1px solid rgba(255,255,255,.07);height:100%;
+  display:flex;align-items:center;
+  background:rgba(10,8,18,.6);
+}
+.ticker-track{
+  display:flex;gap:0;flex:1;overflow:hidden;position:relative;
+}
+.ticker-inner{
+  display:flex;align-items:center;gap:0;
+  animation:ticker-scroll 60s linear infinite;
+  white-space:nowrap;
+}
+.ticker-inner:hover{animation-play-state:paused;}
+@keyframes ticker-scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:0 24px;font-size:12px;font-weight:600;
+  color:rgba(255,255,255,.65);cursor:pointer;
+  border-right:1px solid rgba(255,255,255,.06);
+  height:36px;flex-shrink:0;
+  transition:color .2s;
+  text-decoration:none;
+}
+.ticker-item:hover{color:#fff;}
+.ticker-dot{width:5px;height:5px;border-radius:50%;background:rgba(160,40,255,.8);flex-shrink:0;}
+
+/* ── Filters ── */
+.filters-wrap{
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;gap:10px;
+}
+.filters{display:flex;gap:8px;flex-wrap:wrap;}
 .filter-btn{
   background:rgba(255,255,255,.07);
   border:1px solid rgba(255,255,255,.12);
@@ -91,17 +131,41 @@ body{
   background:rgba(160,40,255,.25);
   border-color:rgba(160,40,255,.6);
 }
+.toggle-row{display:flex;align-items:center;gap:10px;}
+.toggle-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.55);}
+.toggle{position:relative;width:40px;height:22px;cursor:pointer;}
+.toggle input{opacity:0;width:0;height:0;position:absolute;}
+.toggle-track{position:absolute;inset:0;border-radius:99px;background:rgba(255,255,255,.12);transition:background .2s;}
+.toggle input:checked ~ .toggle-track{background:#22c55e;}
+.toggle-thumb{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;}
+.toggle input:checked ~ .toggle-thumb{transform:translateX(18px);}
 
-/* ── Grid ── */
-.container{max-width:1200px;margin:0 auto;padding:20px;}
+/* ── Main layout: grid + sidebar ── */
+.main-layout{
+  display:flex;align-items:flex-start;gap:0;
+  max-width:1400px;margin:0 auto;
+}
+.profiles-col{
+  flex:1;min-width:0;padding:20px;
+}
+.sidebar-col{
+  width:300px;flex-shrink:0;
+  padding:20px 20px 20px 0;
+  display:none;
+}
+@media(min-width:1100px){
+  .sidebar-col{display:block;}
+}
+
+/* ── Profile Grid ── */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;
 }
-@media(min-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}
+@media(min-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}}
 
-/* ── Card ── */
+/* ── Profile Card ── */
 .card{
   position:relative;border-radius:14px;overflow:hidden;
   background:rgba(255,255,255,.04);
@@ -111,128 +175,193 @@ body{
 }
 .card:hover{transform:translateY(-3px);border-color:rgba(160,40,255,.4);}
 .card a{display:block;text-decoration:none;color:inherit;}
-
-.card-img{
-  position:relative;width:100%;padding-top:130%;overflow:hidden;
-}
+.card-img{position:relative;width:100%;padding-top:130%;overflow:hidden;}
 .card-img img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;
+  object-fit:cover;object-position:top center;
   transition:transform .3s;
+  image-rendering:auto;
 }
-.card:hover .card-img img{transform:scale(1.04);}
+.card:hover .card-img img{transform:scale(1.05);}
 .card-img-placeholder{
   position:absolute;inset:0;
   background:linear-gradient(135deg,rgba(160,40,255,.15),rgba(255,40,90,.1));
-  display:flex;align-items:center;justify-content:center;font-size:40px;
+  display:flex;align-items:center;justify-content:center;font-size:36px;
 }
-
 .online-badge{
   position:absolute;top:8px;left:8px;
   display:flex;align-items:center;gap:4px;
   background:rgba(0,0,0,.65);backdrop-filter:blur(6px);
   border-radius:99px;padding:3px 8px;font-size:11px;font-weight:700;
 }
-.online-badge .dot{width:6px;height:6px;}
-
-.card-body{padding:10px 12px 12px;}
-.card-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.card-meta{font-size:12px;color:rgba(255,255,255,.5);margin-top:3px;}
-.card-rating{font-size:12px;color:#fbbf24;margin-top:4px;}
-
-/* ── Online toggle ── */
-.toggle-row{
-  display:flex;align-items:center;gap:10px;
-  padding:0 20px 14px;
-}
-.toggle-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);}
-.toggle{position:relative;width:40px;height:22px;cursor:pointer;}
-.toggle input{opacity:0;width:0;height:0;position:absolute;}
-.toggle-track{
-  position:absolute;inset:0;border-radius:99px;
-  background:rgba(255,255,255,.12);transition:background .2s;
-}
-.toggle input:checked ~ .toggle-track{background:#22c55e;}
-.toggle-thumb{
-  position:absolute;top:3px;left:3px;
-  width:16px;height:16px;border-radius:50%;
-  background:#fff;transition:transform .2s;
-}
-.toggle input:checked ~ .toggle-thumb{transform:translateX(18px);}
-
-/* ── Card bio snippet ── */
-.card-bio{
-  font-size:11px;color:rgba(255,255,255,.4);
-  margin-top:4px;line-height:1.4;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
+.card-body{padding:9px 11px 11px;}
+.card-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.card-meta{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;}
+.card-rating{font-size:11px;color:#fbbf24;margin-top:3px;}
+.card-bio{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
 /* ── Skeleton loading ── */
 .skeleton{
   background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.05) 75%);
-  background-size:200% 100%;
-  animation:shimmer 1.4s infinite;
-  border-radius:14px;
+  background-size:200% 100%;animation:shimmer 1.4s infinite;
 }
 @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
 .card-skeleton{border-radius:14px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);}
 .card-skeleton .sk-img{padding-top:130%;position:relative;}
 .card-skeleton .sk-img div{position:absolute;inset:0;}
-.card-skeleton .sk-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;}
-.card-skeleton .sk-name{height:13px;border-radius:6px;width:70%;}
-.card-skeleton .sk-meta{height:10px;border-radius:6px;width:45%;}
-
-/* ── States ── */
-.state-msg{
-  text-align:center;padding:60px 20px;color:rgba(255,255,255,.4);
-  font-size:15px;
-}
+.card-skeleton .sk-body{padding:9px 11px 11px;display:flex;flex-direction:column;gap:6px;}
+.card-skeleton .sk-name{height:12px;border-radius:6px;width:65%;}
+.card-skeleton .sk-meta{height:10px;border-radius:6px;width:40%;}
 
 /* ── Load more ── */
-.load-more-wrap{text-align:center;padding:32px 0;}
+.load-more-wrap{text-align:center;padding:28px 0 8px;}
 .btn-load{
   background:linear-gradient(135deg,#a028ff,#ff285a);
   border:none;border-radius:99px;color:#fff;
   font-family:inherit;font-size:15px;font-weight:700;
-  padding:14px 40px;cursor:pointer;
+  padding:13px 40px;cursor:pointer;
   transition:opacity .2s,transform .2s;
 }
 .btn-load:hover{opacity:.9;transform:scale(1.02);}
 .btn-load:disabled{opacity:.4;cursor:default;transform:none;}
 
+.state-msg{text-align:center;padding:48px 20px;color:rgba(255,255,255,.4);font-size:15px;}
+
+/* ── NEWS SIDEBAR ── */
+.news-sidebar{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;overflow:hidden;
+  position:sticky;top:100px;
+  max-height:calc(100vh - 120px);
+  display:flex;flex-direction:column;
+}
+.sidebar-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+.sidebar-head h3{font-size:13px;font-weight:800;color:#fff;}
+.sidebar-head a{font-size:11px;color:rgba(160,40,255,.9);text-decoration:none;font-weight:700;}
+.sidebar-head a:hover{color:#bf7fff;}
+.sidebar-tabs{
+  display:flex;gap:0;flex-shrink:0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  overflow-x:auto;scrollbar-width:none;
+}
+.sidebar-tabs::-webkit-scrollbar{display:none;}
+.stab{
+  flex:1;text-align:center;padding:8px 4px;font-size:11px;font-weight:700;cursor:pointer;
+  color:rgba(255,255,255,.4);border:none;background:transparent;
+  border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;
+}
+.stab:hover{color:rgba(255,255,255,.7);}
+.stab.active{color:#fff;border-bottom-color:#a028ff;}
+.sidebar-content{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent;}
+.sidebar-content::-webkit-scrollbar{width:3px;}
+.sidebar-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+
+/* ── News item in sidebar ── */
+.news-item{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:11px 14px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  text-decoration:none;color:inherit;
+  transition:background .2s;
+}
+.news-item:hover{background:rgba(255,255,255,.04);}
+.news-item:last-child{border-bottom:none;}
+.news-thumb{
+  width:52px;height:52px;border-radius:8px;object-fit:cover;flex-shrink:0;
+  background:rgba(255,255,255,.06);
+}
+.news-thumb-ph{
+  width:52px;height:52px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(160,40,255,.15),rgba(255,40,90,.1));
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.news-text{flex:1;min-width:0;}
+.news-source{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(160,40,255,.85);margin-bottom:3px;}
+.news-title{font-size:12px;font-weight:600;line-height:1.4;color:rgba(255,255,255,.85);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.news-time{font-size:10px;color:rgba(255,255,255,.25);margin-top:3px;}
+
+/* Sidebar skeleton */
+.ns-sk{padding:11px 14px;display:flex;gap:10px;border-bottom:1px solid rgba(255,255,255,.04);}
+.ns-sk .sk-thumb{width:52px;height:52px;border-radius:8px;flex-shrink:0;}
+.ns-sk .sk-lines{flex:1;display:flex;flex-direction:column;gap:6px;padding-top:4px;}
+.ns-sk .sk-src{height:9px;width:50px;border-radius:4px;}
+.ns-sk .sk-title{height:11px;width:100%;border-radius:4px;}
+.ns-sk .sk-title2{height:11px;width:70%;border-radius:4px;}
+.sk-bg{
+  background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.05) 75%);
+  background-size:200% 100%;animation:shimmer 1.4s infinite;
+}
+
 /* ── Footer ── */
-.footer{text-align:center;padding:24px;font-size:12px;color:rgba(255,255,255,.2);}
+.footer{text-align:center;padding:20px;font-size:12px;color:rgba(255,255,255,.2);}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div class="logo">H<span class="o">🔥</span>tica</div>
-  <a href="/news/" style="font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-decoration:none;padding:6px 12px;border:1px solid rgba(255,255,255,.1);border-radius:99px;transition:all .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'">📰 News</a>
-  <div class="pill"><div class="dot"></div><span id="online-count">Loading…</span></div>
-</div>
-
-<div class="filters" id="filters">
-  <button class="filter-btn active" data-order="lastupdated">Recently Active</button>
-  <button class="filter-btn" data-order="views">Most Viewed</button>
-  <button class="filter-btn" data-order="rating">Highest Rated</button>
-</div>
-<div class="toggle-row">
-  <span class="toggle-label">Available today only</span>
-  <label class="toggle">
-    <input type="checkbox" id="onlineToggle">
-    <div class="toggle-track"></div>
-    <div class="toggle-thumb"></div>
-  </label>
-</div>
-
-<div class="container">
-  <div id="grid" class="grid"></div>
-  <div id="state" class="state-msg">
-    <div class="spinner"></div>Loading profiles…
+  <a class="logo" href="/">H🔥tica</a>
+  <div class="topbar-right">
+    <div class="pill"><div class="dot"></div><span id="online-count">Loading…</span></div>
   </div>
-  <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
-    <button class="btn-load" id="btn-load-more">Load More</button>
+</div>
+
+<!-- Live news ticker -->
+<div class="ticker-bar">
+  <div class="ticker-label">📰 Live</div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="ticker-inner">
+      <span class="ticker-item" style="color:rgba(255,255,255,.3)">Loading headlines…</span>
+    </div>
+  </div>
+</div>
+
+<div class="filters-wrap">
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-order="lastupdated">Recently Active</button>
+    <button class="filter-btn" data-order="views">Most Viewed</button>
+    <button class="filter-btn" data-order="rating">Highest Rated</button>
+  </div>
+  <div class="toggle-row">
+    <span class="toggle-label">Available today only</span>
+    <label class="toggle">
+      <input type="checkbox" id="onlineToggle">
+      <div class="toggle-track"></div>
+      <div class="toggle-thumb"></div>
+    </label>
+  </div>
+</div>
+
+<div class="main-layout">
+  <!-- Profile grid column -->
+  <div class="profiles-col">
+    <div id="grid" class="grid"></div>
+    <div id="state" class="state-msg"></div>
+    <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+      <button class="btn-load" id="btn-load-more">Load More</button>
+    </div>
+  </div>
+
+  <!-- News sidebar (desktop only) -->
+  <div class="sidebar-col">
+    <div class="news-sidebar">
+      <div class="sidebar-head">
+        <h3>🗞 Live News</h3>
+        <a href="/news/">Full news →</a>
+      </div>
+      <div class="sidebar-tabs" id="sidebar-tabs">
+        <button class="stab active" data-cat="gossip">💄 Gossip</button>
+        <button class="stab" data-cat="crypto">₿ Crypto</button>
+        <button class="stab" data-cat="sports">⚽ Sport</button>
+        <button class="stab" data-cat="world">🌍 World</button>
+      </div>
+      <div class="sidebar-content" id="sidebar-content"></div>
+    </div>
   </div>
 </div>
 
@@ -240,13 +369,26 @@ body{
 
 <script>
 const API_BASE = '/api/aw-profiles';
+const NEWS_API = '/api/news';
 
-let currentPage = 1;
-let currentOrder = 'lastupdated';
-let onlineOnly = false;
-let isLoading = false;
-let hasMore = true;
+// ── Helpers ──────────────────────────────────────────
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function timeAgo(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return '';
+  const diff = Math.floor((Date.now() - d) / 1000);
+  if (diff < 60)    return 'just now';
+  if (diff < 3600)  return Math.floor(diff/60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+  return Math.floor(diff/86400) + 'd ago';
+}
 
+// ── Profile cards ─────────────────────────────────────
 const grid        = document.getElementById('grid');
 const state       = document.getElementById('state');
 const loadMoreWrap= document.getElementById('load-more-wrap');
@@ -254,24 +396,18 @@ const btnLoadMore = document.getElementById('btn-load-more');
 const onlineCount = document.getElementById('online-count');
 const onlineToggle= document.getElementById('onlineToggle');
 
-function esc(str) {
-  return String(str ?? '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
+let currentPage  = 1;
+let currentOrder = 'lastupdated';
+let onlineOnly   = false;
+let isLoading    = false;
+let hasMore      = true;
 
 function buildSkeleton() {
   const el = document.createElement('div');
   el.className = 'card-skeleton';
-  el.innerHTML = `
-    <div class="sk-img"><div class="skeleton"></div></div>
-    <div class="sk-body">
-      <div class="sk-name skeleton"></div>
-      <div class="sk-meta skeleton"></div>
-    </div>`;
+  el.innerHTML = `<div class="sk-img"><div class="skeleton sk-bg"></div></div><div class="sk-body"><div class="sk-name sk-bg"></div><div class="sk-meta sk-bg"></div></div>`;
   return el;
 }
-
 function showSkeletons(n = 12) {
   grid.innerHTML = '';
   for (let i = 0; i < n; i++) grid.appendChild(buildSkeleton());
@@ -282,45 +418,28 @@ function buildCard(p) {
   card.className = 'card';
 
   const imgHtml = p.thumbnail
-    ? `<img src="${esc(p.thumbnail)}" alt="${esc(p.nickname)}" loading="lazy" width="200" height="260">`
+    ? `<img src="${esc(p.thumbnail)}" alt="${esc(p.nickname)}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder>💋</div>'">`
     : `<div class="card-img-placeholder">💋</div>`;
 
-  const onlineBadge = p.isOnline
-    ? `<div class="online-badge"><div class="dot" style="background:#22c55e;box-shadow:0 0 6px #22c55e;border-radius:50%;"></div>Available</div>`
+  const badge = p.isOnline
+    ? `<div class="online-badge"><div class="dot" style="width:6px;height:6px;background:#22c55e;box-shadow:0 0 6px #22c55e;border-radius:50%;flex-shrink:0;"></div>Available</div>`
     : '';
 
-  const ratingHtml = p.rating
-    ? `<div class="card-rating">★ ${Number(p.rating).toFixed(0)}</div>`
-    : '';
+  const rating   = p.rating   ? `<div class="card-rating">★ ${Number(p.rating).toFixed(0)}</div>` : '';
+  const location = p.location ? `<div class="card-meta">${esc(p.location.split(',')[0])}</div>` : '';
+  const bio      = p.bio      ? `<div class="card-bio">${esc(p.bio.slice(0, 80))}</div>` : '';
 
-  const locationHtml = p.location
-    ? `<div class="card-meta">${esc(p.location.split(',')[0])}</div>`
-    : '';
-
-  const bioHtml = p.bio
-    ? `<div class="card-bio">${esc(p.bio.slice(0, 80))}</div>`
-    : '';
-
-  card.innerHTML = `
-    <a href="/profiles/${esc(p.userId)}" data-user="${esc(p.userId)}">
-      <div class="card-img">
-        ${imgHtml}
-        ${onlineBadge}
-      </div>
-      <div class="card-body">
-        <div class="card-name">${esc(p.nickname || 'Profile')}</div>
-        ${locationHtml}
-        ${ratingHtml}
-        ${bioHtml}
-      </div>
-    </a>`;
+  card.innerHTML = `<a href="/profiles/${esc(p.userId)}" data-user="${esc(p.userId)}">
+    <div class="card-img">${imgHtml}${badge}</div>
+    <div class="card-body">
+      <div class="card-name">${esc(p.nickname || 'Profile')}</div>
+      ${location}${rating}${bio}
+    </div>
+  </a>`;
 
   card.querySelector('a').addEventListener('click', () => {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'profile_page_open', { user_id: p.userId, nickname: p.nickname });
-    }
+    if (typeof gtag !== 'undefined') gtag('event', 'profile_click', { user_id: p.userId });
   });
-
   return card;
 }
 
@@ -328,49 +447,33 @@ async function loadProfiles(reset) {
   if (isLoading) return;
   isLoading = true;
   btnLoadMore.disabled = true;
-
   if (reset) {
-    currentPage = 1;
-    hasMore = true;
+    currentPage = 1; hasMore = true;
     loadMoreWrap.style.display = 'none';
     state.style.display = 'none';
     showSkeletons(12);
   }
-
   try {
-    const params = new URLSearchParams({
-      page: currentPage,
-      orderBy: currentOrder,
-      limit: 24,
-    });
+    const params = new URLSearchParams({ page: currentPage, orderBy: currentOrder, limit: 24 });
     const res = await fetch(`${API_BASE}?${params}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-
-    // Remove skeletons on first page
-    if (currentPage === 1) {
-      grid.querySelectorAll('.card-skeleton').forEach(el => el.remove());
-    }
+    if (currentPage === 1) grid.querySelectorAll('.card-skeleton').forEach(el => el.remove());
 
     let profiles = data.profiles || [];
     if (onlineOnly) profiles = profiles.filter(p => p.isOnline);
 
     if (profiles.length === 0 && currentPage === 1) {
-      state.textContent = 'No profiles found. Try again shortly.';
+      state.textContent = 'No profiles found — check back shortly.';
       state.style.display = 'block';
       hasMore = false;
-      loadMoreWrap.style.display = 'none';
       return;
     }
-
     profiles.forEach(p => grid.appendChild(buildCard(p)));
-
     const loaded = currentPage * 24;
     hasMore = loaded < (data.total || 0);
     loadMoreWrap.style.display = hasMore ? 'block' : 'none';
-
-    const totalLabel = data.total ? data.total.toLocaleString() + ' profiles' : profiles.length + ' online';
-    onlineCount.textContent = totalLabel;
+    onlineCount.textContent = data.total ? data.total.toLocaleString() + ' profiles' : profiles.length + ' live';
     currentPage++;
   } catch (err) {
     grid.querySelectorAll('.card-skeleton').forEach(el => el.remove());
@@ -390,15 +493,91 @@ document.getElementById('filters').addEventListener('click', e => {
   currentOrder = btn.dataset.order;
   loadProfiles(true);
 });
-
-onlineToggle.addEventListener('change', () => {
-  onlineOnly = onlineToggle.checked;
-  loadProfiles(true);
-});
-
+onlineToggle.addEventListener('change', () => { onlineOnly = onlineToggle.checked; loadProfiles(true); });
 btnLoadMore.addEventListener('click', () => loadProfiles(false));
 
+// ── News sidebar ──────────────────────────────────────
+const sidebarContent = document.getElementById('sidebar-content');
+const sidebarTabs    = document.getElementById('sidebar-tabs');
+const CAT_ICONS = { gossip:'💄', crypto:'₿', sports:'⚽', world:'🌍' };
+let sidebarCat = 'gossip';
+
+function sidebarSkeletons() {
+  return Array.from({length:5}, () => `
+    <div class="ns-sk">
+      <div class="sk-thumb sk-bg"></div>
+      <div class="sk-lines">
+        <div class="sk-src sk-bg"></div>
+        <div class="sk-title sk-bg"></div>
+        <div class="sk-title2 sk-bg"></div>
+      </div>
+    </div>`).join('');
+}
+
+function buildNewsItem(a) {
+  const imgHtml = a.image
+    ? `<img class="news-thumb" src="${esc(a.image)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=news-thumb-ph>${CAT_ICONS[sidebarCat]}</div>'">`
+    : `<div class="news-thumb-ph">${CAT_ICONS[sidebarCat]}</div>`;
+  return `
+    <a class="news-item" href="${esc(a.link)}" target="_blank" rel="noopener noreferrer">
+      ${imgHtml}
+      <div class="news-text">
+        <div class="news-source">${esc(a.source)}</div>
+        <div class="news-title">${esc(a.title)}</div>
+        <div class="news-time">${timeAgo(a.published)}</div>
+      </div>
+    </a>`;
+}
+
+async function loadSidebar(cat) {
+  sidebarContent.innerHTML = sidebarSkeletons();
+  try {
+    const res = await fetch(`${NEWS_API}?category=${cat}`);
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    const items = (data.articles || []).slice(0, 7);
+    sidebarContent.innerHTML = items.length
+      ? items.map(buildNewsItem).join('')
+      : '<div style="padding:20px;font-size:12px;color:rgba(255,255,255,.3);text-align:center;">No stories right now</div>';
+  } catch {
+    sidebarContent.innerHTML = '<div style="padding:20px;font-size:12px;color:rgba(255,255,255,.3);text-align:center;">Could not load news</div>';
+  }
+}
+
+sidebarTabs.addEventListener('click', e => {
+  const tab = e.target.closest('.stab');
+  if (!tab) return;
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  sidebarCat = tab.dataset.cat;
+  loadSidebar(sidebarCat);
+});
+
+// ── News ticker ───────────────────────────────────────
+async function loadTicker() {
+  try {
+    const res = await fetch(`${NEWS_API}?category=gossip`);
+    if (!res.ok) return;
+    const data = await res.json();
+    const articles = (data.articles || []).slice(0, 10);
+    if (!articles.length) return;
+
+    const ticker = document.getElementById('ticker-inner');
+    const items  = articles.map(a =>
+      `<a class="ticker-item" href="${esc(a.link)}" target="_blank" rel="noopener noreferrer"><span class="ticker-dot"></span>${esc(a.title)}</a>`
+    ).join('');
+    // Duplicate for seamless loop
+    ticker.innerHTML = items + items;
+  } catch { /* leave placeholder */ }
+}
+
+// ── Boot ─────────────────────────────────────────────
 loadProfiles(true);
+loadSidebar('gossip');
+loadTicker();
+
+// Refresh sidebar every 10 minutes
+setInterval(() => loadSidebar(sidebarCat), 10 * 60 * 1000);
 </script>
 </body>
 </html>
