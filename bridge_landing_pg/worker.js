@@ -118,7 +118,6 @@ async function handleAwProfiles(request, env, corsHeaders) {
     ProfilesPerPage: url.searchParams.get('limit') || '24',
     PageNumber:      url.searchParams.get('page') || '1',
     OrderBy:         url.searchParams.get('orderBy') || 'lastupdated',
-    GenderIDs:       url.searchParams.get('genderIds') || '1',
   });
 
   const awBase = env.ADULTWORK_API_BASE || 'https://developers.adultwork.com';
@@ -145,7 +144,7 @@ async function handleAwProfiles(request, env, corsHeaders) {
     .map(p => normaliseProfile(p, env));
 
   return new Response(
-    JSON.stringify({ profiles, total: data.totalResults || profiles.length }),
+    JSON.stringify({ profiles, total: data.profilesTotal || data.totalResults || profiles.length }),
     {
       headers: {
         ...corsHeaders,
